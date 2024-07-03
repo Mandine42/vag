@@ -1,0 +1,10 @@
+services:
+# sevice gérant le serveur
+  server:
+    image: node
+    ports:
+      - 3000:3000
+    volumes:
+      - ./code/server:/app
+    working_dir: /app
+    tty: true 
