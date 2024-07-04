@@ -30,22 +30,22 @@ class Server {
 	private listRouters = (): void => {
 		this.router.use("/", new HomepageRouter().getRouter());
 
-		this.router.get("/product", new ProductRouter().getRouter());
+		this.router.use("/product", new ProductRouter().getRouter());
 
-		this.router.get("/category", new CategoryRouter().getRouter());
+		this.router.use("/category", new CategoryRouter().getRouter());
 
-		this.router.get("/district", new DistrictRouter().getRouter());
+		this.router.use("/district", new DistrictRouter().getRouter());
 
-		this.router.get(
+		this.router.use(
 			"/category_district",
 			new CategoryDistrictRouter().getRouter(),
 		);
 
-		this.router.get("/city", new CityRouter().getRouter());
+		this.router.use("/city", new CityRouter().getRouter());
 
-		this.router.get("/collect", new CollectRouter().getRouter());
+		this.router.use("/collect", new CollectRouter().getRouter());
 
-		this.router.get("/share", new ShareRouter().getRouter());
+		this.router.use("/share", new ShareRouter().getRouter());
 
 		this.router.use("*", new NotFoundRouter().getRouter());
 	};

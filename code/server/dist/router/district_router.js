@@ -5,7 +5,7 @@ class DistrictRouter {
     getRouter = () => {
         // lister les routes associées au préfixe du router
         // une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
-        this.router.get("/district", new DistrictController().index);
+        this.router.get("/", new DistrictController().index);
         return this.router;
     };
 }

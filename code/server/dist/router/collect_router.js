@@ -5,7 +5,7 @@ class CollectRouter {
     getRouter = () => {
         // lister les routes associées au préfixe du router
         // une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
-        this.router.get("/collect", new CollectController().index);
+        this.router.get("/", new CollectController().index);
         return this.router;
     };
 }

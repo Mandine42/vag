@@ -5,7 +5,7 @@ class ShareRouter {
     getRouter = () => {
         // lister les routes associées au préfixe du router
         // une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
-        this.router.get("/share", new shareController().index);
+        this.router.get("/", new shareController().index);
         return this.router;
     };
 }

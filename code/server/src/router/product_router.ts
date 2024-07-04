@@ -7,7 +7,7 @@ class ProductRouter {
 	public getRouter = (): Router => {
 		// lister les routes associées au préfixe du router
 		// une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
-		this.router.get("/product", new ProductController().index);
+		this.router.get("/", new ProductController().index);
 
 		return this.router;
 	};

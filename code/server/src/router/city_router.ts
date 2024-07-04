@@ -7,7 +7,7 @@ class CityRouter {
 	public getRouter = (): Router => {
 		// lister les routes associées au préfixe du router
 		// une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
-		this.router.get("/city", new CityController().index);
+		this.router.get("/", new CityController().index);
 
 		return this.router;
 	};

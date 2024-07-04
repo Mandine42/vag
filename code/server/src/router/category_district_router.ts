@@ -7,10 +7,7 @@ class CategoryDistrictRouter {
 	public getRouter = (): Router => {
 		// lister les routes associées au préfixe du router
 		// une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
-		this.router.get(
-			"/category_district",
-			new CategoryDistrictController().index,
-		);
+		this.router.get("/", new CategoryDistrictController().index);
 
 		return this.router;
 	};
