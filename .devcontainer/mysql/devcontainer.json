@@ -1,0 +1,12 @@
+{
+    "name": "VAG - MySQL",
+    "service": "mysql",
+    "dockerComposeFile": "../../docker-compose.dev.yaml",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [],
+            "settings": {} 
+        }
+    }
+}
