@@ -1,9 +1,10 @@
 import type { Request, Response } from "express";
+import CategoryRepository from "../repository/category_repository.js";
 
 class CategoryController {
 	// méthodes appelées par le router
-	public index = (req: Request, res: Response): Response => {
-		return res.send("category controller");
+	public index = async (req: Request, res: Response): Promise<Response> => {
+		return res.send(await new CategoryRepository().selectAll());
 	};
 }
 

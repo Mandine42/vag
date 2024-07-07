@@ -1,9 +1,10 @@
 import type { Request, Response } from "express";
+import ShareRepository from "../repository/share_repository.js";
 
 class ShareController {
 	// méthodes appelées par le router
-	public index = (req: Request, res: Response): Response => {
-		return res.send("share controller");
+	public index = async (req: Request, res: Response): Promise<Response> => {
+		return res.send(await new ShareRepository().selectAll());
 	};
 }
 

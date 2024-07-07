@@ -1,7 +1,8 @@
+import CityRepository from "../repository/city_repository.js";
 class CityController {
     // méthodes appelées par le router
-    index = (req, res) => {
-        return res.send("city controller");
+    index = async (req, res) => {
+        return res.send(await new CityRepository().selectAll());
     };
 }
 export default CityController;

@@ -1,9 +1,10 @@
 import type { Request, Response } from "express";
+import CategoryDistrictRepository from "../repository/category_district_repository.js";
 
 class CategoryDistrictController {
 	// méthodes appelées par le router
-	public index = (req: Request, res: Response): Response => {
-		return res.send("category_district controller");
+	public index = async (req: Request, res: Response): Promise<Response> => {
+		return res.send(await new CategoryDistrictRepository().selectAll());
 	};
 }
 
