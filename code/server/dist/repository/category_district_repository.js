@@ -23,5 +23,21 @@ class CategoryDistrictRepository {
             return error;
         }
     };
+    selectOne = async (data) => {
+        const connection = await this.mySQLService.connect();
+        // création d'une variable de requête, pour une requête préparée éviter les injections SQL
+        const query = ` SELECT ${this.table}.* FROM ${process.env.MYSQL_DB}. ${this.table} WHERE ${this.table}.id = :id ;`;
+        // exécuter la requête SQL ou récupérer une erreur
+        try {
+            // fournir la valeur des variables de requête, sous la forme d'un objet
+            const results = await connection.execute(query, data);
+            // renvoyer les résultats de la requête
+            // shift permet de récuperer le premier indice d'un array
+            return results.shift();
+        }
+        catch (error) {
+            return error;
+        }
+    };
 }
 export default CategoryDistrictRepository;

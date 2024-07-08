@@ -6,6 +6,7 @@ class CityRouter {
         // lister les routes associées au préfixe du router
         // une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
         this.router.get("/", new CityController().index);
+        this.router.get("/:id", new CityController().one);
         return this.router;
     };
 }
