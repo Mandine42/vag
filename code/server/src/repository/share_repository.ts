@@ -1,4 +1,4 @@
-import type { Pool } from "mysql2/promise";
+import type { Pool, QueryResult } from "mysql2/promise";
 import MySQLService from "../service/mysql_service.js";
 class ShareRepository {
 	// accéder au service MySQL
@@ -6,7 +6,7 @@ class ShareRepository {
 	// table principale utilisée par la classe
 	table = "share";
 	// selection de tous les enregistrements
-	selectAll = async () => {
+	selectAll = async (): Promise<QueryResult | unknown> => {
 		// connection à la base de données
 		//await permet de créer un temps d'attente
 		// obligatoirement utilisé dans une fonction asynchrone
@@ -23,7 +23,7 @@ class ShareRepository {
 			return error;
 		}
 	};
-	public selectOne = async (data: object) => {
+	public selectOne = async (data: object): Promise<QueryResult | unknown> => {
 		const connection: Pool = await this.mySQLService.connect();
 		// création d'une variable de requête, pour une requête préparée éviter les injections SQL
 		const query = ` SELECT ${this.table}.* FROM ${process.env.MYSQL_DB}. ${this.table} WHERE ${this.table}.id = :id ;`;
@@ -34,7 +34,7 @@ class ShareRepository {
 			const results = await connection.execute(query, data);
 			// renvoyer les résultats de la requête
 			// shift permet de récuperer le premier indice d'un array
-			return results.shift();
+			return (results.shift() as []).shift();
 		} catch (error: unknown) {
 			return error;
 		}
