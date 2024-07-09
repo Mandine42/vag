@@ -34,7 +34,7 @@ class CategoryDistrictRepository {
 			const results = await connection.execute(query, data);
 			// renvoyer les résultats de la requête
 			// shift permet de récuperer le premier indice d'un array
-			return results.shift();
+			return (results.shift() as []).shift();
 		} catch (error: unknown) {
 			return error;
 		}

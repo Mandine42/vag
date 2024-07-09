@@ -1,6 +1,6 @@
-type Category_district = {
+type CategoryDistrict = {
 	id?: number;
 	name?: string;
 };
 
-export default Category_district;
+export default CategoryDistrict;

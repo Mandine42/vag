@@ -1,4 +1,5 @@
 import MySQLService from "../service/mysql_service.js";
+import DistrictRepository from "./district_repository.js";
 class CollectRepository {
     // accéder au service MySQL
     mySQLService = new MySQLService();
@@ -16,8 +17,17 @@ class CollectRepository {
         // exécuter la requête SQL ou récupérer une erreur
         try {
             const results = await connection.execute(query);
+            const fullResults = results.shift();
+            // boucler sur les résultats
+            for (let i = 0; i < fullResults.length; i++) {
+                //requête pour récuperer un objet Brand
+                const district = await new DistrictRepository().selectOne({
+                    id: fullResults[i].district_id,
+                });
+                fullResults[i].district = district;
+            }
             // renvoyer les résultats de la requête
-            return results.shift();
+            return fullResults;
         }
         catch (error) {
             return error;
@@ -31,9 +41,12 @@ class CollectRepository {
         try {
             // fournir la valeur des variables de requête, sous la forme d'un objet
             const results = await connection.execute(query, data);
-            // renvoyer les résultats de la requête
-            // shift permet de récuperer le premier indice d'un array
-            return results.shift();
+            const fullResults = results.shift().shift();
+            const district = await new DistrictRepository().selectOne({
+                id: fullResults.district_id,
+            });
+            fullResults.district = district;
+            return fullResults;
         }
         catch (error) {
             return error;

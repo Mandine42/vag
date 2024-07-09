@@ -1,4 +1,6 @@
 import MySQLService from "../service/mysql_service.js";
+import CategoryDistrictRepository from "./category_district_repository.js";
+import CityRepository from "./city_repository.js";
 class DistrictRepository {
     // accéder au service MySQL
     mySQLService = new MySQLService();
@@ -6,18 +8,24 @@ class DistrictRepository {
     table = "district";
     // selection de tous les enregistrements
     selectAll = async () => {
-        // connection à la base de données
-        //await permet de créer un temps d'attente
-        // obligatoirement utilisé dans une fonction asynchrone
-        // permet de récuperer automatiquement le contenu de la promesse
         const connection = await this.mySQLService.connect();
         // requête SQL
         const query = ` SELECT ${this.table}.* FROM ${process.env.MYSQL_DB}. ${this.table} `;
-        // exécuter la requête SQL ou récupérer une erreur
         try {
             const results = await connection.execute(query);
-            // renvoyer les résultats de la requête
-            return results.shift();
+            const fullResults = results.shift();
+            // boucler sur les résultats
+            for (let i = 0; i < fullResults.length; i++) {
+                const categoryDistrict = await new CategoryDistrictRepository().selectOne({
+                    id: fullResults[i].category_district_id,
+                });
+                fullResults[i].category_district = categoryDistrict;
+                const city = await new CityRepository().selectOne({
+                    id: fullResults[i].city_id,
+                });
+                fullResults[i].city = city;
+            }
+            return fullResults;
         }
         catch (error) {
             return error;
@@ -31,9 +39,16 @@ class DistrictRepository {
         try {
             // fournir la valeur des variables de requête, sous la forme d'un objet
             const results = await connection.execute(query, data);
-            // renvoyer les résultats de la requête
-            // shift permet de récuperer le premier indice d'un array
-            return results.shift();
+            const fullResults = results.shift().shift();
+            const category_district = await new CategoryDistrictRepository().selectOne({
+                id: fullResults.category_district_id,
+            });
+            fullResults.category_district = category_district;
+            const city = await new CityRepository().selectOne({
+                id: fullResults.city_id,
+            });
+            fullResults.city = city;
+            return fullResults;
         }
         catch (error) {
             return error;

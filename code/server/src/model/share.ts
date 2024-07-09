@@ -1,4 +1,4 @@
-import type District from "./district.js";
+import type Collect from "./collect.js";
 import type Product from "./product.js";
 
 type Share = {
@@ -8,8 +8,8 @@ type Share = {
 	expiration?: string;
 	product_id?: number;
 	product?: Product | unknown;
-	district_id?: number;
-	district?: District | unknown;
+	collect_id?: number;
+	collect?: Collect | unknown;
 };
 
 export default Share;
