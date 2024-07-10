@@ -10,6 +10,7 @@ class ShareRepository {
 	mySQLService = new MySQLService();
 	// table principale utilisée par la classe
 	table = "share";
+
 	// selection de tous les enregistrements
 	public selectAll = async (): Promise<QueryResult | unknown | Share[]> => {
 		const connection: Pool = await this.mySQLService.connect();

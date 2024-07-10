@@ -55,18 +55,6 @@ CREATE TABLE vag.product(
     FOREIGN KEY (category_id) REFERENCES vag.category(id)
 );
 
-CREATE TABLE vag.share(
-    id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    quantity TINYINT UNSIGNED NOT NULL,
-    collect_dateTime DATETIME NOT NULL,
-    expiration DATE NULL,
-    -- clés étrangères
-    product_id SMALLINT UNSIGNED,
-    FOREIGN KEY (product_id) REFERENCES vag.product(id),
-    district_id TINYINT UNSIGNED,
-    FOREIGN KEY (district_id) REFERENCES vag.district(id)
-);
-
 CREATE TABLE vag.collect(
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     adress VARCHAR(100) NOT NULL UNIQUE,
@@ -76,10 +64,21 @@ CREATE TABLE vag.collect(
     FOREIGN KEY (district_id) REFERENCES vag.district(id)
     
 );
+CREATE TABLE vag.share(
+    id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    quantity TINYINT UNSIGNED NOT NULL,
+    collect_dateTime DATETIME NOT NULL,
+    expiration DATE NULL,
+    -- clés étrangères
+    product_id SMALLINT UNSIGNED,
+    FOREIGN KEY (product_id) REFERENCES vag.product(id),
+    collect_id TINYINT UNSIGNED,
+    FOREIGN KEY (collect_id) REFERENCES vag.collect(id)
+);
 
 -- table relationnelle
 CREATE TABLE vag.user_share (
-    user_share_id TINYINT PRIMARY KEY AUTO_INCREMENT,
+    user_share_id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     donor_id TINYINT UNSIGNED NOT NULL,
     beneficiary_id TINYINT UNSIGNED NOT NULL,
     share_id TINYINT UNSIGNED NOT NULL,

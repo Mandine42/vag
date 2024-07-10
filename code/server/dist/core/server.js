@@ -9,6 +9,7 @@ import CollectRouter from "../router/collect_router.js";
 import ShareRouter from "../router/share_router.js";
 import NotFoundRouter from "../router/not_found_router.js";
 import HomepageRouter from "../router/homepage_router.js";
+import UserRouter from "../router/user_router.js";
 class Server {
     // propriétés
     app = express();
@@ -28,6 +29,7 @@ class Server {
         this.router.use("/city", new CityRouter().getRouter());
         this.router.use("/collect", new CollectRouter().getRouter());
         this.router.use("/share", new ShareRouter().getRouter());
+        this.router.use("/user", new UserRouter().getRouter());
         this.router.use("*", new NotFoundRouter().getRouter());
     };
     createServer = () => {
