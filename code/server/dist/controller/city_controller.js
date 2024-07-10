@@ -5,7 +5,6 @@ class CityController {
     index = async (req, res) => {
         const result = await this.cityrepository.selectAll();
         // req.params permet de recuperer les variables de route
-        console.log(req.params);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux
@@ -26,7 +25,6 @@ class CityController {
     one = async (req, res) => {
         const result = await this.cityrepository.selectOne(req.params);
         // req.params permet de recuperer les variables de route
-        console.log(req.params);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux

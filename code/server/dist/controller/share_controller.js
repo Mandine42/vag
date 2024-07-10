@@ -5,7 +5,7 @@ class ShareController {
     index = async (req, res) => {
         const result = await this.sharerepository.selectAll();
         // req.params permet de recuperer les variables de route
-        console.log(req.params);
+        // console.log(req.params);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux
@@ -26,7 +26,7 @@ class ShareController {
     one = async (req, res) => {
         const result = await this.sharerepository.selectOne(req.params);
         // req.params permet de recuperer les variables de route
-        console.log(req.params);
+        // console.log(req.params);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux

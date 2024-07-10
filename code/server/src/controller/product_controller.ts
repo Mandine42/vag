@@ -7,7 +7,7 @@ class ProductController {
 	public index = async (req: Request, res: Response): Promise<Response> => {
 		const result = await this.productrepository.selectAll();
 		// req.params permet de recuperer les variables de route
-		console.log(req.params);
+
 		if (result instanceof Error) {
 			// environnement de developpement
 			// condition ? vrai : faux
@@ -29,7 +29,7 @@ class ProductController {
 	public one = async (req: Request, res: Response) => {
 		const result = await this.productrepository.selectOne(req.params);
 		// req.params permet de recuperer les variables de route
-		console.log(req.params);
+
 		if (result instanceof Error) {
 			// environnement de developpement
 			// condition ? vrai : faux

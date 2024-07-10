@@ -1,10 +1,11 @@
-import CategoryRepository from "../repository/category_repository.js";
-class CategoryController {
-    categoryrepository = new CategoryRepository();
+import UserRepository from "../repository/user_share_repository.js";
+class UserController {
+    userrepository = new UserRepository();
     // méthodes appelées par le router
     index = async (req, res) => {
-        const result = await this.categoryrepository.selectAll();
+        const result = await this.userrepository.selectAll();
         // req.params permet de recuperer les variables de route
+        // console.log(req.params);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux
@@ -23,8 +24,9 @@ class CategoryController {
         });
     };
     one = async (req, res) => {
-        const result = await this.categoryrepository.selectOne(req.params);
+        const result = await this.userrepository.selectOne(req.params);
         // req.params permet de recuperer les variables de route
+        // console.log(req.params);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux
@@ -43,4 +45,4 @@ class CategoryController {
         });
     };
 }
-export default CategoryController;
+export default UserController;

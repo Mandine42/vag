@@ -5,7 +5,6 @@ class ProductController {
     index = async (req, res) => {
         const result = await this.productrepository.selectAll();
         // req.params permet de recuperer les variables de route
-        console.log(req.params);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux
@@ -26,7 +25,6 @@ class ProductController {
     one = async (req, res) => {
         const result = await this.productrepository.selectOne(req.params);
         // req.params permet de recuperer les variables de route
-        console.log(req.params);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux

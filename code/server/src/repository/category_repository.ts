@@ -1,12 +1,13 @@
-import type { Pool } from "mysql2/promise";
+import type { Pool, QueryResult } from "mysql2/promise";
 import MySQLService from "../service/mysql_service.js";
+import type Category from "../model/category.js";
 class CategoryRepository {
 	// accéder au service MySQL
 	mySQLService = new MySQLService();
 	// table principale utilisée par la classe
 	table = "category";
 	// selection de tous les enregistrements
-	selectAll = async () => {
+	public selectAll = async (): Promise<QueryResult | unknown | Category[]> => {
 		// connection à la base de données
 		//await permet de créer un temps d'attente
 		// obligatoirement utilisé dans une fonction asynchrone

@@ -1,14 +1,12 @@
 import type { Request, Response } from "express";
-import CollectRepository from "../repository/collect_repository.js";
-
-class CollectController {
-	private collectrepository: CollectRepository = new CollectRepository();
+import UserRepository from "../repository/user_share_repository.js";
+class UserController {
+	private userrepository: UserRepository = new UserRepository();
 	// méthodes appelées par le router
-
 	public index = async (req: Request, res: Response): Promise<Response> => {
-		const result = await this.collectrepository.selectAll();
+		const result = await this.userrepository.selectAll();
 		// req.params permet de recuperer les variables de route
-
+		// console.log(req.params);
 		if (result instanceof Error) {
 			// environnement de developpement
 			// condition ? vrai : faux
@@ -26,10 +24,11 @@ class CollectController {
 			data: result,
 		});
 	};
-	public one = async (req: Request, res: Response) => {
-		const result = await this.collectrepository.selectOne(req.params);
-		// req.params permet de recuperer les variables de route
 
+	public one = async (req: Request, res: Response) => {
+		const result = await this.userrepository.selectOne(req.params);
+		// req.params permet de recuperer les variables de route
+		// console.log(req.params);
 		if (result instanceof Error) {
 			// environnement de developpement
 			// condition ? vrai : faux
@@ -49,4 +48,4 @@ class CollectController {
 	};
 }
 
-export default CollectController;
+export default UserController;

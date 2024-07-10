@@ -5,7 +5,6 @@ class CollectController {
     index = async (req, res) => {
         const result = await this.collectrepository.selectAll();
         // req.params permet de recuperer les variables de route
-        console.log(req.params);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux
@@ -26,7 +25,6 @@ class CollectController {
     one = async (req, res) => {
         const result = await this.collectrepository.selectOne(req.params);
         // req.params permet de recuperer les variables de route
-        console.log(req.params);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux
