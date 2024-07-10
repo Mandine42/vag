@@ -37,16 +37,16 @@ class userrepository {
 			const fullResults = results.shift() as UserShare[];
 			// boucler sur les résultats
 			for (let i = 0; i < fullResults.length; i++) {
-				const donor: User | unknown = await new UserRepository().selectInList(
-					fullResults[i].donor_id as string,
-				);
+				const donor: User | unknown = await new UserRepository().selectOne({
+					id: fullResults[i].donor_id,
+				});
 				// assigner le résultat de la requête à une propriété
 				fullResults[i].donor = donor;
 				// requete pour récupérer les options
 				const beneficiary: User | unknown =
-					await new UserRepository().selectInList(
-						fullResults[i].beneficiary_id as string,
-					);
+					await new UserRepository().selectOne({
+						id: fullResults[i].beneficiary_id,
+					});
 				fullResults[i].beneficiary = beneficiary;
 			}
 
@@ -69,9 +69,7 @@ class userrepository {
 			// fournir la valeur des variables de requête, sous la forme d'un objet
 			const results = await connection.execute(query, data);
 
-			const fullResults: UserShare = (
-				results.shift() as UserShare[]
-			).shift() as UserShare;
+			const fullResults: UserShare = results.shift() as UserShare;
 
 			const donor: User | unknown = await new UserRepository().selectOne({
 				id: fullResults.donor_id,

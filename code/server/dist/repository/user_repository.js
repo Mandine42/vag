@@ -29,11 +29,15 @@ class userrepository {
             const fullResults = results.shift();
             // boucler sur les résultats
             for (let i = 0; i < fullResults.length; i++) {
-                const donor = await new UserRepository().selectInList(fullResults[i].donor_id);
+                const donor = await new UserRepository().selectOne({
+                    id: fullResults[i].donor_id,
+                });
                 // assigner le résultat de la requête à une propriété
                 fullResults[i].donor = donor;
                 // requete pour récupérer les options
-                const beneficiary = await new UserRepository().selectInList(fullResults[i].beneficiary_id);
+                const beneficiary = await new UserRepository().selectOne({
+                    id: fullResults[i].beneficiary_id,
+                });
                 fullResults[i].beneficiary = beneficiary;
             }
             // renvoyer les résultats de la requête
@@ -51,7 +55,7 @@ class userrepository {
         try {
             // fournir la valeur des variables de requête, sous la forme d'un objet
             const results = await connection.execute(query, data);
-            const fullResults = results.shift().shift();
+            const fullResults = results.shift();
             const donor = await new UserRepository().selectOne({
                 id: fullResults.donor_id,
             });
