@@ -3,9 +3,9 @@ import MySQLService from "../service/mysql_service.js";
 import type UserShare from "../model/user_share.js";
 import type { Pool } from "mysql2/promise";
 import type User from "../model/user.js";
-import UserRepository from "./user_share_repository.js";
-
-class userrepository {
+import ShareRepository from "./share_repository.js";
+import type Share from "../model/share.js";
+class UserRepository {
 	// accéder au service MySQL
 	private mySQLService = new MySQLService();
 
@@ -13,7 +13,7 @@ class userrepository {
 	private table = "user";
 
 	// selection de tous les enregistrements
-	public selectAll = async (): Promise<QueryResult | unknown | UserShare[]> => {
+	public selectAll = async (): Promise<QueryResult | unknown | User[]> => {
 		// connection à la base de données
 		//await permet de créer un temps d'attente
 		// obligatoirement utilisé dans une fonction asynchrone
@@ -21,33 +21,36 @@ class userrepository {
 		const connection: Pool = await this.mySQLService.connect();
 		// requête SQL
 		const query = `
-                        SELECT ${this.table}.*, GROUP_CONCAT(DISTINCT user_share.id) AS user_share_ids
-                        FROM ${process.env.MYSQL_DB}.${this.table}
-                        LEFT JOIN ${process.env.MYSQL_DB}.user_share AS donor_shares
-                        ON donor_shares.donor_id = ${this.table}.id
-                        LEFT JOIN ${process.env.MYSQL_DB}.user_share AS beneficiary_shares
-                        ON beneficiary_shares.beneficiary_id = ${this.table}.id
-                        GROUP BY ${this.table}.id
-                    `;
+			SELECT
+				${this.table}.*,
+				GROUP_CONCAT(donors.id) AS donors_share_id,
+				GROUP_CONCAT(beneficaries.id) AS beneficiaries_share_id
+			FROM ${process.env.MYSQL_DB}.${this.table}
+			LEFT JOIN ${process.env.MYSQL_DB}.user_share AS donors
+			ON donors.donor_id = user.id
+			LEFT JOIN ${process.env.MYSQL_DB}.user_share AS beneficaries
+			ON beneficaries.beneficiary_id = user.id
+			GROUP BY user.id;
+        `;
 		// LEFT JOIN : Utilisé pour inclure tous les utilisateurs même s'ils n'ont pas de correspondance dans user_share.
 		// exécuter la requête SQL ou récupérer une erreur
 		try {
 			const results = await connection.execute(query);
 
-			const fullResults = results.shift() as UserShare[];
+			const fullResults = results.shift() as User[];
 			// boucler sur les résultats
 			for (let i = 0; i < fullResults.length; i++) {
-				const donor: User | unknown = await new UserRepository().selectOne({
-					id: fullResults[i].donor_id,
-				});
-				// assigner le résultat de la requête à une propriété
-				fullResults[i].donor = donor;
-				// requete pour récupérer les options
-				const beneficiary: User | unknown =
-					await new UserRepository().selectOne({
-						id: fullResults[i].beneficiary_id,
-					});
-				fullResults[i].beneficiary = beneficiary;
+				const donors: Share | unknown =
+					await new ShareRepository().selectInList(
+						fullResults[i].donors_share_id as string,
+					);
+				fullResults[i].donors_share = donors;
+
+				const beneficaries: Share | unknown =
+					await new ShareRepository().selectInList(
+						fullResults[i].beneficiaries_share_id as string,
+					);
+				fullResults[i].beneficiaries_share = beneficaries;
 			}
 
 			// renvoyer les résultats de la requête
@@ -59,7 +62,7 @@ class userrepository {
 
 	public selectOne = async (
 		data: object,
-	): Promise<QueryResult | unknown | UserShare> => {
+	): Promise<QueryResult | unknown | User> => {
 		const connection: Pool = await this.mySQLService.connect();
 		// création d'une variable de requête, pour une requête préparée éviter les injections SQL
 		const query = ` SELECT ${this.table}.* FROM ${process.env.MYSQL_DB}. ${this.table} WHERE ${this.table}.id = :id ;`;
@@ -69,23 +72,67 @@ class userrepository {
 			// fournir la valeur des variables de requête, sous la forme d'un objet
 			const results = await connection.execute(query, data);
 
-			const fullResults: UserShare = results.shift() as UserShare;
+			const fullResults: User = results.shift() as User;
 
-			const donor: User | unknown = await new UserRepository().selectOne({
-				id: fullResults.donor_id,
+			const share: User | unknown = await new UserRepository().selectOne({
+				id: fullResults.user_share_id,
 			});
 
-			fullResults.donor = donor;
+			fullResults.user_share = share;
 
-			const beneficiary: User | unknown = await new UserRepository().selectOne({
-				id: fullResults.beneficiary_id,
-			});
-
-			fullResults.beneficiary = beneficiary;
 			// renvoyer les résultats de la requête
 			// shift permet de récuperer le premier indice d'un array
 			return fullResults;
 		} catch (error: unknown) {
+			return error;
+		}
+	};
+
+	public create = async (data: User) => {
+		const connection: Pool = await this.mySQLService.connect();
+
+		// créer un canal isole pour la transaction
+
+		const transaction = await connection.getConnection();
+
+		try {
+			// démarrer une transaction
+			await transaction.beginTransaction();
+			//première requête
+			let query = `
+			INSERT INTO ${process.env.MYSQL_DB}.${this.table}
+			VALUE
+				(NULL, :firstname, :lastname, :email, :phone_number, :adress, :registration_date, :isActive, :last_shared, :city_id, :district_id, :user_share_id);
+			`;
+
+			await connection.execute(query, data);
+
+			//deuxième requête: récupérer le dernier identifiant inséré
+			query = "SET @user_id = LAST_INSERT_ID();";
+			await connection.execute(query);
+
+			// inserer les options
+			// split permet de changer une chaîne de chararctère en tableau
+			const values = data.user_share_id
+				?.split(",")
+				.map((value) => `(@user_id, ${value})`)
+				.join(",");
+
+			//dernière requête renvoie les informations d'ensemble
+			query = `
+				INSERT INTO ${process.env.MYSQL_DB}.user_share_id
+				VALUES ${values}`;
+
+			const results = await connection.execute(query);
+
+			//valider la transaction
+			transaction.commit();
+
+			return results;
+		} catch (error) {
+			// annuler la transaction
+			transaction.rollback();
+
 			return error;
 		}
 	};

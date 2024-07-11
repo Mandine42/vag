@@ -23,6 +23,9 @@ class Server {
 	private router: Router = express.Router();
 	// constructeur
 	constructor() {
+		// activer le midleware JSON pour toutes le routes, permet d'accéder à la propriété body de la requête HTTP au format JSON.
+		this.router.use(express.json());
+		// lier le router a l'application générale
 		this.app.use(this.router);
 
 		this.listRouters();

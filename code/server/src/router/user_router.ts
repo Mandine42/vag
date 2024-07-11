@@ -10,6 +10,8 @@ class UserRouter {
 		this.router.get("/", new UserController().index);
 
 		this.router.get("/:id", new UserController().one);
+		//route pour créer un user
+		this.router.post("/", new UserController().create);
 
 		return this.router;
 	};

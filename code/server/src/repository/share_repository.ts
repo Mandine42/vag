@@ -74,5 +74,26 @@ class ShareRepository {
 			return error;
 		}
 	};
+
+	// selection parmis une liste
+	public selectInList = async (
+		data: string,
+	): Promise<QueryResult | unknown | Share[]> => {
+		const connection: Pool = await this.mySQLService.connect();
+
+		const query = ` SELECT ${this.table}.*
+						FROM ${process.env.MYSQL_DB}. ${this.table}
+						WHERE ${this.table}.id IN (${data});`;
+
+		// exécuter la requête SQL ou récupérer une erreur
+		try {
+			// fournir la valeur des variables de requête, sous la forme d'un objet
+			const results = await connection.execute(query, data);
+
+			return results.shift() as [];
+		} catch (error: unknown) {
+			return error;
+		}
+	};
 }
 export default ShareRepository;

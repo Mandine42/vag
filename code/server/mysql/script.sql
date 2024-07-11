@@ -78,7 +78,7 @@ CREATE TABLE vag.share(
 
 -- table relationnelle
 CREATE TABLE vag.user_share (
-    user_share_id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     donor_id TINYINT UNSIGNED NOT NULL,
     beneficiary_id TINYINT UNSIGNED NOT NULL,
     share_id TINYINT UNSIGNED NOT NULL,

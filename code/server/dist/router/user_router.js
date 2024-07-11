@@ -7,6 +7,8 @@ class UserRouter {
         // une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
         this.router.get("/", new UserController().index);
         this.router.get("/:id", new UserController().one);
+        //route pour créer un user
+        this.router.post("/", new UserController().create);
         return this.router;
     };
 }
