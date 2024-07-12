@@ -9,6 +9,8 @@ class UserRouter {
         this.router.get("/:id", new UserController().one);
         //route pour créer un user
         this.router.post("/", new UserController().create);
+        //route pour modifier un user
+        this.router.put("/:id", new UserController().update);
         return this.router;
     };
 }

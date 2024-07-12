@@ -75,10 +75,15 @@ class UserRepository {
 			const fullResults: User = results.shift() as User;
 
 			const share: User | unknown = await new UserRepository().selectOne({
-				id: fullResults.user_share_id,
+				id: fullResults.donors_share_id,
 			});
 
-			fullResults.user_share = share;
+			const shared: User | unknown = await new UserRepository().selectOne({
+				id: fullResults.beneficiaries_share_id,
+			});
+
+			fullResults.donors_share = share;
+			fullResults.beneficiaries_share = shared;
 
 			// renvoyer les résultats de la requête
 			// shift permet de récuperer le premier indice d'un array
@@ -113,15 +118,24 @@ class UserRepository {
 
 			// inserer les options
 			// split permet de changer une chaîne de chararctère en tableau
-			const values = data.user_share_id
+			const donors = data.donors_share_id
+				?.split(",")
+				.map((value) => `(@user_id, ${value})`)
+				.join(",");
+
+			const beneficaries = data.beneficiaries_share_id
 				?.split(",")
 				.map((value) => `(@user_id, ${value})`)
 				.join(",");
 
 			//dernière requête renvoie les informations d'ensemble
-			query = `
-				INSERT INTO ${process.env.MYSQL_DB}.user_share_id
-				VALUES ${values}`;
+			// query = `
+			// 	INSERT INTO ${process.env.MYSQL_DB}.donors_share_id,.beneficiaries_share_id
+			// 	VALUES ${donors}, ${beneficaries}`;
+			query = `INSERT INTO ${process.env.DB_NAME}.donors_share (user_id, share_id)
+					VALUES ${donors};
+					INSERT INTO ${process.env.DB_NAME}.beneficiaries_share (user_id, share_id)
+					VALUES ${beneficaries};`;
 
 			const results = await connection.execute(query);
 
@@ -129,6 +143,74 @@ class UserRepository {
 			transaction.commit();
 
 			return results;
+		} catch (error) {
+			// annuler la transaction
+			transaction.rollback();
+
+			return error;
+		}
+	};
+
+	public update = async (data: User) => {
+		const connection: Pool = await this.mySQLService.connect();
+
+		// créer un canal isole pour la transaction
+
+		const transaction = await connection.getConnection();
+
+		try {
+			// démarrer une transaction
+			await transaction.beginTransaction();
+			//première requête: mettre à jour la table vehicule
+			let query = `
+			UPDATE ${process.env.MYSQL_DB}.${this.table}
+			SET
+				${this.table}.firstname = :firstname, 
+				${this.table}.lastname = :lastname, 
+				${this.table}.email = :email,
+				${this.table}.phone_number = :phone_number,
+				${this.table}.adress = :adress,
+				${this.table}.registration_date = :registration_date,
+				${this.table}.isActive = :isActive,
+				${this.table}.last_shared = :last_shared,
+				${this.table}.city_id = :city_id,
+				${this.table}.district_id = :district_id
+			WHERE
+				${this.table}.id = :id
+			;
+			`;
+
+			await connection.execute(query, data);
+
+			// deuxième requête
+			// supprimer la table user_share existantes de user à supprimer
+
+			query = `DELETE FROM ${process.env.MYSQL_DB}.donors_share_id,.beneficiaries_share_id
+					 WHERE donors_share.id = :id, beneficiaries_share_id = :id;`;
+			await connection.execute(query, data);
+
+			// inserer les donneurs et benéficiaires
+			// split permet de changer une chaîne de chararctère en tableau
+			const donors = data.donors_share_id
+				?.split(",")
+				.map((value) => `(:id, ${value})`)
+				.join(",");
+			const beneficaries = data.beneficiaries_share_id
+				?.split(",")
+				.map((value) => `(:id, ${value})`)
+				.join(",");
+
+			//dernière requête renvoie les informations d'ensemble
+			query = `
+				INSERT INTO ${process.env.MYSQL_DB}.user_share
+				VALUES ${donors}, ${beneficaries}`;
+
+			const results = await connection.execute(query, data);
+
+			//valider la transaction
+			transaction.commit();
+
+			// return results;
 		} catch (error) {
 			// annuler la transaction
 			transaction.rollback();

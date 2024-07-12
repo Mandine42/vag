@@ -52,5 +52,88 @@ class ProductRepository {
             return error;
         }
     };
+    create = async (data) => {
+        const connection = await this.mySQLService.connect();
+        // créer un canal isole pour la transaction
+        const transaction = await connection.getConnection();
+        try {
+            // démarrer une transaction
+            await transaction.beginTransaction();
+            //première requête
+            let query = `
+			INSERT INTO ${process.env.MYSQL_DB}.${this.table}
+			VALUE
+				(NULL, :name, :description, :category_id);
+			`;
+            await connection.execute(query, data);
+            //deuxième requête: récupérer le dernier identifiant inséré
+            query = "SET @category_id = LAST_INSERT_ID();";
+            await connection.execute(query);
+            // inserer les options
+            // split permet de changer une chaîne de chararctère en tableau
+            const values = data.category_id
+                ?.split(",")
+                .map((value) => `(@category_id, ${value})`)
+                .join(",");
+            //dernière requête renvoie les informations d'ensemble
+            query = `
+				INSERT INTO ${process.env.MYSQL_DB}.category
+				VALUES ${values}`;
+            const results = await connection.execute(query);
+            //valider la transaction
+            transaction.commit();
+            return results;
+        }
+        catch (error) {
+            // annuler la transaction
+            transaction.rollback();
+            return error;
+        }
+    };
+    update = async (data) => {
+        const connection = await this.mySQLService.connect();
+        // créer un canal isole pour la transaction
+        const transaction = await connection.getConnection();
+        try {
+            // démarrer une transaction
+            await transaction.beginTransaction();
+            //première requête: mettre à jour la table
+            let query = `
+			UPDATE ${process.env.MYSQL_DB}.${this.table}
+			SET
+				${this.table}.name = :name, 
+				${this.table}.description = :description, 
+				${this.table}.category_id = :category_id
+			WHERE
+				${this.table}.id = :id
+			;
+			`;
+            await connection.execute(query, data);
+            // deuxième requête
+            // supprimer
+            query = ` DELETE FROM ${process.env.MYSQL_DB}.category
+            			WHERE category_id = ?;`;
+            await connection.execute(query, data);
+            // inserer les options
+            // split permet de changer une chaîne de chararctère en tableau
+            const values = data.category_id
+                ?.split(",")
+                .map((value) => `(:id, ${value})`)
+                .join(",");
+            //dernière requête renvoie les informations d'ensemble
+            query = `
+				INSERT INTO ${process.env.MYSQL_DB}.category
+				VALUES ${values}`;
+            const results = await connection.execute(query, data);
+            //valider la transaction
+            transaction.commit();
+            // return results;
+        }
+        catch (error) {
+            // annuler la transaction
+            transaction.rollback();
+            return error;
+        }
+    };
 }
 export default ProductRepository;

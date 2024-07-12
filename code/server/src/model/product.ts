@@ -4,7 +4,7 @@ type Product = {
 	id?: number;
 	name?: string;
 	description?: string;
-	category_id?: number;
+	category_id?: string;
 	category?: Category | unknown;
 };
 

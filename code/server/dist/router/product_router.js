@@ -8,6 +8,10 @@ class ProductRouter {
         this.router.get("/", new ProductController().index);
         // une route avec une variable de route; précédée d'un :
         this.router.get("/:id", new ProductController().one);
+        //route pour créer un vehicule
+        this.router.post("/", new ProductController().create);
+        //route pour modifier un véhicule
+        this.router.put("/:id", new ProductController().update);
         return this.router;
     };
 }

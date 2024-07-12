@@ -1,5 +1,6 @@
 import type Collect from "./collect.js";
 import type Product from "./product.js";
+import type UserShare from "./user_share.js";
 
 type Share = {
 	id?: number;
@@ -10,6 +11,8 @@ type Share = {
 	product?: Product | unknown;
 	collect_id?: number;
 	collect?: Collect | unknown;
+	user_share_id?: string;
+	user_share?: UserShare[] | unknown;
 };
 
 export default Share;

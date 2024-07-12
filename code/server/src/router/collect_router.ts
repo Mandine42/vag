@@ -9,6 +9,11 @@ class CollectRouter {
 		// une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
 		this.router.get("/", new CollectController().index);
 		this.router.get("/:id", new CollectController().one);
+		//route pour créer
+		this.router.post("/", new CollectController().create);
+
+		//route pour modifier
+		this.router.put("/:id", new CollectController().update);
 		return this.router;
 	};
 }

@@ -11,6 +11,11 @@ class ShareRouter {
 		this.router.get("/", new shareController().index);
 		// une route avec une variable de route; précédée d'un :
 		this.router.get("/:id", new ShareController().one);
+		//route pour créer un vehicule
+		this.router.post("/", new shareController().create);
+
+		//route pour modifier un véhicule
+		this.router.put("/:id", new ShareController().update);
 		return this.router;
 	};
 }

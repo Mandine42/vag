@@ -57,8 +57,8 @@ CREATE TABLE vag.product(
 
 CREATE TABLE vag.collect(
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    adress VARCHAR(100) NOT NULL UNIQUE,
-    meeting_point VARCHAR(150) NULL UNIQUE,
+    adress VARCHAR(100) NOT NULL,
+    meeting_point VARCHAR(150) NULL,
     -- clés étrangères
     district_id TINYINT UNSIGNED,
     FOREIGN KEY (district_id) REFERENCES vag.district(id)
@@ -80,7 +80,7 @@ CREATE TABLE vag.share(
 CREATE TABLE vag.user_share (
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     donor_id TINYINT UNSIGNED NOT NULL,
-    beneficiary_id TINYINT UNSIGNED NOT NULL,
+    beneficiary_id TINYINT UNSIGNED NULL,
     share_id TINYINT UNSIGNED NOT NULL,
     FOREIGN KEY (donor_id) REFERENCES user(id),
     FOREIGN KEY (beneficiary_id) REFERENCES user(id),

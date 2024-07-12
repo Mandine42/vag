@@ -3,8 +3,8 @@ import type District from "./district.js";
 type Collect = {
 	id?: number;
 	adress?: string;
-	name?: string;
-	district_id?: number;
+	meeting_point?: string;
+	district_id?: string;
 	district?: District | unknown;
 };
 

@@ -27,6 +27,7 @@ class UserShareRepository {
 			return error;
 		}
 	};
+
 	// data représente req.params envoyer par le controleur
 	public selectOne = async (
 		data: object,
@@ -46,6 +47,7 @@ class UserShareRepository {
 			return error;
 		}
 	};
+
 	// selection parmis une liste
 	public selectInList = async (
 		data: string,
