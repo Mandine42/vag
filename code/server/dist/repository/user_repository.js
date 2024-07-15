@@ -130,6 +130,7 @@ class UserRepository {
 				${this.table}.lastname = :lastname, 
 				${this.table}.email = :email,
 				${this.table}.phone_number = :phone_number,
+				${this.table}.passeword = :passeword,
 				${this.table}.adress = :adress,
 				${this.table}.registration_date = :registration_date,
 				${this.table}.isActive = :isActive,
@@ -168,6 +169,34 @@ class UserRepository {
         catch (error) {
             // annuler la transaction
             transaction.rollback();
+            return error;
+        }
+    };
+    delete = async (data) => {
+        // connexion
+        const connection = await this.mySQLService.connect();
+        // canal isolé pour la transaction
+        const transaction = await connection.getConnection();
+        try {
+            // démarrer une transaction
+            await transaction.beginTransaction();
+            // première requête
+            let query = ` DELETE FROM
+			${process.env.MYSQL_DB}.user_share
+                WHERE user_share.user_id = :id;`;
+            await connection.execute(query, data);
+            // supprimer le véhicule
+            query = `DELETE FROM
+			${process.env.MYSQL_DB}.${this.table}
+                WHERE ${this.table}.id = :id;`;
+            const results = await connection.execute(query, data);
+            // valider la transaction
+            await transaction.commit();
+            return results;
+        }
+        catch (error) {
+            // annuler la transaction
+            await transaction.rollback();
             return error;
         }
     };

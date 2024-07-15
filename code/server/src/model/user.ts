@@ -9,12 +9,13 @@ type User = {
 	email?: string;
 	phone_number?: string;
 	adress?: string;
+	passeword?: string;
 	registration_date?: string;
 	isActive?: boolean;
 	last_Shared?: string;
-	city_id?: string;
+	city_id?: number;
 	city?: City | unknown;
-	district_id?: string;
+	district_id?: number;
 	district?: District | unknown;
 	donors_share_id?: string;
 	donors_share?: Share | unknown;

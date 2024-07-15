@@ -205,6 +205,43 @@ class ShareRepository {
 			return error;
 		}
 	};
+
+	public delete = async (data: Share) => {
+		// connexion
+		const connection: Pool = await this.mySQLService.connect();
+
+		// canal isolé pour la transaction
+		const transaction = await connection.getConnection();
+
+		try {
+			// démarrer une transaction
+			await transaction.beginTransaction();
+
+			// première requête
+			// supprimer les user_share existants du share à supprimer
+			let query = ` DELETE FROM
+			${process.env.MYSQL_DB}.user_share
+                WHERE user_share.share_id = :id;`;
+
+			await connection.execute(query, data);
+
+			// supprimer un share
+			query = `DELETE FROM
+			${process.env.MYSQL_DB}.${this.table}
+                WHERE ${this.table}.id = :id;`;
+			const results = await connection.execute(query, data);
+
+			// valider la transaction
+			await transaction.commit();
+
+			return results;
+		} catch (error) {
+			// annuler la transaction
+			await transaction.rollback();
+
+			return error;
+		}
+	};
 }
 
 export default ShareRepository;

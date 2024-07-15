@@ -11,6 +11,8 @@ class CollectRouter {
         this.router.post("/", new CollectController().create);
         //route pour modifier
         this.router.put("/:id", new CollectController().update);
+        //route pour supprimer
+        this.router.delete("/:id", new CollectController().delete);
         return this.router;
     };
 }

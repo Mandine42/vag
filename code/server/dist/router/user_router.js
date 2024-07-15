@@ -11,6 +11,8 @@ class UserRouter {
         this.router.post("/", new UserController().create);
         //route pour modifier un user
         this.router.put("/:id", new UserController().update);
+        // route pour supprimer un utilisateur
+        this.router.delete("/:id", new UserController().delete);
         return this.router;
     };
 }

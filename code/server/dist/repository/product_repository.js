@@ -13,7 +13,7 @@ class ProductRepository {
         // permet de récuperer automatiquement le contenu de la promesse
         const connection = await this.mySQLService.connect();
         // requête SQL
-        const query = ` SELECT ${this.table}.* FROM ${process.env.MYSQL_DB}. ${this.table} `;
+        const query = ` SELECT ${this.table}.* FROM ${process.env.MYSQL_DB}.${this.table} `;
         // exécuter la requête SQL ou récupérer une erreur
         try {
             const results = await connection.execute(query);
@@ -60,26 +60,26 @@ class ProductRepository {
             // démarrer une transaction
             await transaction.beginTransaction();
             //première requête
-            let query = `
+            const query = `
 			INSERT INTO ${process.env.MYSQL_DB}.${this.table}
 			VALUE
 				(NULL, :name, :description, :category_id);
 			`;
-            await connection.execute(query, data);
+            // await connection.execute(query, data);
             //deuxième requête: récupérer le dernier identifiant inséré
-            query = "SET @category_id = LAST_INSERT_ID();";
-            await connection.execute(query);
-            // inserer les options
-            // split permet de changer une chaîne de chararctère en tableau
-            const values = data.category_id
-                ?.split(",")
-                .map((value) => `(@category_id, ${value})`)
-                .join(",");
-            //dernière requête renvoie les informations d'ensemble
-            query = `
-				INSERT INTO ${process.env.MYSQL_DB}.category
-				VALUES ${values}`;
-            const results = await connection.execute(query);
+            // query = "SET @category_id = LAST_INSERT_ID();";
+            // await connection.execute(query);
+            // // inserer les options
+            // // split permet de changer une chaîne de chararctère en tableau
+            // const values = data.category_id
+            // 	?.split(",")
+            // 	.map((value) => `(@category_id, ${value})`)
+            // 	.join(",");
+            // //dernière requête renvoie les informations d'ensemble
+            // query = `
+            // 	INSERT INTO ${process.env.MYSQL_DB}.category
+            // 	VALUES ${values}`;
+            const results = await connection.execute(query, data);
             //valider la transaction
             transaction.commit();
             return results;
@@ -132,6 +132,29 @@ class ProductRepository {
         catch (error) {
             // annuler la transaction
             transaction.rollback();
+            return error;
+        }
+    };
+    delete = async (data) => {
+        // connexion
+        const connection = await this.mySQLService.connect();
+        // canal isolé pour la transaction
+        const transaction = await connection.getConnection();
+        try {
+            // démarrer une transaction
+            await transaction.beginTransaction();
+            // supprimer le produit
+            const query = `DELETE FROM
+			${process.env.MYSQL_DB}.${this.table}
+                WHERE ${this.table}.id = :id;`;
+            const results = await connection.execute(query, data);
+            // valider la transaction
+            await transaction.commit();
+            return results;
+        }
+        catch (error) {
+            // annuler la transaction
+            await transaction.rollback();
             return error;
         }
     };

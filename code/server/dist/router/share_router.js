@@ -1,6 +1,7 @@
 import express from "express";
 import shareController from "../controller/share_controller.js";
 import ShareController from "../controller/share_controller.js";
+import ShareValidatorMiddleware from "../middleware/validator/share_validator_middleware.js";
 class ShareRouter {
     router = express.Router();
     getRouter = () => {
@@ -10,9 +11,11 @@ class ShareRouter {
         // une route avec une variable de route; précédée d'un :
         this.router.get("/:id", new ShareController().one);
         //route pour créer un vehicule
-        this.router.post("/", new shareController().create);
+        this.router.post("/", new ShareValidatorMiddleware().filter, new shareController().create);
         //route pour modifier un véhicule
         this.router.put("/:id", new ShareController().update);
+        //route pour supprimer un véhicule
+        this.router.delete("/:id", new ShareController().delete);
         return this.router;
     };
 }

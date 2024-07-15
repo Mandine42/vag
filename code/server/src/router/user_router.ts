@@ -15,6 +15,8 @@ class UserRouter {
 
 		//route pour modifier un user
 		this.router.put("/:id", new UserController().update);
+		// route pour supprimer un utilisateur
+		this.router.delete("/:id", new UserController().delete);
 
 		return this.router;
 	};
