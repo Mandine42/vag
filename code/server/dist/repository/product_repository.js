@@ -98,7 +98,7 @@ class ProductRepository {
             // démarrer une transaction
             await transaction.beginTransaction();
             //première requête: mettre à jour la table
-            let query = `
+            const query = `
 			UPDATE ${process.env.MYSQL_DB}.${this.table}
 			SET
 				${this.table}.name = :name, 
@@ -108,22 +108,22 @@ class ProductRepository {
 				${this.table}.id = :id
 			;
 			`;
-            await connection.execute(query, data);
-            // deuxième requête
-            // supprimer
-            query = ` DELETE FROM ${process.env.MYSQL_DB}.category
-            			WHERE category_id = ?;`;
-            await connection.execute(query, data);
-            // inserer les options
-            // split permet de changer une chaîne de chararctère en tableau
-            const values = data.category_id
-                ?.split(",")
-                .map((value) => `(:id, ${value})`)
-                .join(",");
-            //dernière requête renvoie les informations d'ensemble
-            query = `
-				INSERT INTO ${process.env.MYSQL_DB}.category
-				VALUES ${values}`;
+            // await connection.execute(query, data);
+            // // deuxième requête
+            // // supprimer
+            // query = ` DELETE FROM ${process.env.MYSQL_DB}.category
+            // 			WHERE category_id = ?;`;
+            // await connection.execute(query, data);
+            // // inserer les options
+            // // split permet de changer une chaîne de chararctère en tableau
+            // const values = data.category_id
+            // 	?.split(",")
+            // 	.map((value) => `(:id, ${value})`)
+            // 	.join(",");
+            // //dernière requête renvoie les informations d'ensemble
+            // query = `
+            // 	INSERT INTO ${process.env.MYSQL_DB}.category
+            // 	VALUES ${values}`;
             const results = await connection.execute(query, data);
             //valider la transaction
             transaction.commit();

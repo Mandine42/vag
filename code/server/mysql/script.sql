@@ -133,13 +133,6 @@ VALUES
     (NULL, 'Montreau - Le Morillon', 1, 6)
 ;    
 
-
--- --     ON DUPLICATE KEY UPDATE
--- --     adress = VALUES(adress),
--- --     meeting_point = VALUES(meeting_point)
--- -- ;
-
-
 INSERT INTO vag.collect 
 VALUES
     (NULL, '54 rue Robespière', 'Arsène', 1),
