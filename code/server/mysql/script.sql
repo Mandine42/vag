@@ -29,14 +29,19 @@ CREATE TABLE vag.category(
     name VARCHAR(50) NOT NULL UNIQUE
 );
 
+CREATE TABLE vag.role (
+    id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL    
+);
+
 CREATE TABLE vag.user(
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
     email VARCHAR (100) NOT NULL UNIQUE,
     phone_number CHAR(10) NULL,
-    passeword VARCHAR(50) NOT NULL UNIQUE,
-    adress VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(150) NOT NULL,
+    adress VARCHAR(150) NOT NULL,
     registration_date DATE NOT NULL,
     isActive BOOLEAN NOT NULL,
     last_shared DATETIME NULL,
@@ -44,8 +49,12 @@ CREATE TABLE vag.user(
     city_id TINYINT UNSIGNED,
     FOREIGN KEY (city_id) REFERENCES vag.city(id),
     district_id TINYINT UNSIGNED,
-    FOREIGN KEY (district_id) REFERENCES vag.district(id)
+    FOREIGN KEY (district_id) REFERENCES vag.district(id),
+    role_id TINYINT UNSIGNED,
+    FOREIGN KEY (role_id) REFERENCES vag.role(id)
 );
+
+
 
 CREATE TABLE vag.product(
     id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -289,28 +298,35 @@ VALUES
     (NULL, 'Autre', NULL, 8)
 ; 
 
+INSERT INTO vag.role
+VALUES
+    (NULL, "admin" ),
+    (NULL, "user")
+;
+
 INSERT INTO vag.user
 VALUES
-    (NULL,'Alice', 'Martin', 'alice.martin@gmail.com', '0612345678', "passeword1", '1 Rue de Paris', '2024-05-01', TRUE, '2024-07-07 10:15:30', 1, 1),
-    (NULL,'Bob', 'Dupont', 'bob.dupont@gmail.com', '0623456789',"passeword2", '2 Rue de Lyon', '2024-05-02', TRUE, '2024-08-15 12:00:00', 1, 7),
-    (NULL,'Claire', 'Leroy', 'claire.leroy@gmail.com', '0634567890',"passeword3", '3 Rue de Marseille', '2024-01-03', TRUE, '2024-03-20 15:45:00', 1, 2),
-    (NULL,'David', 'Moreau', 'david.moreau@gmail.com', '0645678901',"passeword4", '4 Rue de Lille', '2024-05-04', TRUE, '2024-06-05 09:15:00', 1, 14),
-    (NULL,'Emma', 'Simon', 'emma.simon@gmail.com', '0656789012',"passeword5", '5 Rue de Toulouse', '2024-05-05', TRUE, '2024-05-10 18:00:00', 1, 10),
-    (NULL,'François', 'Michel', 'francois.michel@gmail.com', '0667890123',"passeword6", '6 Rue de Bordeaux', '2024-05-06', TRUE, '2024-09-25 14:30:00', 1, 6),
-    (NULL,'Gabrielle', 'Fournier', 'gabrielle.fournier@gmail.com', '0678901234',"passeword7", '7 Rue de Nantes', '2024-05-07', TRUE, '2024-07-12 11:00:00', 1, 12),
-    (NULL,'Hugo', 'Girard', 'hugo.girard@gmail.com', '0689012345',"passeword8", '8 Rue de Nice', '2024-05-08', TRUE, '2024-08-08 10:45:00', 1, 13),
-    (NULL,'Isabelle', 'Lambert', 'isabelle.lambert@gmail.com', '0690123456', "passeword9", '9 Rue de Strasbourg', '2024-05-09', TRUE, '2024-09-22 16:20:00', 1, 4),
-    (NULL,'Jacques', 'Bertrand', 'jacques.bertrand@gmail.com','0601234567', "passeword10", '10 Rue de Rennes', '2024-05-10', TRUE, '2024-10-18 13:30:00', 1, 9),
-    (NULL,'Kévin', 'Rousseau', 'kevin.rousseau@gmail.com','0612345670', "passeword11", '11 Rue de Brest', '2024-05-11', TRUE, '2024-11-09 17:00:00', 1, 1),
-    (NULL,'Laure', 'Blanc', 'laure.blanc@gmail.com', '0623456701',"passeword12", '12 Rue de Limoges', '2024-05-12', TRUE, '2024-12-30 09:45:00', 1, 4),
-    (NULL,'Mathieu', 'Henry', 'mathieu.henry@gmail.com', '0634567012',"passeword13", '13 Rue de Metz', '2024-05-13', TRUE, '2024-07-05 08:00:00', 1, 8),
-    (NULL,'Nathalie', 'Dubois', 'nathalie.dubois@gmail.com', '0645670123',"passeword14", '14 Rue de Reims', '2024-05-14', TRUE, '2024-07-03 12:00:00', 1, 9),
-    (NULL,'Olivier', 'Gauthier', 'olivier.gauthier@gmail.com', '0656701234',"passeword15", '15 Rue de Dijon', '2024-05-15', TRUE, '2024-08-19 09:45:00', 1, 12),
-    (NULL,'Pauline', 'Perrin', 'pauline.perrin@gmail.com', '0667012345',"passeword16", '16 Rue de Grenoble', '2024-05-16', TRUE, '2024-09-14 10:30:00', 1, 13),
-    (NULL,'Quentin', 'Renard', 'quentin.renard@gmail.com', '0670123456',"passeword17", '17 Rue de Tours', '2024-05-17', TRUE, '2024-06-27 14:15:00', 1, 2),
-    (NULL,'Roxane', 'Marchand', 'roxane.marchand@gmail.com', '0681234567',"passeword18", '18 Rue de Pau', '2024-05-18', TRUE, '2024-09-08 11:45:00', 1, 5),
-    (NULL,'Sébastien', 'Moulin', 'sebastien.moulin@gmail.com', '0692345678',"passeword19", '19 Rue de Rouen', '2024-05-19', TRUE, '2024-10-15 17:00:00', 1, 8),
-    (NULL,'Thérèse', 'Collet', 'therese.collet@gmail.com', '0603456789',"passeword20", '20 Rue de Perpignan', '2024-05-20', TRUE, '2024-06-20 15:30:00', 1, 9)
+    (NULL,'Amandine', 'Martin', 'amandine.martin@gmail.com', '0612345678', "passeword1", '1 Rue de Paris', '2024-05-01', TRUE, '2024-07-07 10:15:30', 1, 1, 1),
+    (NULL,'Alice', 'Martin', 'alice.martin@gmail.com', '0612345678', "passeword1", '1 Rue de Paris', '2024-05-01', TRUE, '2024-07-07 10:15:30', 1, 1, 2),
+    (NULL,'Bob', 'Dupont', 'bob.dupont@gmail.com', '0623456789',"passeword2", '2 Rue de Lyon', '2024-05-02', TRUE, '2024-08-15 12:00:00', 1, 7, 2),
+    (NULL,'Claire', 'Leroy', 'claire.leroy@gmail.com', '0634567890',"passeword3", '3 Rue de Marseille', '2024-01-03', TRUE, '2024-03-20 15:45:00', 1, 2, 2),
+    (NULL,'David', 'Moreau', 'david.moreau@gmail.com', '0645678901',"passeword4", '4 Rue de Lille', '2024-05-04', TRUE, '2024-06-05 09:15:00', 1, 14, 2),
+    (NULL,'Emma', 'Simon', 'emma.simon@gmail.com', '0656789012',"passeword5", '5 Rue de Toulouse', '2024-05-05', TRUE, '2024-05-10 18:00:00', 1, 10, 2),
+    (NULL,'François', 'Michel', 'francois.michel@gmail.com', '0667890123',"passeword6", '6 Rue de Bordeaux', '2024-05-06', TRUE, '2024-09-25 14:30:00', 1, 6, 2),
+    (NULL,'Gabrielle', 'Fournier', 'gabrielle.fournier@gmail.com', '0678901234',"passeword7", '7 Rue de Nantes', '2024-05-07', TRUE, '2024-07-12 11:00:00', 1, 12, 2),
+    (NULL,'Hugo', 'Girard', 'hugo.girard@gmail.com', '0689012345',"passeword8", '8 Rue de Nice', '2024-05-08', TRUE, '2024-08-08 10:45:00', 1, 13, 2),
+    (NULL,'Isabelle', 'Lambert', 'isabelle.lambert@gmail.com', '0690123456', "passeword9", '9 Rue de Strasbourg', '2024-05-09', TRUE, '2024-09-22 16:20:00', 1, 4, 2),
+    (NULL,'Jacques', 'Bertrand', 'jacques.bertrand@gmail.com','0601234567', "passeword10", '10 Rue de Rennes', '2024-05-10', TRUE, '2024-10-18 13:30:00', 1, 9, 2),
+    (NULL,'Kévin', 'Rousseau', 'kevin.rousseau@gmail.com','0612345670', "passeword11", '11 Rue de Brest', '2024-05-11', TRUE, '2024-11-09 17:00:00', 1, 1, 2),
+    (NULL,'Laure', 'Blanc', 'laure.blanc@gmail.com', '0623456701',"passeword12", '12 Rue de Limoges', '2024-05-12', TRUE, '2024-12-30 09:45:00', 1, 4, 2),
+    (NULL,'Mathieu', 'Henry', 'mathieu.henry@gmail.com', '0634567012',"passeword13", '13 Rue de Metz', '2024-05-13', TRUE, '2024-07-05 08:00:00', 1, 8, 2),
+    (NULL,'Nathalie', 'Dubois', 'nathalie.dubois@gmail.com', '0645670123',"passeword14", '14 Rue de Reims', '2024-05-14', TRUE, '2024-07-03 12:00:00', 1, 9, 2),
+    (NULL,'Olivier', 'Gauthier', 'olivier.gauthier@gmail.com', '0656701234',"passeword15", '15 Rue de Dijon', '2024-05-15', TRUE, '2024-08-19 09:45:00', 1, 12, 2),
+    (NULL,'Pauline', 'Perrin', 'pauline.perrin@gmail.com', '0667012345',"passeword16", '16 Rue de Grenoble', '2024-05-16', TRUE, '2024-09-14 10:30:00', 1, 13, 2),
+    (NULL,'Quentin', 'Renard', 'quentin.renard@gmail.com', '0670123456',"passeword17", '17 Rue de Tours', '2024-05-17', TRUE, '2024-06-27 14:15:00', 1, 2, 2),
+    (NULL,'Roxane', 'Marchand', 'roxane.marchand@gmail.com', '0681234567',"passeword18", '18 Rue de Pau', '2024-05-18', TRUE, '2024-09-08 11:45:00', 1, 5, 2),
+    (NULL,'Sébastien', 'Moulin', 'sebastien.moulin@gmail.com', '0692345678',"passeword19", '19 Rue de Rouen', '2024-05-19', TRUE, '2024-10-15 17:00:00', 1, 8, 2),
+    (NULL,'Thérèse', 'Collet', 'therese.collet@gmail.com', '0603456789',"passeword20", '20 Rue de Perpignan', '2024-05-20', TRUE, '2024-06-20 15:30:00', 1, 9, 2)
 ;
 
 INSERT INTO vag.share
@@ -358,6 +374,8 @@ VALUES
     (NULL,13, 15, 18),
     (NULL,16, 18, 19)
 ;
+
+
    
 -- -- -- Commencer une transaction
 -- -- START TRANSACTION;

@@ -34,8 +34,8 @@ class UserRepository {
             for (let i = 0; i < fullResults.length; i++) {
                 const donors = await new ShareRepository().selectInList(fullResults[i].donors_share_id);
                 fullResults[i].donors_share = donors;
-                const beneficaries = await new ShareRepository().selectInList(fullResults[i].beneficiaries_share_id);
-                fullResults[i].beneficiaries_share = beneficaries;
+                const beneficiaries = await new ShareRepository().selectInList(fullResults[i].beneficiaries_share_id);
+                fullResults[i].beneficiaries_share = beneficiaries;
             }
             // renvoyer les résultats de la requête
             return fullResults;
@@ -69,7 +69,7 @@ class UserRepository {
             return error;
         }
     };
-    create = async (data) => {
+    register = async (data) => {
         const connection = await this.mySQLService.connect();
         // créer un canal isole pour la transaction
         const transaction = await connection.getConnection();
@@ -77,34 +77,12 @@ class UserRepository {
             // démarrer une transaction
             await transaction.beginTransaction();
             //première requête
-            let query = `
+            const query = `
 			INSERT INTO ${process.env.MYSQL_DB}.${this.table}
 			VALUE
-				(NULL, :firstname, :lastname, :email, :phone_number, :adress, :registration_date, :isActive, :last_shared, :city_id, :district_id, :user_share_id);
+				(NULL, :firstname, :lastname, :email, :phone_number, :password, :adress, :registration_date, :isActive, :last_shared, :city_id, :district_id, 2);
 			`;
-            await connection.execute(query, data);
-            //deuxième requête: récupérer le dernier identifiant inséré
-            query = "SET @user_id = LAST_INSERT_ID();";
-            await connection.execute(query);
-            // inserer les options
-            // split permet de changer une chaîne de chararctère en tableau
-            const donors = data.donors_share_id
-                ?.split(",")
-                .map((value) => `(@user_id, ${value})`)
-                .join(",");
-            const beneficaries = data.beneficiaries_share_id
-                ?.split(",")
-                .map((value) => `(@user_id, ${value})`)
-                .join(",");
-            //dernière requête renvoie les informations d'ensemble
-            // query = `
-            // 	INSERT INTO ${process.env.MYSQL_DB}.donors_share_id,.beneficiaries_share_id
-            // 	VALUES ${donors}, ${beneficaries}`;
-            query = `INSERT INTO ${process.env.DB_NAME}.donors_share (user_id, share_id)
-					VALUES ${donors};
-					INSERT INTO ${process.env.DB_NAME}.beneficiaries_share (user_id, share_id)
-					VALUES ${beneficaries};`;
-            const results = await connection.execute(query);
+            const results = await connection.execute(query, data);
             //valider la transaction
             transaction.commit();
             return results;
@@ -130,13 +108,14 @@ class UserRepository {
 				${this.table}.lastname = :lastname, 
 				${this.table}.email = :email,
 				${this.table}.phone_number = :phone_number,
-				${this.table}.passeword = :passeword,
+				${this.table}.password = :password,
 				${this.table}.adress = :adress,
 				${this.table}.registration_date = :registration_date,
 				${this.table}.isActive = :isActive,
 				${this.table}.last_shared = :last_shared,
 				${this.table}.city_id = :city_id,
-				${this.table}.district_id = :district_id
+				${this.table}.district_id = :district_id,
+				${this.table}.role_id = :role_id
 			WHERE
 				${this.table}.id = :id
 			;
@@ -146,21 +125,6 @@ class UserRepository {
             // supprimer la table user_share existantes de user à supprimer
             query = `DELETE FROM ${process.env.MYSQL_DB}.donors_share_id,.beneficiaries_share_id
 					 WHERE donors_share.id = :id, beneficiaries_share_id = :id;`;
-            await connection.execute(query, data);
-            // inserer les donneurs et benéficiaires
-            // split permet de changer une chaîne de chararctère en tableau
-            const donors = data.donors_share_id
-                ?.split(",")
-                .map((value) => `(:id, ${value})`)
-                .join(",");
-            const beneficaries = data.beneficiaries_share_id
-                ?.split(",")
-                .map((value) => `(:id, ${value})`)
-                .join(",");
-            //dernière requête renvoie les informations d'ensemble
-            query = `
-				INSERT INTO ${process.env.MYSQL_DB}.user_share
-				VALUES ${donors}, ${beneficaries}`;
             const results = await connection.execute(query, data);
             //valider la transaction
             transaction.commit();
