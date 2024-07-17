@@ -119,18 +119,6 @@ class ShareRepository {
 			query = "SET @share_id = LAST_INSERT_ID();";
 			await connection.execute(query);
 
-			// inserer les options
-			// split permet de changer une chaîne de chararctère en tableau
-			// const product = data.product_id
-			// 	?.split(",")
-			// 	.map((value) => `(@share_id, ${value})`)
-			// 	.join(",");
-
-			// const collect = data.collect_id
-			// 	?.split(",")
-			// 	.map((value) => `(@share_id, ${value})`)
-			// 	.join(",");
-
 			//dernière requête renvoie les informations d'ensemble
 			query = `
 				INSERT INTO ${process.env.MYSQL_DB}.user_share
@@ -181,19 +169,6 @@ class ShareRepository {
 			// supprimer les user_share de share
 			query = `  DELETE FROM ${process.env.MYSQL_DB}.user_share
     					WHERE user_share.share_id = :id`;
-
-			await connection.execute(query, data);
-			// inserer les options
-			// split permet de changer une chaîne de chararctère en tableau
-			const values = data.user_share_id
-				?.split(",")
-				.map((value) => `(:id, ${value})`)
-				.join(",");
-
-			//dernière requête renvoie les informations d'ensemble
-			query = `
-						INSERT INTO ${process.env.MYSQL_DB}.user_share
-						VALUES ${values};`;
 
 			const results = await connection.execute(query, data);
 			//valider la transaction

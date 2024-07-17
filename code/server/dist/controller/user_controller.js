@@ -1,5 +1,5 @@
-import UserRepository from "../repository/user_repository.js";
 import argon2 from "argon2";
+import UserRepository from "../repository/user_repository.js";
 class UserController {
     userrepository = new UserRepository();
     // méthodes appelées par le router
@@ -114,6 +114,32 @@ class UserController {
             status: 200,
             message: "User deleted",
             data: result,
+        });
+    };
+    login = async (req, res) => {
+        // recuperer l'utilisateur par son email
+        const user = await this.userrepository.getUserByEmail(req.body);
+        console.log(user);
+        // // si l'utilisateur n'existe pas
+        if (user instanceof Error) {
+            return res.status(400).json({
+                status: 400,
+                message: "error",
+            });
+        }
+        // // verification du mot de passe: comparer le mot de passe saisie avec le hash contenu dans la base de données
+        const passwordIsValid = await argon2.verify(user.password, req.body.password);
+        if (!passwordIsValid) {
+            return res.status(403).json({
+                status: 403,
+                message: "forbidden",
+            });
+        }
+        // si l'utilisateur existe et si la réponse est correct
+        return res.status(200).json({
+            status: 200,
+            message: "OK",
+            data: user,
         });
     };
 }

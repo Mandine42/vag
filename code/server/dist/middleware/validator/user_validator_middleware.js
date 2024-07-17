@@ -1,10 +1,10 @@
-import ShareValidator from "../../validator/share_validator.js";
-class ShareValidatorMiddleware {
+import UserValidator from "../../validator/user_validator.js";
+class UserValidatorMiddleware {
     // vérifier les contraintes de validation
     filter = async (req, res, next) => {
         // console.log("middleware");
         // valider la propriété body selon les contraintes de validation
-        const validation = await new ShareValidator().validate(req.body);
+        const validation = await new UserValidator().validate(req.body);
         // console.log(validation);
         // si une erreur de validation est renvoyée
         if (validation instanceof Error) {
@@ -18,4 +18,4 @@ class ShareValidatorMiddleware {
         next();
     };
 }
-export default ShareValidatorMiddleware;
+export default UserValidatorMiddleware;

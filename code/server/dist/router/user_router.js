@@ -1,5 +1,6 @@
 import express from "express";
 import UserController from "../controller/user_controller.js";
+import UserValidatorMiddleware from "../middleware/validator/user_validator_middleware.js";
 class UserRouter {
     router = express.Router();
     getRouter = () => {
@@ -8,7 +9,8 @@ class UserRouter {
         this.router.get("/", new UserController().index);
         this.router.get("/:id", new UserController().one);
         //route pour créer un user
-        this.router.post("/", new UserController().register);
+        this.router.post("/", new UserValidatorMiddleware().filter, new UserController().register);
+        this.router.post("/login", new UserController().login);
         //route pour modifier un user
         this.router.put("/:id", new UserController().update);
         // route pour supprimer un utilisateur

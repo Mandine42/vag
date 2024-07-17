@@ -5,6 +5,12 @@ import type { Pool } from "mysql2/promise";
 import type User from "../model/user.js";
 import ShareRepository from "./share_repository.js";
 import type Share from "../model/share.js";
+
+import RoleRepository from "./role_repository.js";
+import CityRepository from "./city_repository.js";
+import DistrictRepository from "./district_repository.js";
+import type Role from "../model/role.js";
+
 class UserRepository {
 	// accéder au service MySQL
 	private mySQLService = new MySQLService();
@@ -65,25 +71,36 @@ class UserRepository {
 	): Promise<QueryResult | unknown | User> => {
 		const connection: Pool = await this.mySQLService.connect();
 		// création d'une variable de requête, pour une requête préparée éviter les injections SQL
-		const query = ` SELECT ${this.table}.* FROM ${process.env.MYSQL_DB}. ${this.table} WHERE ${this.table}.id = :id ;`;
+		const query = `
+			SELECT
+				${this.table}.*,
+				GROUP_CONCAT(donors.id) AS donors_share_id,
+				GROUP_CONCAT(beneficaries.id) AS beneficiaries_share_id
+			FROM ${process.env.MYSQL_DB}.${this.table}
+			WHERE ${this.table}.id = :id
+			GROUP BY user.id;
+		`;
 
 		// exécuter la requête SQL ou récupérer une erreur
 		try {
 			// fournir la valeur des variables de requête, sous la forme d'un objet
 			const results = await connection.execute(query, data);
 
-			const fullResults: User = results.shift() as User;
+			const fullResults: User | unknown = (results.shift() as User[]).shift();
 
-			const share: User | unknown = await new UserRepository().selectOne({
-				id: fullResults.donors_share_id,
+			// récuperer un objet District
+			const district = await new DistrictRepository().selectOne({
+				id: (fullResults as User).district_id,
 			});
 
-			const shared: User | unknown = await new UserRepository().selectOne({
-				id: fullResults.beneficiaries_share_id,
+			(fullResults as User).district = district;
+
+			// récuperer un objet Role
+			const role = await new RoleRepository().selectOne({
+				id: (fullResults as User).role_id,
 			});
 
-			fullResults.donors_share = share;
-			fullResults.beneficiaries_share = shared;
+			(fullResults as User).role = role;
 
 			// renvoyer les résultats de la requête
 			// shift permet de récuperer le premier indice d'un array
@@ -106,13 +123,14 @@ class UserRepository {
 			const query = `
 			INSERT INTO ${process.env.MYSQL_DB}.${this.table}
 			VALUE
-				(NULL, :firstname, :lastname, :email, :phone_number, :password, :adress, :registration_date, :isActive, :last_shared, :city_id, :district_id, 2);
+				(NULL, :firstname, :lastname, :email, :phone_number, :password, :adress, :registration_date, :isActive, :last_shared, :district_id, 2);
 			`;
 
 			const results = await connection.execute(query, data);
 
 			//valider la transaction
 			transaction.commit();
+			console.log(results);
 
 			return results;
 		} catch (error) {
@@ -133,7 +151,7 @@ class UserRepository {
 		try {
 			// démarrer une transaction
 			await transaction.beginTransaction();
-			//première requête: mettre à jour la table vehicule
+			//première requête: mettre à jour la table user
 			let query = `
 			UPDATE ${process.env.MYSQL_DB}.${this.table}
 			SET
@@ -146,7 +164,6 @@ class UserRepository {
 				${this.table}.registration_date = :registration_date,
 				${this.table}.isActive = :isActive,
 				${this.table}.last_shared = :last_shared,
-				${this.table}.city_id = :city_id,
 				${this.table}.district_id = :district_id,
 				${this.table}.role_id = :role_id
 			WHERE
@@ -157,12 +174,22 @@ class UserRepository {
 			await connection.execute(query, data);
 
 			// deuxième requête
-			// supprimer la table user_share existantes de user à supprimer
+			query = `
+            DELETE FROM ${process.env.MYSQL_DB}.user_share
+            WHERE donor_id = :id;
+        `;
+			await connection.execute(query, data);
 
-			query = `DELETE FROM ${process.env.MYSQL_DB}.donors_share_id,.beneficiaries_share_id
-					 WHERE donors_share.id = :id, beneficiaries_share_id = :id;`;
+			query = `
+            DELETE FROM ${process.env.MYSQL_DB}.user_share
+            WHERE beneficiary_id = :id;
+        `;
+			await connection.execute(query, data);
 
-			const results = await connection.execute(query, data);
+			// query = `DELETE FROM ${process.env.MYSQL_DB}.donors_share_id,.beneficiaries_share_id
+			// 		 WHERE donors_share.id = :id, beneficiaries_share_id = :id;`;
+
+			// const results = await connection.execute(query, data);
 
 			//valider la transaction
 			transaction.commit();
@@ -209,6 +236,42 @@ class UserRepository {
 			// annuler la transaction
 			await transaction.rollback();
 
+			return error;
+		}
+	};
+
+	public getUserByEmail = async (
+		data: User,
+	): Promise<QueryResult | unknown | User> => {
+		const connection: Pool = await this.mySQLService.connect();
+		// création d'une variable de requête, pour une requête préparée éviter les injections SQL
+		const query = ` SELECT ${this.table}.* FROM ${process.env.MYSQL_DB}. ${this.table} WHERE ${this.table}.email = :email ;`;
+
+		// exécuter la requête SQL ou récupérer une erreur
+		try {
+			// fournir la valeur des variables de requête, sous la forme d'un objet
+			const results = await connection.execute(query, data);
+
+			const fullResults: User | undefined = (results.shift() as User[]).shift();
+
+			// récuperer un objet District
+			const district = await new DistrictRepository().selectOne({
+				id: (fullResults as User).district_id,
+			});
+
+			(fullResults as User).district = district;
+
+			// récuperer un objet Role
+			const role = await new RoleRepository().selectOne({
+				id: (fullResults as User).role_id,
+			});
+
+			(fullResults as User).role = role;
+
+			// renvoyer les résultats de la requête
+			// shift permet de récuperer le premier indice d'un array
+			return fullResults;
+		} catch (error: unknown) {
 			return error;
 		}
 	};

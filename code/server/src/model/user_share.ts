@@ -2,9 +2,9 @@ import type User from "./user.js";
 
 type UserShare = {
 	id?: number;
-	donor_id?: string;
+	donor_id?: number;
 	donor?: User | unknown;
-	beneficiary_id?: string;
+	beneficiary_id?: number;
 	beneficiary?: User | unknown;
 };
 
