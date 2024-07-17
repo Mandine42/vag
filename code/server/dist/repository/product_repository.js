@@ -63,7 +63,7 @@ class ProductRepository {
             const query = `
 			INSERT INTO ${process.env.MYSQL_DB}.${this.table}
 			VALUE
-				(NULL, :name, :description, :category_id);
+				(NULL, :name, :description, :other_product, :category_id);
 			`;
             // await connection.execute(query, data);
             //deuxième requête: récupérer le dernier identifiant inséré
@@ -103,6 +103,7 @@ class ProductRepository {
 			SET
 				${this.table}.name = :name, 
 				${this.table}.description = :description, 
+				${this.table}.other_product = :other_product,
 				${this.table}.category_id = :category_id
 			WHERE
 				${this.table}.id = :id
