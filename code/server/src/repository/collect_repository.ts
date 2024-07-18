@@ -125,7 +125,7 @@ class CollectRepository {
 			// démarrer une transaction
 			await transaction.beginTransaction();
 			//première requête: mettre à jour la
-			let query = `
+			const query = `
 			UPDATE ${process.env.MYSQL_DB}.${this.table}
 			SET
 				${this.table}.adress = :adress, 
@@ -135,27 +135,6 @@ class CollectRepository {
 				${this.table}.id = :id
 			;
 			`;
-
-			await connection.execute(query, data);
-
-			// deuxième requête
-			// supprimer les options existantes du vehicule à supprimer
-
-			query = `DELETE FROM ${process.env.MYSQL_DB}.district
-					 WHERE district.district_id = :id;`;
-			await connection.execute(query, data);
-
-			// inserer les options
-			// split permet de changer une chaîne de chararctère en tableau
-			const values = data.district_id
-				?.split(",")
-				.map((value) => `(:id, ${value})`)
-				.join(",");
-
-			//dernière requête renvoie les informations d'ensemble
-			query = `
-				INSERT INTO ${process.env.MYSQL_DB}.district
-				VALUES ${values}`;
 
 			const results = await connection.execute(query, data);
 

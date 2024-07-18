@@ -191,12 +191,8 @@ class ShareRepository {
 		try {
 			// démarrer une transaction
 			await transaction.beginTransaction();
-
-			// première requête
-			// supprimer les user_share existants du share à supprimer
-			let query = ` DELETE FROM
-			${process.env.MYSQL_DB}.user_share
-                WHERE user_share.share_id = :id;`;
+			let query = `  DELETE FROM ${process.env.MYSQL_DB}.user_share
+    					WHERE user_share.share_id = :id`;
 
 			await connection.execute(query, data);
 

@@ -2,6 +2,7 @@ import express, { type Request, type Response, type Router } from "express";
 import ProductController from "../controller/product_controller.js";
 import UserValidatorMiddleware from "../middleware/validator/user_validator_middleware.js";
 import AuthorizationMiddleware from "../middleware/security/authorizationMiddleware.js";
+import ProductValidatorMiddleware from "../middleware/validator/product_validator_middleware.js";
 
 class ProductRouter {
 	private router: Router = express.Router();
@@ -15,8 +16,7 @@ class ProductRouter {
 		//route pour créer un produit
 		this.router.post(
 			"/",
-			new AuthorizationMiddleware().authorize(["admin", "user"]),
-			new UserValidatorMiddleware().filter,
+			new ProductValidatorMiddleware().filter,
 			new ProductController().create,
 		);
 

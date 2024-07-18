@@ -1,20 +1,16 @@
 import Joi from "joi";
-class ShareValidator {
+class ProductValidator {
     // valider les données d'un véhicule
     async validate(data) {
         // contraintes de validation
         // reprendre les proprités du model
         const constraints = Joi.object({
             id: Joi.number().positive().allow(),
-            quantity: Joi.number().positive().required(),
-            collect_datetime: Joi.date().required(),
-            expiration: Joi.string().required(),
-            product_id: Joi.number().positive().required(),
-            product: Joi.object().allow(),
-            collect_id: Joi.number().positive().required(),
-            collect: Joi.object().allow(),
-            donor_id: Joi.number().positive().required(),
-            donor: Joi.object().allow(),
+            name: Joi.string().required(),
+            description: Joi.string().allow(),
+            other_product: Joi.string().allow(),
+            category_id: Joi.number().positive().required(),
+            category: Joi.object().allow(),
         });
         try {
             const validation = await constraints.validateAsync(data, {
@@ -27,4 +23,4 @@ class ShareValidator {
         }
     }
 }
-export default ShareValidator;
+export default ProductValidator;

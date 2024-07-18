@@ -1,5 +1,6 @@
 import express from "express";
 import ProductController from "../controller/product_controller.js";
+import ProductValidatorMiddleware from "../middleware/validator/product_validator_middleware.js";
 class ProductRouter {
     router = express.Router();
     getRouter = () => {
@@ -9,7 +10,7 @@ class ProductRouter {
         // une route avec une variable de route; précédée d'un :
         this.router.get("/:id", new ProductController().one);
         //route pour créer un produit
-        this.router.post("/", new ProductController().create);
+        this.router.post("/", new ProductValidatorMiddleware().filter, new ProductController().create);
         //route pour modifier un produit
         this.router.put("/:id", new ProductController().update);
         //route pour supprimer un produit

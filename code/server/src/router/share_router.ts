@@ -19,10 +19,10 @@ class ShareRouter {
 			new shareController().create,
 		);
 
-		//route pour modifier un véhicule
+		//route pour modifier un share
 		this.router.put("/:id", new ShareController().update);
 
-		//route pour supprimer un véhicule
+		//route pour supprimer un share
 		this.router.delete("/:id", new ShareController().delete);
 
 		return this.router;

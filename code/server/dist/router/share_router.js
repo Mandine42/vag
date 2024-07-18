@@ -12,9 +12,9 @@ class ShareRouter {
         this.router.get("/:id", new ShareController().one);
         //route pour créer un vehicule
         this.router.post("/", new ShareValidatorMiddleware().filter, new shareController().create);
-        //route pour modifier un véhicule
+        //route pour modifier un share
         this.router.put("/:id", new ShareController().update);
-        //route pour supprimer un véhicule
+        //route pour supprimer un share
         this.router.delete("/:id", new ShareController().delete);
         return this.router;
     };

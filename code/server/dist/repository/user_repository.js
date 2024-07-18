@@ -144,9 +144,6 @@ class UserRepository {
             WHERE beneficiary_id = :id;
         `;
             await connection.execute(query, data);
-            // query = `DELETE FROM ${process.env.MYSQL_DB}.donors_share_id,.beneficiaries_share_id
-            // 		 WHERE donors_share.id = :id, beneficiaries_share_id = :id;`;
-            // const results = await connection.execute(query, data);
             //valider la transaction
             transaction.commit();
             // return results;
@@ -166,11 +163,17 @@ class UserRepository {
             // démarrer une transaction
             await transaction.beginTransaction();
             // première requête
-            let query = ` DELETE FROM
-			${process.env.MYSQL_DB}.user_share
-                WHERE user_share.user_id = :id;`;
+            let query = `
+            DELETE FROM ${process.env.MYSQL_DB}.user_share
+            WHERE donor_id = :id;
+        `;
             await connection.execute(query, data);
-            // supprimer le véhicule
+            query = `
+            DELETE FROM ${process.env.MYSQL_DB}.user_share
+            WHERE beneficiary_id = :id;
+        `;
+            await connection.execute(query, data);
+            // supprimer le user
             query = `DELETE FROM
 			${process.env.MYSQL_DB}.${this.table}
                 WHERE ${this.table}.id = :id;`;
