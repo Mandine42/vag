@@ -1,6 +1,7 @@
 import express, { type Request, type Response, type Router } from "express";
 import UserController from "../controller/user_controller.js";
 import UserValidatorMiddleware from "../middleware/validator/user_validator_middleware.js";
+import AuthorizationMiddleware from "../middleware/security/authorizationMiddleware.js";
 
 class UserRouter {
 	private router: Router = express.Router();
@@ -15,11 +16,13 @@ class UserRouter {
 
 		this.router.post(
 			"/",
+			new AuthorizationMiddleware().authorize(["admin", "user"]),
 			new UserValidatorMiddleware().filter,
 			new UserController().register,
 		);
 
 		this.router.post("/login", new UserController().login);
+		this.router.post("/auth", new UserController().auth);
 
 		//route pour modifier un user
 		this.router.put("/:id", new UserController().update);

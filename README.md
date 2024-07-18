@@ -39,3 +39,6 @@ Model : Gérer les données de l'application.
 
 Pour hacher les mots de passe Argon2 (npm i argon2)
 pour la sécurité des mots de passe user (integrer dans la requête de user_repository)
+
+register = create (front)
+login(front)
