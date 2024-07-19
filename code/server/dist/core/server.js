@@ -10,6 +10,8 @@ import ShareRouter from "../router/share_router.js";
 import NotFoundRouter from "../router/not_found_router.js";
 import HomepageRouter from "../router/homepage_router.js";
 import UserRouter from "../router/user_router.js";
+import cors from "cors";
+import OriginMiddleware from "../middleware/security/originMiddleware.js";
 class Server {
     // propriétés
     app = express();
@@ -18,6 +20,12 @@ class Server {
     constructor() {
         // activer le midleware JSON pour toutes le routes, permet d'accéder à la propriété body de la requête HTTP au format JSON.
         this.router.use(express.json());
+        // gérer CORS
+        this.router.use(cors({
+            origin: process.env.ORIGINS?.split(","),
+        }));
+        //vérifier l'origine de la requête
+        this.router.use(new OriginMiddleware().check);
         // lier le router a l'application générale
         this.app.use(this.router);
         this.listRouters();

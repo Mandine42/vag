@@ -1,5 +1,7 @@
 import express, { type Request, type Response, type Router } from "express";
 import CollectController from "../controller/collect_controller.js";
+import CollectValidatorMiddleware from "../middleware/validator/collect_validator_middleware.js";
+import AuthorizationMiddleware from "../middleware/security/authorizationMiddleware.js";
 
 class CollectRouter {
 	private router: Router = express.Router();
@@ -10,13 +12,27 @@ class CollectRouter {
 		this.router.get("/", new CollectController().index);
 		this.router.get("/:id", new CollectController().one);
 		//route pour créer
-		this.router.post("/", new CollectController().create);
+		this.router.post(
+			"/",
+			new AuthorizationMiddleware().authorize(["admin", "user"]),
+			new CollectValidatorMiddleware().filter,
+			new CollectController().create,
+		);
+		this.router.post("/auth", new CollectController().auth);
 
 		//route pour modifier
-		this.router.put("/:id", new CollectController().update);
+		this.router.put(
+			"/:id",
+			new AuthorizationMiddleware().authorize(["admin"]),
+			new CollectController().update,
+		);
 
 		//route pour supprimer
-		this.router.delete("/:id", new CollectController().delete);
+		this.router.delete(
+			"/:id",
+			// new AuthorizationMiddleware().authorize(["admin"]),
+			new CollectController().delete,
+		);
 		return this.router;
 	};
 }

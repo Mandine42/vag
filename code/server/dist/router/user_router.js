@@ -10,11 +10,13 @@ class UserRouter {
         this.router.get("/", new UserController().index);
         this.router.get("/:id", new UserController().one);
         //route pour créer un user
-        this.router.post("/", new AuthorizationMiddleware().authorize(["admin", "user"]), new UserValidatorMiddleware().filter, new UserController().register);
+        this.router.post("/register", 
+        // new AuthorizationMiddleware().authorize(["admin", "user"]),
+        new UserValidatorMiddleware().filter, new UserController().register);
         this.router.post("/login", new UserController().login);
         this.router.post("/auth", new UserController().auth);
         //route pour modifier un user
-        this.router.put("/:id", new UserController().update);
+        this.router.put("/:id", new AuthorizationMiddleware().authorize(["admin", "user"]), new UserController().update);
         // route pour supprimer un utilisateur
         this.router.delete("/:id", new UserController().delete);
         return this.router;

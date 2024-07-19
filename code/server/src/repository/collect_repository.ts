@@ -3,6 +3,12 @@ import MySQLService from "../service/mysql_service.js";
 import type Collect from "../model/collect.js";
 import type District from "../model/district.js";
 import DistrictRepository from "./district_repository.js";
+import type UserShare from "../model/user_share.js";
+import UserShareRepository from "./user_share_repository.js";
+import ShareRepository from "./share_repository.js";
+import type Share from "../model/share.js";
+import type User from "../model/user.js";
+import RoleRepository from "./role_repository.js";
 class CollectRepository {
 	// accéder au service MySQL
 	mySQLService = new MySQLService();
@@ -85,25 +91,6 @@ class CollectRepository {
 
 			const results = await connection.execute(query, data);
 
-			//deuxième requête: récupérer le dernier identifiant inséré
-			// query = "SET @collect_id = LAST_INSERT_ID();";
-			// await connection.execute(query);
-
-			// inserer les options
-			// split permet de changer une chaîne de chararctère en tableau
-			// const values = data.district_id
-			// 	?.split(",")
-			// 	.map((value) => `(@collect_id, ${value})`)
-			// 	.join(",");
-
-			// //dernière requête renvoie les informations d'ensemble
-			// query = `
-			// 	INSERT INTO ${process.env.MYSQL_DB}.district
-			// 	VALUES ${values}`;
-
-			// const results = await connection.execute(query);
-
-			//valider la transaction
 			transaction.commit();
 
 			return results;
@@ -178,5 +165,38 @@ class CollectRepository {
 			return error;
 		}
 	};
+
+	public getUserByEmail = async (data: User) => {
+		const connection: Pool = await this.mySQLService.connect();
+
+		//requête sql
+		const query = `
+		SELECT ${this.table}.*
+		FROM ${process.env.MYSQL_DB}.${this.table}
+		WHERE ${this.table}.email = :email ;
+
+		`;
+		try {
+			//executer la requête
+			const results = await connection.execute(query, data);
+			const fullResult: User | undefined = (results.shift() as User[]).shift();
+
+			// récuperer un objet Role
+			const role = await new RoleRepository().selectOne({
+				id: (fullResult as User).role_id,
+			});
+
+			(fullResult as User).role = role;
+			// console.log(role);
+			const collectResult = await connection.execute(query, data);
+			const collectResults = results.shift() as User;
+			console.log(collectResult);
+
+			return collectResult;
+		} catch (error) {
+			return error;
+		}
+	};
 }
+
 export default CollectRepository;

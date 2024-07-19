@@ -15,8 +15,8 @@ class UserRouter {
 		//route pour créer un user
 
 		this.router.post(
-			"/",
-			new AuthorizationMiddleware().authorize(["admin", "user"]),
+			"/register",
+			// new AuthorizationMiddleware().authorize(["admin", "user"]),
 			new UserValidatorMiddleware().filter,
 			new UserController().register,
 		);
@@ -25,7 +25,12 @@ class UserRouter {
 		this.router.post("/auth", new UserController().auth);
 
 		//route pour modifier un user
-		this.router.put("/:id", new UserController().update);
+		this.router.put(
+			"/:id",
+			new AuthorizationMiddleware().authorize(["admin", "user"]),
+			new UserController().update,
+		);
+
 		// route pour supprimer un utilisateur
 		this.router.delete("/:id", new UserController().delete);
 

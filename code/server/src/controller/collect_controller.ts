@@ -1,6 +1,11 @@
 import type { Request, Response } from "express";
 import CollectRepository from "../repository/collect_repository.js";
-
+import type { QueryResult } from "mysql2";
+import jwt from "jsonwebtoken";
+import UserShare from "../model/user_share.js";
+import type Share from "../model/share.js";
+import argon2 from "argon2";
+import type User from "../model/user.js";
 class CollectController {
 	private collectrepository: CollectRepository = new CollectRepository();
 	// méthodes appelées par le router
@@ -71,6 +76,7 @@ class CollectController {
 			data: result,
 		});
 	};
+
 	public update = async (req: Request, res: Response): Promise<Response> => {
 		// regrouper l'identifiant contenu dans l'URL (re.params) avec les données de mise à jour contenues dans la propriété body de la requête HTTP
 		//... (opérateur) permet de cloner les données/ const data regroupe toutes les infos (objet)
@@ -121,6 +127,55 @@ class CollectController {
 			status: 200,
 			message: "Collect deleted",
 			data: result,
+		});
+	};
+
+	public auth = async (req: Request, res: Response): Promise<Response> => {
+		// recuperer l'utilisateur par son email
+
+		const user: QueryResult | unknown =
+			await this.collectrepository.getUserByEmail(req.body);
+		// console.log(user);
+
+		// si l'utilisateur n'existe pas
+		if (user instanceof Error) {
+			return res.status(400).json({
+				status: 400,
+				message: "error",
+			});
+		}
+
+		// verification du mot de passe: comparer le mot de passe saisie avec le hash contenu dans la base de données
+		const passwordIsValid: boolean = await argon2.verify(
+			(user as User).password as string,
+			req.body.password,
+		);
+		if (!passwordIsValid) {
+			return res.status(403).json({
+				status: 403,
+				message: "forbidden",
+			});
+		}
+
+		// génerer un JWT (jeton sécurisé)
+		// le token est valide 30s
+		const token = jwt.sign(
+			{
+				user: user,
+			},
+			process.env.SECRET as string,
+			{
+				expiresIn: 30,
+			},
+		);
+
+		// si l'utilisateur existe et si la réponse est correct
+		return res.status(200).json({
+			status: 200,
+			message: "OK",
+			data: {
+				token: token,
+			},
 		});
 	};
 }

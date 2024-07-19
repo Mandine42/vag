@@ -18,7 +18,7 @@ Pour ce connecter a mysql sur le terminal du conteneur
 Pour se conneceter à la base de donnée mysql depuis le conteneur server
   npm i mysql2
 
-  <!-- requête SQL dand le repository -->
+  <!-- requête SQL dans le repository -->
 const query = ` SELECT ${this.table}.* FROM ${process.env.MYSQL_DB}. ${this.table} `;
 <!-- retourne une promesse -->
 async
