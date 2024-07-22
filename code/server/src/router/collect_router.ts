@@ -9,8 +9,16 @@ class CollectRouter {
 	public getRouter = (): Router => {
 		// lister les routes associées au préfixe du router
 		// une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
-		this.router.get("/", new CollectController().index);
-		this.router.get("/:id", new CollectController().one);
+		this.router.get(
+			"/",
+			new AuthorizationMiddleware().authorize(["admin"]),
+			new CollectController().index,
+		);
+		this.router.get(
+			"/:id",
+			new AuthorizationMiddleware().authorize(["admin"]),
+			new CollectController().one,
+		);
 		//route pour créer
 		this.router.post(
 			"/",
@@ -30,7 +38,7 @@ class CollectRouter {
 		//route pour supprimer
 		this.router.delete(
 			"/:id",
-			// new AuthorizationMiddleware().authorize(["admin"]),
+			new AuthorizationMiddleware().authorize(["admin"]),
 			new CollectController().delete,
 		);
 		return this.router;

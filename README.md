@@ -42,3 +42,18 @@ pour la sécurité des mots de passe user (integrer dans la requête de user_rep
 
 register = create (front)
 login(front)
+
+1 docker, dev container (image orchestration) evironnement de travail
+2 figma
+3 html css
+4 (novembre) JavaScript/react
+5 MCD/MLD/MPD
+6 MYSQL, NoSQL (mongoDB)
+7 validator, email
+8
+
+  GET = récupérer
+  POST = créer
+Pour se connecter a mongoDB
+  mongosh --authenticationDatabase admin -u root -p
+  show dbs

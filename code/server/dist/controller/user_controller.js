@@ -167,7 +167,7 @@ class UserController {
         const token = jwt.sign({
             user: user,
         }, process.env.SECRET, {
-            expiresIn: 30,
+            expiresIn: "2 days",
         });
         // si l'utilisateur existe et si la réponse est correct
         return res.status(200).json({

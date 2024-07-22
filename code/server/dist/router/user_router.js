@@ -7,8 +7,8 @@ class UserRouter {
     getRouter = () => {
         // lister les routes associées au préfixe du router
         // une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
-        this.router.get("/", new UserController().index);
-        this.router.get("/:id", new UserController().one);
+        this.router.get("/", new AuthorizationMiddleware().authorize(["admin"]), new UserController().index);
+        this.router.get("/:id", new AuthorizationMiddleware().authorize(["admin"]), new UserController().one);
         //route pour créer un user
         this.router.post("/register", 
         // new AuthorizationMiddleware().authorize(["admin", "user"]),
@@ -18,7 +18,7 @@ class UserRouter {
         //route pour modifier un user
         this.router.put("/:id", new AuthorizationMiddleware().authorize(["admin", "user"]), new UserController().update);
         // route pour supprimer un utilisateur
-        this.router.delete("/:id", new UserController().delete);
+        this.router.delete("/:id", new AuthorizationMiddleware().authorize(["admin", "user"]), new UserController().delete);
         return this.router;
     };
 }

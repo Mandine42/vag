@@ -12,6 +12,7 @@ import HomepageRouter from "../router/homepage_router.js";
 import UserRouter from "../router/user_router.js";
 import cors from "cors";
 import OriginMiddleware from "../middleware/security/originMiddleware.js";
+import ContactRouter from "../router/contact_router.js";
 class Server {
     // propriétés
     app = express();
@@ -41,6 +42,7 @@ class Server {
         this.router.use("/collect", new CollectRouter().getRouter());
         this.router.use("/share", new ShareRouter().getRouter());
         this.router.use("/user", new UserRouter().getRouter());
+        this.router.use("/contact", new ContactRouter().getRouter());
         this.router.use("*", new NotFoundRouter().getRouter());
     };
     createServer = () => {

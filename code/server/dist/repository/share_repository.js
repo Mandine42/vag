@@ -1,6 +1,7 @@
 import MySQLService from "../service/mysql_service.js";
 import ProductRepository from "./product_repository.js";
 import CollectRepository from "./collect_repository.js";
+import RoleRepository from "./role_repository.js";
 class ShareRepository {
     // accéder au service MySQL
     mySQLService = new MySQLService();
@@ -167,6 +168,34 @@ class ShareRepository {
         catch (error) {
             // annuler la transaction
             await transaction.rollback();
+            return error;
+        }
+    };
+    getUserByEmail = async (data) => {
+        const connection = await this.mySQLService.connect();
+        //requête sql
+        const query = `
+		SELECT ${this.table}.*
+		FROM ${process.env.MYSQL_DB}.${this.table}
+		WHERE ${this.table}.email = :email ;
+
+		`;
+        try {
+            //executer la requête
+            const results = await connection.execute(query, data);
+            const fullResult = results.shift().shift();
+            // récuperer un objet Role
+            const role = await new RoleRepository().selectOne({
+                id: fullResult.role_id,
+            });
+            fullResult.role = role;
+            // console.log(role);
+            const shareResult = await connection.execute(query, data);
+            const shareResults = results.shift();
+            console.log(shareResult);
+            return shareResult;
+        }
+        catch (error) {
             return error;
         }
     };

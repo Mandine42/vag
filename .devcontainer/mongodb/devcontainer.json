@@ -1,0 +1,13 @@
+{
+    "name": "VAG - MongoDB",
+    "service": "mongodb",
+    "dockerComposeFile": "../../docker-compose.dev.yaml",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [],
+
+            "settings": {} 
+        }
+    }
+}

@@ -205,7 +205,7 @@ class UserController {
 			},
 			process.env.SECRET as string,
 			{
-				expiresIn: 30,
+				expiresIn: "2 days",
 			},
 		);
 
