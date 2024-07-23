@@ -11,8 +11,6 @@ type Share = {
 	product?: Product | unknown;
 	collect_id?: number;
 	collect?: Collect | unknown;
-	user_share_id?: number;
-	user_share?: UserShare | unknown;
 };
 
 export default Share;

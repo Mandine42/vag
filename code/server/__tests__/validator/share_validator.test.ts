@@ -23,8 +23,7 @@ describe("Share validator test suite", () => {
 		description: "violet",
 		other_product: "",
 		category_id: 2,
-		// category: category,
-		category: {},
+		category: category,
 	};
 	const city: City = {
 		id: 1,
@@ -49,8 +48,8 @@ describe("Share validator test suite", () => {
 		adress: "25 rue nenufar",
 		meeting_point: "",
 		district_id: 1,
-		// district: district,
-		district: {},
+		district: district,
+		// district: {},
 	};
 	const role: Role = {
 		id: 2,

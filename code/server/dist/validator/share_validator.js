@@ -13,8 +13,6 @@ class ShareValidator {
             product: Joi.object().allow(),
             collect_id: Joi.number().positive().required(),
             collect: Joi.object().allow(),
-            donor_id: Joi.number().positive().required(),
-            donor: Joi.object().allow(),
         });
         try {
             const validation = await constraints.validateAsync(data, {
