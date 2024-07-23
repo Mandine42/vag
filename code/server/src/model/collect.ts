@@ -4,7 +4,7 @@ type Collect = {
 	id?: number;
 	adress?: string;
 	meeting_point?: string;
-	district_id?: string;
+	district_id?: number;
 	district?: District | unknown;
 };
 

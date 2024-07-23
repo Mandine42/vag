@@ -6,9 +6,9 @@ type District = {
 	name?: string;
 	adress?: string;
 	meeting_point?: string;
-	city_id?: string;
+	city_id?: number;
 	city?: City | unknown;
-	category_district_id?: string;
+	category_district_id?: number;
 	category_district?: Category_district | unknown;
 };
 

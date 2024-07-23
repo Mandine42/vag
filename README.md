@@ -48,9 +48,9 @@ login(front)
 3 html css
 4 (novembre) JavaScript/react
 5 MCD/MLD/MPD
-6 MYSQL, NoSQL (mongoDB)
+6 MYSQL, NoSQL (mongoDB) requete API
 7 validator, email
-8
+8 test, mise en place(deploiement)
 
   GET = récupérer
   POST = créer

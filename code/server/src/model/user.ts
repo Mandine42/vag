@@ -13,7 +13,7 @@ type User = {
 	adress?: string;
 	registration_date?: string;
 	isActive?: boolean;
-	last_Shared?: string;
+	last_shared?: string;
 	district_id?: number;
 	district?: District | unknown;
 	role_id?: number;

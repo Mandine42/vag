@@ -1,40 +1,40 @@
 -- permet de remettre a zéro la base de donnée
--- DROP DATABASE IF EXISTS vag;
+DROP DATABASE IF EXISTS vag_dev;
 
 -- créer une base de donnée
-CREATE DATABASE vag;
+CREATE DATABASE vag_dev;
 
 -- créer une table
-CREATE TABLE vag.city(
+CREATE TABLE vag_dev.city(
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE vag.category_district(
+CREATE TABLE vag_dev.category_district(
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL UNIQUE
 );
 
-CREATE TABLE vag.district (
+CREATE TABLE vag_dev.district (
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     city_id TINYINT UNSIGNED,
     category_district_id TINYINT UNSIGNED,
-    FOREIGN KEY (city_id) REFERENCES vag.city(id),
-    FOREIGN KEY (category_district_id) REFERENCES vag.category_district(id)
+    FOREIGN KEY (city_id) REFERENCES vag_dev.city(id),
+    FOREIGN KEY (category_district_id) REFERENCES vag_dev.category_district(id)
 );
 
-CREATE TABLE vag.category(
+CREATE TABLE vag_dev.category(
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL UNIQUE
 );
 
-CREATE TABLE vag.role (
+CREATE TABLE vag_dev.role (
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL    
 );
 
-CREATE TABLE vag.user(
+CREATE TABLE vag_dev.user(
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
@@ -47,60 +47,60 @@ CREATE TABLE vag.user(
     last_shared DATETIME NULL,
     -- clés étrangères
     district_id TINYINT UNSIGNED,
-    FOREIGN KEY (district_id) REFERENCES vag.district(id),
+    FOREIGN KEY (district_id) REFERENCES vag_dev.district(id),
     role_id TINYINT UNSIGNED,
-    FOREIGN KEY (role_id) REFERENCES vag.role(id)
+    FOREIGN KEY (role_id) REFERENCES vag_dev.role(id)
 );
 
 
 
-CREATE TABLE vag.product(
+CREATE TABLE vag_dev.product(
     id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(100) NULL,
     other_product VARCHAR(50) NULL,
     -- clés étrangères
     category_id TINYINT UNSIGNED,
-    FOREIGN KEY (category_id) REFERENCES vag.category(id)
+    FOREIGN KEY (category_id) REFERENCES vag_dev.category(id)
 );
 
-CREATE TABLE vag.collect(
+CREATE TABLE vag_dev.collect(
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     adress VARCHAR(100) NOT NULL,
     meeting_point VARCHAR(150) NULL,
     -- clés étrangères
     district_id TINYINT UNSIGNED,
-    FOREIGN KEY (district_id) REFERENCES vag.district(id)
+    FOREIGN KEY (district_id) REFERENCES vag_dev.district(id)
     
 );
 
-CREATE TABLE vag.share (
+CREATE TABLE vag_dev.share (
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     quantity TINYINT UNSIGNED NOT NULL,
     collect_dateTime DATETIME NOT NULL,
     expiration DATE NULL,
     -- clés étrangères
     product_id SMALLINT UNSIGNED,
-    FOREIGN KEY (product_id) REFERENCES vag.product(id),
+    FOREIGN KEY (product_id) REFERENCES vag_dev.product(id),
     collect_id TINYINT UNSIGNED,
-    FOREIGN KEY (collect_id) REFERENCES vag.collect(id)
+    FOREIGN KEY (collect_id) REFERENCES vag_dev.collect(id)
 );
 
 -- table relationnelle
-CREATE TABLE vag.user_share (
+CREATE TABLE vag_dev.user_share (
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     donor_id TINYINT UNSIGNED NULL,
     beneficiary_id TINYINT UNSIGNED NULL,
     share_id TINYINT UNSIGNED NOT NULL,
-    FOREIGN KEY (donor_id) REFERENCES vag.user(id),
-    FOREIGN KEY (beneficiary_id) REFERENCES vag.user(id),
-    FOREIGN KEY (share_id) REFERENCES vag.share(id)
+    FOREIGN KEY (donor_id) REFERENCES vag_dev.user(id),
+    FOREIGN KEY (beneficiary_id) REFERENCES vag_dev.user(id),
+    FOREIGN KEY (share_id) REFERENCES vag_dev.share(id)
 );
 
 
 
 
-INSERT INTO vag.category
+INSERT INTO vag_dev.category
 VALUES
     (NULL, 'Fruits'),
     (NULL, 'Légumes'),
@@ -112,12 +112,12 @@ VALUES
     (NULL, 'Légumineuses')
 ;
 
-INSERT INTO vag.city
+INSERT INTO vag_dev.city
 VALUES
     (NULL, 'Montreuil')
 ;
 
-INSERT INTO vag.category_district
+INSERT INTO vag_dev.category_district
 VALUES
     (NULL, 'Secteur 1'),
     (NULL, 'Secteur 2'),
@@ -127,7 +127,7 @@ VALUES
     (NULL, 'Secteur 6')
 ;
 
-INSERT INTO vag.district
+INSERT INTO vag_dev.district
 VALUES
     (NULL, 'Bas Montreuil - République', 1, 1),
     (NULL, 'Etienne Marcel - Chanzy', 1, 1),
@@ -145,7 +145,7 @@ VALUES
     (NULL, 'Montreau - Le Morillon', 1, 6)
 ;    
 
-INSERT INTO vag.collect 
+INSERT INTO vag_dev.collect 
 VALUES
     (NULL, '54 rue Robespière', 'Arsène', 1),
     (NULL, '30 rue Parmentier', NULL, 2),
@@ -164,7 +164,7 @@ VALUES
 ;
 
 
-INSERT INTO vag.product (id, name, description, other_product, category_id) 
+INSERT INTO vag_dev.product (id, name, description, other_product, category_id) 
 VALUES
     (NULL, 'Pomme', NULL, NULL, 1),
     (NULL, 'Poire', NULL, NULL, 1),
@@ -302,13 +302,13 @@ VALUES
     (NULL, 'Légumineuses', 'autre', 'haricot coco', 8)
 ;
 
-INSERT INTO vag.role
+INSERT INTO vag_dev.role
 VALUES
     (NULL, "admin" ),
     (NULL, "user")
 ;
 -- 1: admin, 2: user
-INSERT INTO vag.user
+INSERT INTO vag_dev.user
 VALUES
     (NULL,'Amandine', 'Martin', 'amandine.martin@gmail.com', '0612345678', "$argon2i$v=19$m=16,t=2,p=1$cjI2eEhrUkhaelRBQlBIdQ$afTOrE2u2lYfPL/KIfbhKw", '1 Rue de Paris', '2024-05-01', TRUE, '2024-07-07 10:15:30', 1, 1),
     (NULL,'Alice', 'Martin', 'alice.martin@gmail.com', '0612345678', "$argon2i$v=19$m=16,t=2,p=1$UUVtTkZ0c0pkT2lQaEtEaw$Hju/7PIeOoCulL+JsfSnag", '1 Rue de Paris', '2024-05-01', TRUE, '2024-07-07 10:15:30', 1, 2),
@@ -333,7 +333,7 @@ VALUES
     (NULL,'Thérèse', 'Collet', 'therese.collet@gmail.com', '0603456789',"$argon2i$v=19$m=16,t=2,p=1$Umh0c3lLbmhsN0twNXBEbw$TVwvGYd38UD9jOqJCRI1cw", '20 Rue de Perpignan', '2024-05-20', TRUE, '2024-06-20 15:30:00', 9, 2)
 ;
 
-INSERT INTO vag.share
+INSERT INTO vag_dev.share
 VALUES
     (NULL,5, '2024-08-01 08:30:00', NULL, 1, 1),
     (NULL,3, '2024-05-15 12:00:00', NULL, 2, 2),
@@ -357,7 +357,7 @@ VALUES
     (NULL,7, '2024-08-19 09:45:00', NULL, 20, 5)
 ;
 
-INSERT INTO vag.user_share
+INSERT INTO vag_dev.user_share
 VALUES
     (NULL, 1, 2, 1),
     (NULL, 3, 4, 2),
@@ -379,3 +379,25 @@ VALUES
     (NULL,16, 18, 19)
 ;
 
+
+   
+-- -- -- Commencer une transaction
+-- -- START TRANSACTION;
+
+-- -- -- Insérer une nouvelle entrée dans la table vag_dev.user_shar1
+-- -- INSERT INTO vag_dev.user_share (donor_id, beneficiary_id, share_id)
+-- -- VALUES (1, 2, 1);
+
+-- -- -- Supposons que l'ID utilisateur pour le donateur et le bénéficiaire sont 1 et 2 respectivement
+-- -- -- Mettre à jour le champ last_shared pour le donateur
+-- -- UPDATE vag_dev.user
+-- -- SET last_shared = NOW()
+-- -- WHERE id = 1;
+
+-- -- -- Mettre à jour le champ last_shared pour le bénéficiaire
+-- -- UPDATE vag_dev.user
+-- -- SET last_shared = NOW()
+-- -- WHERE id = 2;
+
+-- -- -- Valider la transaction si toutes les opérations réussissent
+-- -- COMMIT;

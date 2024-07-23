@@ -15,8 +15,8 @@ class ShareValidator {
 			product: Joi.object().allow(),
 			collect_id: Joi.number().positive().required(),
 			collect: Joi.object().allow(),
-			donor_id: Joi.number().positive().required(),
-			donor: Joi.object().allow(),
+			user_share_id: Joi.number().positive().required(),
+			user_share: Joi.object().allow(),
 		});
 
 		try {
