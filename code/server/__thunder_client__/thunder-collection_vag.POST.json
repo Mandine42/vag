@@ -1,0 +1,154 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "vag.POST",
+    "collectionId": "bd6d68aa-0e88-4277-af77-8e5298d218c6",
+    "dateExported": "2024-07-24T11:00:10.674Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "91f624b0-bc13-4d85-bb61-b89eb8e1ae36",
+            "colId": "bd6d68aa-0e88-4277-af77-8e5298d218c6",
+            "containerId": "",
+            "name": "http://localhost:3000/collect",
+            "url": "http://localhost:3000/collect",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-07-24T10:57:52.530Z",
+            "modified": "2024-07-24T10:57:52.530Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJBbWFuZGluZSIsImxhc3RuYW1lIjoiTWFydGluIiwiZW1haWwiOiJhbWFuZGluZS5tYXJ0aW5AZ21haWwuY29tIiwicGhvbmVfbnVtYmVyIjoiMDYxMjM0NTY3OCIsInBhc3N3b3JkIjoiJGFyZ29uMmkkdj0xOSRtPTE2LHQ9MixwPTEkY2pJMmVFaHJVa2hhZWxSQlFsQklkUSRhZlRPckUydTJsWWZQTC9LSWZiaEt3IiwiYWRyZXNzIjoiMSBSdWUgZGUgUGFyaXMiLCJyZWdpc3RyYXRpb25fZGF0ZSI6IjIwMjQtMDUtMDFUMDA6MDA6MDAuMDAwWiIsImlzQWN0aXZlIjoxLCJsYXN0X3NoYXJlZCI6IjIwMjQtMDctMDdUMTA6MTU6MzAuMDAwWiIsImRpc3RyaWN0X2lkIjoxLCJyb2xlX2lkIjoxLCJkaXN0cmljdCI6eyJpZCI6MSwibmFtZSI6IkJhcyBNb250cmV1aWwgLSBSw6lwdWJsaXF1ZSIsImNpdHlfaWQiOjEsImNhdGVnb3J5X2Rpc3RyaWN0X2lkIjoxLCJjYXRlZ29yeV9kaXN0cmljdCI6eyJpZCI6MSwibmFtZSI6IlNlY3RldXIgMSJ9LCJjaXR5Ijp7ImlkIjoxLCJuYW1lIjoiTW9udHJldWlsIn19LCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4ifX0sImlhdCI6MTcyMTY1MzY0MiwiZXhwIjoxNzIxODI2NDQyfQ.Jjz8orch-ryjBMC7Mjr0iPnN20x8km7A3fmjRXQ-azQ"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"adress\": \"35 rue Robespière\",\n  \"meeting_point\": \"Au bon resto\",\n  \"district_id\": 5\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "fa8a362f-15d4-4827-8c02-c87198d79216",
+            "colId": "bd6d68aa-0e88-4277-af77-8e5298d218c6",
+            "containerId": "",
+            "name": "http://localhost:3000/user/register",
+            "url": "http://localhost:3000/user/register",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-07-24T10:57:58.428Z",
+            "modified": "2024-07-24T10:57:58.428Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJBbWFuZGluZSIsImxhc3RuYW1lIjoiTWFydGluIiwiZW1haWwiOiJhbWFuZGluZS5tYXJ0aW5AZ21haWwuY29tIiwicGhvbmVfbnVtYmVyIjoiMDYxMjM0NTY3OCIsInBhc3N3b3JkIjoiJGFyZ29uMmkkdj0xOSRtPTE2LHQ9MixwPTEkY2pJMmVFaHJVa2hhZWxSQlFsQklkUSRhZlRPckUydTJsWWZQTC9LSWZiaEt3IiwiYWRyZXNzIjoiMSBSdWUgZGUgUGFyaXMiLCJyZWdpc3RyYXRpb25fZGF0ZSI6IjIwMjQtMDUtMDFUMDA6MDA6MDAuMDAwWiIsImlzQWN0aXZlIjoxLCJsYXN0X3NoYXJlZCI6IjIwMjQtMDctMDdUMTA6MTU6MzAuMDAwWiIsImRpc3RyaWN0X2lkIjoxLCJyb2xlX2lkIjoxLCJkaXN0cmljdCI6eyJpZCI6MSwibmFtZSI6IkJhcyBNb250cmV1aWwgLSBSw6lwdWJsaXF1ZSIsImNpdHlfaWQiOjEsImNhdGVnb3J5X2Rpc3RyaWN0X2lkIjoxLCJjYXRlZ29yeV9kaXN0cmljdCI6eyJpZCI6MSwibmFtZSI6IlNlY3RldXIgMSJ9LCJjaXR5Ijp7ImlkIjoxLCJuYW1lIjoiTW9udHJldWlsIn19LCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4ifX0sImlhdCI6MTcyMTY1MzY0MiwiZXhwIjoxNzIxODI2NDQyfQ.Jjz8orch-ryjBMC7Mjr0iPnN20x8km7A3fmjRXQ-azQ"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstname\": \"Isabeau\",\n  \"lastname\": \"Guepil\",\n  \"email\": \"Isabeau.guepil@gmail.com\",\n  \"phone_number\": \"0785642311\",\n  \"password\": \"user\",\n  \"adress\": \"46 rue du chêne vert\",\n  \"registration_date\": \"2024-10-25\",\n  \"isActive\": false,\n  \"last_shared\": \"2024-10-25 10:07:00\",\n  \"district_id\": 3,\n  \"role_id\": 2\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "d3fb7d87-6fb5-40dd-8f74-b409ba5b9bf8",
+            "colId": "bd6d68aa-0e88-4277-af77-8e5298d218c6",
+            "containerId": "",
+            "name": "http://localhost:3000/product",
+            "url": "http://localhost:3000/product",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-07-24T10:58:06.091Z",
+            "modified": "2024-07-24T10:58:06.091Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Chou rouge\",\n  \"description\": \"null\",\n  \"other_product\": \"null\",\n  \"category_id\": 2\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "2c872bc1-ec5b-4f23-b992-5e62059edfb7",
+            "colId": "bd6d68aa-0e88-4277-af77-8e5298d218c6",
+            "containerId": "",
+            "name": "http://localhost:3000/user/login",
+            "url": "http://localhost:3000/user/login",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-07-24T10:58:15.899Z",
+            "modified": "2024-07-24T10:58:15.899Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"amandine.martin@gmail.com\",\n  \"password\": \"admin\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "3d6a5275-717d-42cd-a83e-92cade6700c7",
+            "colId": "bd6d68aa-0e88-4277-af77-8e5298d218c6",
+            "containerId": "",
+            "name": "http://localhost:3000/user/auth",
+            "url": "http://localhost:3000/user/auth",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-07-24T10:58:23.389Z",
+            "modified": "2024-07-24T10:58:23.389Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"amandine.martin@gmail.com\",\n  \"password\": \"admin\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "915f6041-cbfd-46e8-838e-d2e4541e8e74",
+            "colId": "bd6d68aa-0e88-4277-af77-8e5298d218c6",
+            "containerId": "",
+            "name": "http://localhost:3000/contact",
+            "url": "http://localhost:3000/contact",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-07-24T10:58:31.197Z",
+            "modified": "2024-07-24T10:58:31.197Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"albert.triste@gmail.com\",\n  \"subject\": \"Collaboration\",\n  \"message\": \"J'aimerai bien participé à l'aventure\",\n  \"date\": \"2024-10-15\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "VbP2bCLD5YeH3cejXOgbR2jyCWKSbS8kFMo38Ijc4LxAWqVi-M061Vbx9B0r-dJ8-XE1FYLL_mPLh0M3qfaZ3A"
+}

@@ -10,7 +10,7 @@ class CollectValidatorMiddleware {
 		// console.log("middleware");
 		// valider la propriété body selon les contraintes de validation
 		const validation = await new CollectValidator().validate(req.body);
-		console.log(validation);
+		// console.log(validation);
 		// si une erreur de validation est renvoyée
 		if (validation instanceof Error) {
 			return res.status(400).json({

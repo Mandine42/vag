@@ -149,7 +149,7 @@ class CollectRepository {
             // console.log(role);
             const collectResult = await connection.execute(query, data);
             const collectResults = results.shift();
-            console.log(collectResult);
+            // console.log(collectResult);
             return collectResult;
         }
         catch (error) {

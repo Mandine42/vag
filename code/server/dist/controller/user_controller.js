@@ -120,7 +120,7 @@ class UserController {
     login = async (req, res) => {
         // recuperer l'utilisateur par son email
         const user = await this.userrepository.getUserByEmail(req.body);
-        console.log(user);
+        // console.log(user);
         // // si l'utilisateur n'existe pas
         if (user instanceof Error) {
             return res.status(400).json({

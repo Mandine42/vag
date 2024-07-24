@@ -9,7 +9,7 @@ class ContactController {
 	public index = async (req: Request, res: Response): Promise<Response> => {
 		const results = await new ContactRepository().findAll();
 
-		console.log(results);
+		// console.log(results);
 
 		return res.status(200).json({
 			status: 200,
@@ -21,9 +21,9 @@ class ContactController {
 	public create = async (req: Request, res: Response): Promise<Response> => {
 		const results = await new ContactRepository().create(req.body);
 
-		console.log(results);
+		// console.log(results);
 
-		return res.status(200).json({
+		return res.status(201).json({
 			status: 201,
 			message: "Created",
 		});

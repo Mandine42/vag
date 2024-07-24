@@ -21,7 +21,7 @@ class OriginMiddleware {
 		// console.log(host, origin, listOrigins);
 		// console.log(${protocol}://${req.get("host")});
 
-		console.log(req.get("origin"));
+		// console.log(req.get("origin"));
 
 		// vérifier la présence de l'origine dans la liste
 		if (

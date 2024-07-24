@@ -97,7 +97,7 @@ class UserRepository {
             const results = await connection.execute(query, data);
             //valider la transaction
             transaction.commit();
-            console.log(results);
+            // console.log(results);
             return results;
         }
         catch (error) {

@@ -82,7 +82,7 @@ class ShareRepository {
             let query = `
 			INSERT INTO ${process.env.MYSQL_DB}.${this.table}
 			VALUE
-				(NULL, :quantity, :collect_datetime, :expiration, :product_id, :collect_id);
+				(NULL, :quantity, :collect_dateTime, :expiration, :product_id, :collect_id);
 			`;
             await connection.execute(query, data);
             //deuxième requête: récupérer le dernier identifiant inséré
@@ -121,7 +121,7 @@ class ShareRepository {
 					UPDATE ${process.env.MYSQL_DB}.${this.table}
 					SET
 						${this.table}.quantity = :quantity,
-						${this.table}.collect_datetime = :collect_datetime,
+						${this.table}.collect_dateTime = :collect_dateTime,
 						${this.table}.expiration = :expiration,
 						${this.table}.product_id = :product_id,
 						${this.table}.collect_id = :collect_id
@@ -192,7 +192,7 @@ class ShareRepository {
             // console.log(role);
             const shareResult = await connection.execute(query, data);
             const shareResults = results.shift();
-            console.log(shareResult);
+            // console.log(shareResult);
             return shareResult;
         }
         catch (error) {

@@ -62,6 +62,8 @@ describe("Share validator test suite", () => {
 		beneficiary_id: 1,
 		donor: {},
 		donor_id: 1,
+		share_id: 1,
+		share: {},
 	};
 
 	const data: Share = {
@@ -73,8 +75,6 @@ describe("Share validator test suite", () => {
 		product: product,
 		collect_id: 8,
 		collect: collect,
-		user_share_id: 2,
-		user_share: userShare,
 	};
 	// sut: system ender test, methode ou fonction testée
 	const sut: ShareValidator = new ShareValidator();

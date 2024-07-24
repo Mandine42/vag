@@ -47,7 +47,7 @@ class ShareController {
         });
     };
     create = async (req, res) => {
-        console.log(req.body);
+        // console.log(req.body);
         const result = await this.sharerepository.create(req.body);
         // req.body permet de recuperer les données contenues dans la proriété body de la requête HTTP
         if (result instanceof Error) {

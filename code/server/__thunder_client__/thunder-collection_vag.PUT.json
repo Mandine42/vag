@@ -1,0 +1,108 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "vag.PUT",
+    "collectionId": "21249bc1-92e6-4be7-8d36-82524059a1d3",
+    "dateExported": "2024-07-24T11:00:02.861Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "579db6e9-f307-488e-aa9f-a7458fa03136",
+            "colId": "21249bc1-92e6-4be7-8d36-82524059a1d3",
+            "containerId": "",
+            "name": "http://localhost:3000/share/2",
+            "url": "http://localhost:3000/share/2",
+            "method": "PUT",
+            "sortNum": 10000,
+            "created": "2024-07-24T10:56:38.886Z",
+            "modified": "2024-07-24T10:56:38.886Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJBbWFuZGluZSIsImxhc3RuYW1lIjoiTWFydGluIiwiZW1haWwiOiJhbWFuZGluZS5tYXJ0aW5AZ21haWwuY29tIiwicGhvbmVfbnVtYmVyIjoiMDYxMjM0NTY3OCIsInBhc3N3b3JkIjoiJGFyZ29uMmkkdj0xOSRtPTE2LHQ9MixwPTEkY2pJMmVFaHJVa2hhZWxSQlFsQklkUSRhZlRPckUydTJsWWZQTC9LSWZiaEt3IiwiYWRyZXNzIjoiMSBSdWUgZGUgUGFyaXMiLCJyZWdpc3RyYXRpb25fZGF0ZSI6IjIwMjQtMDUtMDFUMDA6MDA6MDAuMDAwWiIsImlzQWN0aXZlIjoxLCJsYXN0X3NoYXJlZCI6IjIwMjQtMDctMDdUMTA6MTU6MzAuMDAwWiIsImRpc3RyaWN0X2lkIjoxLCJyb2xlX2lkIjoxLCJkaXN0cmljdCI6eyJpZCI6MSwibmFtZSI6IkJhcyBNb250cmV1aWwgLSBSw6lwdWJsaXF1ZSIsImNpdHlfaWQiOjEsImNhdGVnb3J5X2Rpc3RyaWN0X2lkIjoxLCJjYXRlZ29yeV9kaXN0cmljdCI6eyJpZCI6MSwibmFtZSI6IlNlY3RldXIgMSJ9LCJjaXR5Ijp7ImlkIjoxLCJuYW1lIjoiTW9udHJldWlsIn19LCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4ifX0sImlhdCI6MTcyMTY1MzY0MiwiZXhwIjoxNzIxODI2NDQyfQ.Jjz8orch-ryjBMC7Mjr0iPnN20x8km7A3fmjRXQ-azQ"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"quantity\": 5,\n  \"collect_datetime\": \"2024-08-12 09:30:00\",\n  \"expiration\": null,\n  \"product_id\": 6,\n  \"collect_id\": 9,\n  \"user_share_id\": 6\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "cb67477d-952b-4f6f-88ef-88020d2e022e",
+            "colId": "21249bc1-92e6-4be7-8d36-82524059a1d3",
+            "containerId": "",
+            "name": "http://localhost:3000/user/13",
+            "url": "http://localhost:3000/user/13",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-07-24T10:56:52.829Z",
+            "modified": "2024-07-24T10:56:52.829Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJBbWFuZGluZSIsImxhc3RuYW1lIjoiTWFydGluIiwiZW1haWwiOiJhbWFuZGluZS5tYXJ0aW5AZ21haWwuY29tIiwicGhvbmVfbnVtYmVyIjoiMDYxMjM0NTY3OCIsInBhc3N3b3JkIjoiJGFyZ29uMmkkdj0xOSRtPTE2LHQ9MixwPTEkY2pJMmVFaHJVa2hhZWxSQlFsQklkUSRhZlRPckUydTJsWWZQTC9LSWZiaEt3IiwiYWRyZXNzIjoiMSBSdWUgZGUgUGFyaXMiLCJyZWdpc3RyYXRpb25fZGF0ZSI6IjIwMjQtMDUtMDFUMDA6MDA6MDAuMDAwWiIsImlzQWN0aXZlIjoxLCJsYXN0X3NoYXJlZCI6IjIwMjQtMDctMDdUMTA6MTU6MzAuMDAwWiIsImRpc3RyaWN0X2lkIjoxLCJyb2xlX2lkIjoxLCJkaXN0cmljdCI6eyJpZCI6MSwibmFtZSI6IkJhcyBNb250cmV1aWwgLSBSw6lwdWJsaXF1ZSIsImNpdHlfaWQiOjEsImNhdGVnb3J5X2Rpc3RyaWN0X2lkIjoxLCJjYXRlZ29yeV9kaXN0cmljdCI6eyJpZCI6MSwibmFtZSI6IlNlY3RldXIgMSJ9LCJjaXR5Ijp7ImlkIjoxLCJuYW1lIjoiTW9udHJldWlsIn19LCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4ifX0sImlhdCI6MTcyMTY1MzY0MiwiZXhwIjoxNzIxODI2NDQyfQ.Jjz8orch-ryjBMC7Mjr0iPnN20x8km7A3fmjRXQ-azQ"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstname\": \"Caroline\",\n  \"lastname\": \"Goudelin\",\n  \"email\": \"caroline.goudelin@gmail.com\",\n  \"phone_number\": \"0654897563\",\n  \"password\": \"user\",\n  \"adress\": \"98 boulevard Henri Barbuse\",\n  \"registration_date\": \"2024-10-25\",\n  \"isActive\": true,\n  \"last_shared\": \"2024-11-08 09:32:00\",\n  \"district_id\": 2,\n  \"role_id\": 2\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "1bed15aa-0b27-4608-afca-607b01fe9e97",
+            "colId": "21249bc1-92e6-4be7-8d36-82524059a1d3",
+            "containerId": "",
+            "name": "http://localhost:3000/product/135",
+            "url": "http://localhost:3000/product/135",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-07-24T10:56:59.958Z",
+            "modified": "2024-07-24T10:56:59.958Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Authorization",
+                    "value": "",
+                    "isDisabled": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"citronelle\",\n  \"description\": \"\",\n  \"other_product\": \"\",\n  \"category_id\": 1\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "CpPjetWo9WWlt9qtjr8eSG_Y5J0xP5ZvCo7EmRiSyYHSaOVM9B7Y-lPl3vwu9Le1UsZibaAOuQxN9_XOzU5pvw"
+}
