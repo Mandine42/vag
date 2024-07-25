@@ -9,7 +9,7 @@ class Api {
 		const request = await fetch(requestConfig);
 		const response = await request.json();
 
-		console.log(response);
+		// console.log(response);
 	};
 }
 const api = new Api();
