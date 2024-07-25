@@ -11,7 +11,7 @@ class ShareRouter {
         this.router.get("/", new AuthorizationMiddleware().authorize(["admin"]), new shareController().index);
         // une route avec une variable de route; précédée d'un :
         this.router.get("/:id", new AuthorizationMiddleware().authorize(["admin"]), new ShareController().one);
-        //route pour créer un vehicule
+        //route pour créer un share
         this.router.post("/", new AuthorizationMiddleware().authorize(["admin", "user"]), new ShareValidatorMiddleware().filter, new shareController().create);
         //route pour modifier un share
         this.router.put("/:id", new AuthorizationMiddleware().authorize(["admin", "user"]), new ShareController().update);

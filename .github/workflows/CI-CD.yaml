@@ -43,3 +43,10 @@ jobs:
                 mysql -uroot -proot -e 'SOURCE script.test.sql;'
                 mysql -uroot -proot -e 'SHOW DATABASES;'
                 mysql -uroot -proot -e 'USE vag_test; TABLE vag_test.share;'
+
+        -
+            name: Executer les tests
+            run: |
+                cd code/server
+                npm run test
+                npm run test:coverage

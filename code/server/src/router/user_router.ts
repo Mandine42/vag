@@ -29,7 +29,11 @@ class UserRouter {
 			new UserController().register,
 		);
 
-		this.router.post("/login", new UserController().login);
+		this.router.post(
+			"/login",
+			new AuthorizationMiddleware().authorize(["admin", "user"]),
+			new UserController().login,
+		);
 		this.router.post("/auth", new UserController().auth);
 
 		//route pour modifier un user

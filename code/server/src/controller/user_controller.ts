@@ -63,6 +63,7 @@ class UserController {
 		req.body = { ...req.body, password: hash };
 
 		const result = await this.userrepository.register(req.body);
+		console.log(result);
 
 		if (result instanceof Error) {
 			// environnement de developpement

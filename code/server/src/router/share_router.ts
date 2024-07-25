@@ -21,7 +21,7 @@ class ShareRouter {
 			new AuthorizationMiddleware().authorize(["admin"]),
 			new ShareController().one,
 		);
-		//route pour créer un vehicule
+		//route pour créer un share
 		this.router.post(
 			"/",
 			new AuthorizationMiddleware().authorize(["admin", "user"]),

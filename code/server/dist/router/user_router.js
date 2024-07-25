@@ -10,9 +10,7 @@ class UserRouter {
         this.router.get("/", new AuthorizationMiddleware().authorize(["admin"]), new UserController().index);
         this.router.get("/:id", new AuthorizationMiddleware().authorize(["admin"]), new UserController().one);
         //route pour créer un user
-        this.router.post("/register", 
-        // new AuthorizationMiddleware().authorize(["admin", "user"]),
-        new UserValidatorMiddleware().filter, new UserController().register);
+        this.router.post("/register", new AuthorizationMiddleware().authorize(["admin", "user"]), new UserValidatorMiddleware().filter, new UserController().register);
         this.router.post("/login", new UserController().login);
         this.router.post("/auth", new UserController().auth);
         //route pour modifier un user

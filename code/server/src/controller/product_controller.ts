@@ -53,6 +53,7 @@ class ProductController {
 
 		const result = await this.productrepository.create(req.body);
 		// req.body permet de recuperer les données contenues dans la proriété body de la requête HTTP
+		// console.log(result);
 
 		if (result instanceof Error) {
 			// environnement de developpement

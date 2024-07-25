@@ -1,16 +1,17 @@
 import { describe, expect, it } from "vitest";
 import type Role from "../../src/model/role";
-import type Share from "../../src/model/share";
 import type User from "../../src/model/user";
 import supertest, { type Response } from "supertest";
-import Server from "../../src/core/server.ts";
+import Server from "../../src/core/server";
 import jwt from "jsonwebtoken";
-import type UserShare from "../../src/model/user_share.ts";
+import type { Pool } from "mysql2/promise";
+import MySQLService from "../../src/service/mysql_service";
+import UserRepository from "../../src/repository/user_repository";
 
-// creer un groupe de test
-describe("share controller test suite", async () => {
-	// route principale appelée par les tests
-	const route = "/share";
+// // creer un groupe de test
+describe("user controller test suite", async () => {
+	// 	// route principale appelée par les tests
+	const route = "/user";
 	// créer un admin
 	const role: Role = {
 		id: 1,
@@ -24,21 +25,22 @@ describe("share controller test suite", async () => {
 		role: role,
 	};
 
-	// créer une share
-
-	const data: Share = {
+	// créer un user
+	const data: User = {
 		id: 1,
-		quantity: 5,
-		collect_dateTime: "2020-10-12 09:30:00",
-		expiration: "2022-10-15",
-		product_id: 6,
-		product: {},
-		collect_id: 9,
-		collect: {},
-	};
-
-	const userShare: UserShare = {
-		donor_id: 1,
+		firstname: "Caroline",
+		lastname: "Fort",
+		email: `caroline.fort${Date.now()}@gmail.com`,
+		phone_number: "0658745632",
+		password: "user",
+		adress: "80 rue belvédaire",
+		registration_date: "2024-08-21",
+		isActive: true,
+		last_shared: "2024-09-14 12:30:00",
+		district_id: 2,
+		district: {},
+		role_id: 2,
+		role: {},
 	};
 
 	const token = jwt.sign(
@@ -51,7 +53,21 @@ describe("share controller test suite", async () => {
 		},
 	);
 
-	// // creer un test
+	const getLastId = async () => {
+		// suppression de l'enregistrement
+		const connection: Pool = await new MySQLService().connect();
+		const query = `
+            SELECT user.id FROM ${process.env.MYSQL_DB}.user ORDER BY user.id DESC LIMIT 1;
+			`;
+		const results: User | unknown = await connection.execute(query);
+		const lastId: User | unknown = ((results as User[]).shift() as []).shift();
+
+		return lastId;
+
+		// await new UserRepository().delete(lastId as User);
+	};
+
+	// 	// creer un test
 	it.concurrent("should returns a status code with 200", async () => {
 		// valeur attendue
 		const expected = 200;
@@ -86,16 +102,15 @@ describe("share controller test suite", async () => {
 
 	it.concurrent("should create a new entry in database", async () => {
 		// valeur attendue
+		const route = "/user/register";
 		const expected = 201;
 
 		const sut: Response = await supertest(new Server().createServer())
 			.post(route)
-			.auth(token, { type: "bearer" })
-			//propiété body de la requête
-			.send({ ...data, donor_id: userShare.donor_id });
+			.send(data);
 		const actual = sut.status;
 
-		// console.log(sut);
+		console.log(actual);
 
 		// assertion
 		expect(actual).toBe(expected);
@@ -103,14 +118,17 @@ describe("share controller test suite", async () => {
 
 	it.concurrent("should update database", async () => {
 		// valeur attendue
-		const route = "/share/18";
+		const lastId: User = (await getLastId()) as User;
+
+		const route = `/user/${lastId.id}`;
+
 		const expected = 200;
 
 		const sut: Response = await supertest(new Server().createServer())
 			.put(route)
 			.auth(token, { type: "bearer" })
 			//propiété body de la requête
-			.send({ ...data, donor_id: userShare.donor_id });
+			.send(data);
 		const actual = sut.status;
 
 		// console.log(sut);
@@ -121,17 +139,18 @@ describe("share controller test suite", async () => {
 
 	it.concurrent("should delete database", async () => {
 		// valeur attendue
-		const route = "/share/18";
+		const lastId: User = (await getLastId()) as User;
+		const route = `/user/${lastId.id}`;
 		const expected = 200;
 
 		const sut: Response = await supertest(new Server().createServer())
 			.delete(route)
 			.auth(token, { type: "bearer" })
 			//propiété body de la requête
-			.send({ ...data, donor_id: userShare.donor_id });
+			.send(data);
 		const actual = sut.status;
 
-		// console.log(sut);
+		console.log(sut);
 
 		// assertion
 		expect(actual).toBe(expected);

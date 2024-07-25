@@ -1,16 +1,16 @@
 import { describe, expect, it } from "vitest";
 import type Role from "../../src/model/role";
-import type Share from "../../src/model/share";
 import type User from "../../src/model/user";
+import type Collect from "../../src/model/collect";
+import Jwt from "jsonwebtoken";
 import supertest, { type Response } from "supertest";
-import Server from "../../src/core/server.ts";
-import jwt from "jsonwebtoken";
-import type UserShare from "../../src/model/user_share.ts";
-
+import Server from "../../src/core/server";
+import type { Pool } from "mysql2/promise";
+import MySQLService from "../../src/service/mysql_service";
 // creer un groupe de test
-describe("share controller test suite", async () => {
+describe("collect controller test suite", async () => {
 	// route principale appelée par les tests
-	const route = "/share";
+	const route = "/collect";
 	// créer un admin
 	const role: Role = {
 		id: 1,
@@ -24,24 +24,17 @@ describe("share controller test suite", async () => {
 		role: role,
 	};
 
-	// créer une share
+	// créer une collect
 
-	const data: Share = {
-		id: 1,
-		quantity: 5,
-		collect_dateTime: "2020-10-12 09:30:00",
-		expiration: "2022-10-15",
-		product_id: 6,
-		product: {},
-		collect_id: 9,
-		collect: {},
+	const data: Collect = {
+		id: 5,
+		adress: "59 rue coquelicot",
+		meeting_point: "kf",
+		district_id: 5,
+		district: {},
 	};
 
-	const userShare: UserShare = {
-		donor_id: 1,
-	};
-
-	const token = jwt.sign(
+	const token = Jwt.sign(
 		{
 			user: admin,
 		},
@@ -50,6 +43,20 @@ describe("share controller test suite", async () => {
 			expiresIn: "2 days",
 		},
 	);
+
+	const getLastId = async () => {
+		// suppression de l'enregistrement
+		const connection: Pool = await new MySQLService().connect();
+		const query = `
+            SELECT collect.id FROM ${process.env.MYSQL_DB}.collect ORDER BY collect.id DESC LIMIT 1;
+			`;
+		const results: Collect | unknown = await connection.execute(query);
+		const lastId: Collect | unknown = (
+			(results as Collect[]).shift() as []
+		).shift();
+
+		return lastId;
+	};
 
 	// // creer un test
 	it.concurrent("should returns a status code with 200", async () => {
@@ -92,7 +99,7 @@ describe("share controller test suite", async () => {
 			.post(route)
 			.auth(token, { type: "bearer" })
 			//propiété body de la requête
-			.send({ ...data, donor_id: userShare.donor_id });
+			.send(data);
 		const actual = sut.status;
 
 		// console.log(sut);
@@ -103,14 +110,17 @@ describe("share controller test suite", async () => {
 
 	it.concurrent("should update database", async () => {
 		// valeur attendue
-		const route = "/share/18";
+		const lastId: Collect = (await getLastId()) as Collect;
+
+		const route = `/collect/${lastId.id}`;
+
 		const expected = 200;
 
 		const sut: Response = await supertest(new Server().createServer())
 			.put(route)
 			.auth(token, { type: "bearer" })
 			//propiété body de la requête
-			.send({ ...data, donor_id: userShare.donor_id });
+			.send(data);
 		const actual = sut.status;
 
 		// console.log(sut);
@@ -121,17 +131,18 @@ describe("share controller test suite", async () => {
 
 	it.concurrent("should delete database", async () => {
 		// valeur attendue
-		const route = "/share/18";
+		const lastId: Collect = (await getLastId()) as Collect;
+		const route = `/collect/${lastId.id}`;
 		const expected = 200;
 
 		const sut: Response = await supertest(new Server().createServer())
 			.delete(route)
 			.auth(token, { type: "bearer" })
 			//propiété body de la requête
-			.send({ ...data, donor_id: userShare.donor_id });
+			.send(data);
 		const actual = sut.status;
 
-		// console.log(sut);
+		console.log(sut);
 
 		// assertion
 		expect(actual).toBe(expected);

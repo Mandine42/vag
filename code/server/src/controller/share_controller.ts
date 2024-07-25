@@ -12,6 +12,9 @@ class ShareController {
 		const result = await this.sharerepository.selectAll();
 		// req.params permet de recuperer les variables de route
 		// console.log(req.params);
+
+		// console.log(result);
+
 		if (result instanceof Error) {
 			// environnement de developpement
 			// condition ? vrai : faux
@@ -53,10 +56,10 @@ class ShareController {
 	};
 
 	public create = async (req: Request, res: Response): Promise<Response> => {
-		// console.log(req.body);
-
 		const result = await this.sharerepository.create(req.body);
 		// req.body permet de recuperer les données contenues dans la proriété body de la requête HTTP
+
+		// console.log(result);
 
 		if (result instanceof Error) {
 			// environnement de developpement
@@ -75,6 +78,7 @@ class ShareController {
 			data: result,
 		});
 	};
+
 	public update = async (req: Request, res: Response): Promise<Response> => {
 		// regrouper l'identifiant contenu dans l'URL (re.params) avec les données de mise à jour contenues dans la propriété body de la requête HTTP
 		//... (opérateur) permet de cloner les données/ const data regroupe toutes les infos (objet)

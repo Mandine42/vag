@@ -7,6 +7,7 @@ import type Collect from "../model/collect.js";
 import CollectRepository from "./collect_repository.js";
 import type User from "../model/user.js";
 import RoleRepository from "./role_repository.js";
+import type UserShare from "../model/user_share.js";
 class ShareRepository {
 	// accéder au service MySQL
 	mySQLService = new MySQLService();
@@ -98,7 +99,7 @@ class ShareRepository {
 		}
 	};
 
-	public create = async (data: Share) => {
+	public create = async (data: object) => {
 		const connection: Pool = await this.mySQLService.connect();
 
 		// créer un canal isole pour la transaction
