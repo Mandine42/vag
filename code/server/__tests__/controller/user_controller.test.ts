@@ -110,7 +110,7 @@ describe("user controller test suite", async () => {
 			.send(data);
 		const actual = sut.status;
 
-		console.log(actual);
+		// console.log(actual);
 
 		// assertion
 		expect(actual).toBe(expected);
@@ -150,7 +150,7 @@ describe("user controller test suite", async () => {
 			.send(data);
 		const actual = sut.status;
 
-		console.log(sut);
+		// console.log(sut);
 
 		// assertion
 		expect(actual).toBe(expected);

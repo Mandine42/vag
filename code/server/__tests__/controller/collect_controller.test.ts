@@ -27,7 +27,7 @@ describe("collect controller test suite", async () => {
 	// créer une collect
 
 	const data: Collect = {
-		id: 5,
+		// id: 5,
 		adress: "59 rue coquelicot",
 		meeting_point: "kf",
 		district_id: 5,
@@ -142,7 +142,7 @@ describe("collect controller test suite", async () => {
 			.send(data);
 		const actual = sut.status;
 
-		console.log(sut);
+		// console.log(sut);
 
 		// assertion
 		expect(actual).toBe(expected);
