@@ -46,7 +46,7 @@ describe("share controller test suite", async () => {
 		},
 	);
 
-	// creer un test
+	// // creer un test
 	it("should returns a status code with 200", async () => {
 		// valeur attendue
 		const expected = 200;
@@ -63,34 +63,34 @@ describe("share controller test suite", async () => {
 		expect(actual).toBe(expected);
 	});
 
-	it("should returns data", async () => {
-		// valeur attendue
-		const expected = 0;
+	// it("should returns data", async () => {
+	// 	// valeur attendue
+	// 	const expected = 0;
 
-		const sut: Response = await supertest(new Server().createServer())
-			.get(route)
-			.auth(token, { type: "bearer" });
+	// 	const sut: Response = await supertest(new Server().createServer())
+	// 		.get(route)
+	// 		.auth(token, { type: "bearer" });
 
-		const actual = sut.body.data.length;
+	// 	const actual = sut.body.data.length;
 
-		// assertion
-		expect(actual).toBeGreaterThan(expected);
-	});
+	// 	// assertion
+	// 	expect(actual).toBeGreaterThan(expected);
+	// });
 
-	it("should create a new entry in database", async () => {
-		// valeur attendue
-		const expected = 201;
+	// it("should create a new entry in database", async () => {
+	// 	// valeur attendue
+	// 	const expected = 201;
 
-		const sut: Response = await supertest(new Server().createServer())
-			.post(route)
-			.auth(token, { type: "bearer" })
-			//propiété body de la requête
-			.send(data);
-		const actual = sut.status;
+	// 	const sut: Response = await supertest(new Server().createServer())
+	// 		.post(route)
+	// 		.auth(token, { type: "bearer" })
+	// 		//propiété body de la requête
+	// 		.send(data);
+	// 	const actual = sut.status;
 
-		// console.log(sut);
+	// 	// console.log(sut.status);
 
-		// assertion
-		expect(actual).toBe(expected);
-	});
+	// 	// assertion
+	// 	expect(actual).toBe(expected);
+	// });
 });

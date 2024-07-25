@@ -1,0 +1,45 @@
+# nom du worflow
+name: Vag CI/CD
+
+# déclenchement du worflow
+on: workflow_dispatch
+
+# tâches
+jobs:
+
+    # nom de la tâche
+    CI:
+
+        # executeur
+        runs-on: ubuntu-latest
+
+        steps:
+        -
+            name: Récupérer le dépôt Github
+
+            # executer une action prédéfinie
+            uses: actions/checkout@v4
+
+            # executer une commande personnelle: run
+            # run: echo 'coucou'
+        -
+            name: Installer les dépendances de Node
+            run: |
+                cd code/server
+                npm ci
+
+        -
+            name: Compiler TypeScript en JavaScript
+            run: |
+                cd code/server/dist
+                rm -rf dist
+                npm run compile
+
+        -
+            name: Installer la base de données dans le serveur Mysql
+            run: |
+                sudo service mysql start
+                cd code/server/mysql
+                mysql -uroot -proot -e 'SOURCE script.test.sql;'
+                mysql -uroot -proot -e 'SHOW DATABASES;'
+                mysql -uroot -proot -e 'USE vag_test; TABLE vag_test.share;'
