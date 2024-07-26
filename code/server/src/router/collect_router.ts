@@ -26,7 +26,7 @@ class CollectRouter {
 			new CollectValidatorMiddleware().filter,
 			new CollectController().create,
 		);
-		this.router.post("/auth", new CollectController().auth);
+		// this.router.post("/auth", new CollectController().auth);
 
 		//route pour modifier
 		this.router.put(

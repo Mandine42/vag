@@ -53,6 +53,7 @@ class UserController {
         // remplacer le mot de passe contenu dans le body dans la version hachée
         req.body = { ...req.body, password: hash };
         const result = await this.userrepository.register(req.body);
+        // console.log(result);
         if (result instanceof Error) {
             // environnement de developpement
             // condition ? vrai : faux

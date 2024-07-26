@@ -27,7 +27,6 @@ describe("collect controller test suite", async () => {
 	// créer une collect
 
 	const data: Collect = {
-		// id: 5,
 		adress: "59 rue coquelicot",
 		meeting_point: "kf",
 		district_id: 5,
@@ -54,6 +53,7 @@ describe("collect controller test suite", async () => {
 		const lastId: Collect | unknown = (
 			(results as Collect[]).shift() as []
 		).shift();
+		// console.log(query);
 
 		return lastId;
 	};
@@ -120,10 +120,10 @@ describe("collect controller test suite", async () => {
 			.put(route)
 			.auth(token, { type: "bearer" })
 			//propiété body de la requête
-			.send(data);
+			.send({ ...data, adress: "5 rue des mmmm" });
 		const actual = sut.status;
 
-		// console.log(sut);
+		console.log(lastId);
 
 		// assertion
 		expect(actual).toBe(expected);
@@ -132,6 +132,8 @@ describe("collect controller test suite", async () => {
 	it.concurrent("should delete database", async () => {
 		// valeur attendue
 		const lastId: Collect = (await getLastId()) as Collect;
+		console.log(lastId);
+
 		const route = `/collect/${lastId.id}`;
 		const expected = 200;
 
@@ -142,7 +144,7 @@ describe("collect controller test suite", async () => {
 			.send(data);
 		const actual = sut.status;
 
-		// console.log(sut);
+		// console.log(lastId);
 
 		// assertion
 		expect(actual).toBe(expected);
