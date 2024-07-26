@@ -32,3 +32,11 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
     restart: always
+  client:
+    image: node
+    ports:
+      - 5500:5500
+    volumes:
+      - ./code/client:/app
+    working_dir: /app
+    tty: true  

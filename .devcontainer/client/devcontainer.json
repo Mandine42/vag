@@ -1,0 +1,41 @@
+{
+    "name": "VAG - Client",
+    "service": "client",
+    "dockerComposeFile": "../../docker-compose.dev.yaml",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "christian-kohler.npm-intellisense",
+                "VisualStudioExptTeam.vscodeintellicode",
+                "biomejs.biome",
+                "ritwickdey.LiveServer"
+            ],
+            "settings": {
+                "[javascript]": {
+                    "editor.formatOnSave": true,
+                    "editor.formatOnType": true,
+                    "editor.defaultFormatter": "biomejs.biome"
+                },
+                "[typescript]": {
+                    "editor.formatOnSave": true,
+                    "editor.formatOnType": true,
+                    "editor.defaultFormatter": "biomejs.biome"
+                },
+                "[javascriptreact]": {
+                    "editor.formatOnSave": true,
+                    "editor.formatOnType": true,
+                    "editor.defaultFormatter": "biomejs.biome"
+                },
+                "[json]": {
+                    "editor.formatOnSave": true,
+                    "editor.formatOnType": true,
+                    "editor.defaultFormatter": "biomejs.biome"
+                },
+                "editor.codeActionsOnSave": {
+                "source.fixAll": "always"
+                }
+            }
+        }
+    }
+}
