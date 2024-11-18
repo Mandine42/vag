@@ -3,3 +3,5 @@ code/server/dist
 code/server/__tests__/__coverage__
 mysql-db
 mongodb-db
+code/client/node_modules
+code/client/dist
