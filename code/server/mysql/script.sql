@@ -1,5 +1,5 @@
 -- permet de remettre a zéro la base de donnée
--- DROP DATABASE IF EXISTS vag;
+DROP DATABASE IF EXISTS vag;
 
 -- créer une base de donnée
 CREATE DATABASE vag;

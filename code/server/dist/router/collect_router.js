@@ -7,7 +7,7 @@ class CollectRouter {
     getRouter = () => {
         // lister les routes associées au préfixe du router
         // une route est reliée à une URL et à méthode HTTP (GET, PUT, POST, DELETE)
-        this.router.get("/", new AuthorizationMiddleware().authorize(["admin"]), new CollectController().index);
+        this.router.get("/", new AuthorizationMiddleware().authorize(["admin", "user"]), new CollectController().index);
         this.router.get("/:id", new AuthorizationMiddleware().authorize(["admin"]), new CollectController().one);
         //route pour créer
         this.router.post("/", new AuthorizationMiddleware().authorize(["admin", "user"]), new CollectValidatorMiddleware().filter, new CollectController().create);

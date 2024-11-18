@@ -9,7 +9,7 @@
                 "christian-kohler.npm-intellisense",
                 "VisualStudioExptTeam.vscodeintellicode",
                 "biomejs.biome",
-                "ritwickdey.LiveServer"
+                "dsznajder.es7-react-js-snippets"
             ],
             "settings": {
                 "[javascript]": {
@@ -17,11 +17,7 @@
                     "editor.formatOnType": true,
                     "editor.defaultFormatter": "biomejs.biome"
                 },
-                "[typescript]": {
-                    "editor.formatOnSave": true,
-                    "editor.formatOnType": true,
-                    "editor.defaultFormatter": "biomejs.biome"
-                },
+              
                 "[javascriptreact]": {
                     "editor.formatOnSave": true,
                     "editor.formatOnType": true,

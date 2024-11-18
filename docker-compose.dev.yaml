@@ -1,4 +1,14 @@
 services:
+# sevice gérant le client
+  client:
+    image: node:22
+    ports:
+      - 5173:5173 #port de développement
+      - 4173:4173 #port de pré-développement 
+    volumes:
+      - ./code/client:/app
+    working_dir: /app
+    tty: true  
 # sevice gérant le serveur
   server:
     image: node
@@ -32,11 +42,4 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
     restart: always
-  client:
-    image: node
-    ports:
-      - 5500:5500
-    volumes:
-      - ./code/client:/app
-    working_dir: /app
-    tty: true  
+ 
