@@ -1,0 +1,243 @@
+h2{
+    font-family: var(--h);
+    font-size: 3rem;
+    color: var(--vert);
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 2vh 0;
+}
+h3{
+    font-family: var(--h);
+    font-size: 2rem;
+    color: var(--bleu);
+}
+#form-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 70%;
+    margin: auto;
+}
+
+#contact, #connexion {
+    flex: 1;
+    min-width: 280px;
+    max-width: 45%;
+}
+
+#condition {
+   border-radius: 30px;
+   border: 1px solid var(--bleu);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2vh;
+    margin: 2vh 0;
+}
+
+input, select{
+    width: 90%;
+    margin: 1vh 5%;
+}
+
+label, legend{
+   text-align: center;
+}
+
+
+
+legend{
+    font-family: var(--h);
+    font-size: 2rem;
+    color: var(--vert);
+    width: 200px;
+    margin: auto;
+}
+
+#coordonnees{
+    border-radius: 30px;
+    border: 1px solid var(--orange-foncé);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 2.5vh;
+     margin: 2vh 0;
+     background-color: var(--creme);
+   
+}
+.coordonnees{
+    font-family: var(--p);
+    font-size: 1.25rem;
+    color:var(--orange-foncé);
+    
+}
+.coor{
+    border-radius: 30px;
+    border: 1px solid var(--orange-foncé);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 2.5vh;
+     margin: 1vh 0;
+     background-color: var(--creme);
+     color:var(--orange-foncé);
+}   
+#quartier{
+    border-radius: 30px;
+    border: 1px solid var(--orange-foncé);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 2.5vh;
+     margin: 2vh 0;
+     background-color: var(--creme);
+   
+}
+
+#civil{
+    border-radius: 30px;
+    border: 1px solid var(--vert);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 2.5vh;
+     margin: 2vh 0;
+     background-color: var(--creme);
+   
+}
+.civil{
+    font-family: var(--p);
+    font-size: 1.25rem;
+    color:var(--vert);
+    
+}
+.etat{
+    border-radius: 30px;
+    border: 1px solid var(--vert);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 2.5vh;
+     margin: 1vh 0;
+     background-color: var(--creme);
+     color:var(--vert);
+}   
+
+option{
+    font-family: var(--p);
+    font-size: 1.25rem;
+    color: var(--orange-foncé);
+}
+
+
+input[type="checkbox"]{
+    width: 30px;
+    margin: 2vh 0;
+}
+
+#condition{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+ }
+
+input[type="submit"]{
+    font-family: var(--p);
+    font-size: 1.25rem;
+    color: var(--creme);
+    background: var(--orange-foncé);
+    border-radius: 50px;
+    border: 1px solid var(--bleu);
+    padding: 15px 40px; 
+    width: auto; 
+    height: 60px; 
+    cursor: pointer; 
+    
+    
+}
+#identifiant{
+    border-radius: 30px;
+    border: 1px solid var(--bleu);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 2vh;
+     margin: 2vh 0;
+     background-color: var(--creme);
+}
+#avatar{
+    border-radius: 30px;
+    border: 1px solid var(--bleu);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 2.5vh;
+     margin: 1vh 0;
+    background-color: var(--creme);
+     /* color:var(--creme); */
+}
+.identifiants{
+    font-family: var(--p);
+    font-size: 1.25rem;
+    color:var(--bleu);
+}
+
+.user{
+    border-radius: 30px;
+    border: 1px solid var(--bleu);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 2.5vh;
+     margin: 1vh 0;
+    background-color: var(--creme);
+}
+@media screen and (max-width: 769px) {
+    #form-container {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    #contact, #connexion {
+        max-width: 100%;
+    }
+    legend{
+        font-size: 1.5rem;
+    }
+
+    input, select {
+        font-size: 1rem;
+    }
+
+    input[type="submit"] {
+        font-size: 1rem;
+        padding: 10px 20px;
+        height: auto;
+    }
+
+    .etat{
+        padding: 1vh;
+    }
+    .coor{
+        padding: 1vh;
+    }
+    .user{
+        padding: 1vh;
+    }
+    #avatar{
+        padding: 1vh;
+    }
+    #quartier{
+        padding: 1vh;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #contact {
+        width: 100%;
+    }
+}

@@ -1,0 +1,42 @@
+
+ol{
+    list-style-type: none;
+    text-decoration: none;
+}
+h2{
+    font-family: var(--h);
+    font-size: 3rem;
+    color: var(--vert);
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 2vh 0;
+    margin: 2vh;
+}
+
+p, li{
+    font-family: var(--p);
+    font-size: 1rem;
+    color: var(--bleu);
+}
+strong{
+    font-family: var(--h);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--vert);
+}
+
+@media screen and (max-width: 769px) {
+  h2{
+    font-size: 1rem;
+  }
+
+  p, li{
+    font-size: .5rem;
+  }
+
+  strong{
+    font-size: .7rem
+  }
+
+    }

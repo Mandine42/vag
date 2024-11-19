@@ -1,0 +1,54 @@
+#carrousel {
+    width: 100vw;
+   overflow: hidden;
+    background: var(--creme);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   height:67vh;
+}
+
+h2 {
+    font-family: var(--h);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--vert);
+    padding-top: 10vh; /* Ajustement pour un espace en haut */
+    margin: 5vh;
+}
+
+#carrousel img {
+    width: 100%;
+    vertical-align: middle;
+    max-height: 60vh; /* Limite la hauteur de l'image pour éviter de cacher les éléments */
+}
+
+.menu-point {
+    text-align: center;
+    position: relative; /* Position relative pour éviter de sortir du flux */
+    margin-top: 20px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 5px;
+    background-color: var(--vert);
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: rgba(37, 104, 100, 0.5);
+}
+
+
+/* Media Query pour les grands écrans (min-width: 769px) */
+@media screen and (min-width: 769px) {
+#carrousel {
+    display: none;
+}
+}

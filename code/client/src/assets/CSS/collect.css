@@ -1,0 +1,139 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--creme);
+}
+
+#quartier{
+    font-family: var(--h);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--orange-foncé);
+}
+#collect{
+    font-family: var(--h);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--vert);
+}
+
+.quartier {
+    
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    border: 2px solid var(--vert);
+    border-radius: 30px;
+    padding: 30px;
+    gap: 20px;
+    margin-bottom: 1vh;
+        
+   }
+   .quartier-info,
+   .plan{
+       flex: 1;
+       min-width: 320px;
+   }
+   .quartier-link,
+.quartier-info {
+    display: block;
+    width: 100%; /* prend toute la largeur */
+    text-align: center; 
+}
+   .plan {
+       
+       border: 2px solid var(--vert);
+       border-radius: 30px;
+       width: 40vw;
+       height: 50vh;
+   }
+   .quartier .quartier-link {
+   
+    display: block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+   .quartier-info h3, .quartier-info p {
+       text-align: left;
+       font-family: var(--p);
+       font-size: 1.2rem;
+       color: var(--vert);
+   }
+
+.quartier-link>h2 {
+    font-family: var(--h);
+    font-size: 1.5rem;
+    color: var(--vert); 
+    font-weight: 600;
+    transition: color 0.3s ease; /* Transition pour un effet fluide */
+}
+
+/* Couleur au survol */
+.quartier-link>h2:hover,
+.quartier-link>h2:focus {
+    color: var(--orange-foncé); /* Couleur lors du survol ou focus */
+}
+
+/* Couleur au clic actif */
+.quartier-link>h2:active {
+    color: var(--orange-foncé); /* Couleur lors du clic */
+}
+
+/* Lorsque l'élément est sélectionné, couleur orange foncé */
+.selected>h2 {
+    color: var(--orange-foncé); /* Couleur lorsque l'élément est sélectionné */
+}
+
+
+@media screen and (max-width: 768px) {
+    .title-collect{
+        display: block;
+        text-align: end;
+        justify-content: space-between;
+    }
+    #fleche{
+        display: flex;
+      }
+      #fleche {
+        max-width: 8vw;
+        max-height: 8vh;
+    }
+    .quartier {
+        flex-direction: column; /* Change la disposition en colonne */
+        font-size: 0.9rem;
+    }
+   
+     .plan { 
+        min-width: 230px;
+         /* Ajuste la largeur pour les petits écrans */
+        height: 50vh;
+        margin-top: 20px; 
+        /* Ajoute un peu d'espace entre les éléments */
+    }
+    
+    .quartier-info {
+       min-width: 30px;
+    }
+    
+    .quartier-info h3, .quartier-info p {
+        text-align: center;
+        font-size: 0.9rem;
+       
+    }   
+    .quartier-link>h2{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .title-collect{
+        display: block;
+        text-align: end;
+        margin: 15vh;
+    }
+    #fleche{
+        display: none;
+      }
+}

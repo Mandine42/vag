@@ -1,0 +1,433 @@
+img {
+    max-width: 100%;
+    height: auto;
+    /* Conserve les proportions */
+}
+
+
+p {
+    font-family: var(--p);
+    font-size: 20px;
+    font-style: normal;
+    color: var(--bleu);
+
+}
+
+a {
+
+    font-family: var(--p);
+    font-size: 20px;
+    font-style: normal;
+    color: var(--bleu);
+
+}
+
+/* première section */
+#presentation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background: var(--creme);
+    width: 100%;
+    height: 90vh;
+    padding-bottom: 100px;
+}
+
+@media (orientation: landscape) {
+    #presentation {
+        margin-top: 100px;
+    }
+ 
+#presentation {
+flex-direction: row; /* Images et textes côte à côte */
+padding: 40px;
+height: 70vh; /* Réduction pour éviter les défilements */
+}
+
+.text-content {
+max-width: 50%; /* Limite la largeur du texte */
+}
+
+figure img {
+width: 45%; /* Garde une taille cohérente de l'image */
+}
+
+#notre-mission {
+flex-direction: row;
+height: 80vh; /* Ajuste la hauteur pour le mode paysage */
+padding: 40px;
+}
+
+#notre-mission h2 {
+font-size: 48px; /* Réduit la taille en landscape */
+text-align: left;
+}
+
+#texte {
+max-width: 60%; /* Texte limité pour un affichage harmonieux */
+}
+
+#fonctionnement {
+flex-direction: row;
+align-items: flex-start;
+justify-content: space-between;
+padding: 40px;
+height: 75vh;
+}
+
+#fonctionnement h2 {
+font-size: 48px; /* Réduit pour un affichage plus compact */
+}
+
+#grille2 {
+flex-direction: row;
+gap: 20px;
+}
+
+img {
+width: auto;
+max-height: 60%; /* Conserve les proportions en paysage */
+}
+
+.text-content p,
+#texte p,
+#fonctionnement p {
+font-size: 18px; /* Réduction légère pour éviter l'encombrement */
+}
+
+/* Ajuste les bulles pour un meilleur alignement en paysage */
+#bulle1, #bulle2 {
+display:none;
+}
+
+
+}
+
+
+@media (orientation: portrait) {
+    #presentation {
+        margin-top: 20px;
+    }
+}
+
+.text-content,
+figure {
+    flex: 1;
+    min-width: 280px;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* Aligne le texte à gauche */
+    margin: auto;
+    /* Espacement entre l'image et le texte */
+}
+
+.text-content h2 {
+    margin: 0;
+    font-family: var(--h);
+    font-size: 64px;
+    /* Ajustez selon vos besoins */
+    color: var(--vert);
+}
+
+.text-content p {
+    margin: 0;
+    font-family: var(--p);
+    font-size: 20px;
+    /* Ajustez selon vos besoins */
+    color: var(--vert);
+}
+
+#bulle1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: auto;
+    padding: 20px;
+
+}
+
+#bulle1 :first-child {
+    margin-right: 20px;
+
+}
+
+#bulle1 :last-child {
+    margin-left: 20px;
+    transform: translateY(-30px);
+    /* Décale vers le haut */
+
+}
+
+#bulle2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: auto;
+    padding: 20px;
+
+}
+
+#bulle2 :first-child {
+    margin-right: 20px;
+    transform: translateY(50px);
+    /* Décale vers le bas */
+
+}
+
+#bulle2 :nth-child(2) {
+    margin-right: 20px;
+    transform: translateY(20px);
+    /* Décale vers le bas */
+
+}   
+
+#bulle2 :last-child {
+    margin-left: 20px;
+    transform: translateY(-20px);
+    /* Décale vers le haut */
+
+}
+
+/* deuxième section */
+#notre-mission {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Aligner horizontalement au centre */
+    position: relative;
+    width: 100%;
+    height: 105vh;
+    margin-top: 20px;
+    padding-bottom: 100px;
+    /* Ajoute de l'espace en bas pour l'image */
+    background: var(--creme);
+    /* Ajoute un fond pour visualiser l'espace */
+    background: var(--orange-clair);
+}
+
+#notre-mission h2 {
+    font-family: var(--h);
+    color: var(--vert);
+    font-weight: 800;
+    font-size: 64px;
+    margin-bottom: 20px;
+    /* Ajuste l'espacement sous le titre */
+    text-align: left;
+    /* Assure que le texte du h2 est aligné à gauche */
+    width: 100%;
+    /* Occupe toute la largeur disponible */
+    margin-left: 0;
+    /* Supprime toute marge gauche */
+}
+
+#grille {
+    display: flex;
+    align-items: flex-start;
+    /* Aligne les enfants au même niveau */
+    justify-content: space-between;
+    /* Espacement entre #titre et #texte */
+    width: 100%;
+    /* Prend toute la largeur disponible */
+    max-width: 1200px;
+    /* Limite la largeur maximum pour ne pas s'étendre trop */
+}
+
+#titre h3 {
+    font-family: var(--h);
+    color: var(--vert);
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+#texte {
+    font-family: var(--p);
+    color: var(--vert);
+    font-weight: 400;
+    font-size: 20px;
+    margin: 0;
+    max-width: 50%;
+    /* Limite la largeur du texte pour éviter qu'il ne s'étende trop */
+}
+
+#texte p {
+    font-family: var(--p);
+    color: var(--vert);
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 20px;
+    /* Espacement entre chaque paragraphe */
+}
+
+#texte p:last-child {
+    margin: 20px;
+    /* Assure un espacement général autour du paragraphe */
+    transform: translate(20px, 20px);
+    /* Déplace le dernier paragraphe vers la droite et vers le bas */
+    text-align: right;
+    /* Aligne le texte à droite */
+}
+
+#notre-mission img {
+    position: absolute;
+    bottom: -47px;
+    /* Aligne l'image en bas de la section */
+    left: 50%;
+    /* Centre l'image horizontalement */
+    transform: translateX(-65%);
+    /* Ajuste la position pour un centrage exact */
+    z-index: 2;
+}
+
+.chiffre {
+    font-family: var(--h);
+    color: var(--vert);
+    font-weight: 800;
+    font-size: 64px;
+}
+
+.médium {
+    font-family: var(--h);
+    color: var(--vert);
+    font-weight: 400;
+    font-size: 48px;
+}
+
+.couleur {
+    color: var(--bleu);
+}
+
+/* troisième section */
+#fonctionnement {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: -40px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 90vh;
+    background: var(--bleu);
+    margin-top: -40px;
+    /* Ajustez cette valeur selon vos besoins */
+    transform: translateY(-40px);
+    /* Ajustez la valeur selon vos besoins */
+}
+
+#fonctionnement h2 {
+    font-family: var(--h);
+    color: var(--creme);
+    font-weight: 800;
+    font-size: 64px;
+    margin-bottom: 20px;
+    text-align: end;
+}
+
+#fonctionnement p {
+    font-family: var(--p);
+    color: var(--creme);
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: end;
+
+}
+
+#explication p {
+    font-family: var(--p);
+    color: var(--creme);
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+#grille2 {
+    display: flex;
+    align-items: flex-end;
+    /* Aligne les enfants au même niveau */
+    justify-content: space-between;
+    /* Espacement entre #titre et #texte */
+    width: 100%;
+    /* Prend toute la largeur disponible */
+    max-width: 1200px;
+    /* Limite la largeur maximum pour ne pas s'étendre trop */
+    margin-top: -10px;
+}
+
+span {
+    color: var(--orange-clair);
+    font-weight: 800;
+    font-size: 36px;
+}
+
+
+/* Media Query pour les petits écrans (max-width: 768px) */
+@media screen and (max-width: 768px) {
+
+    #presentation,
+    #notre-mission,
+    #fonctionnement {
+        padding: 10px;
+        /* Ajustez la valeur selon vos besoins */
+    }
+
+    figure img,
+    #notre-mission img,
+    #fonctionnement img {
+        max-width: 100%;
+        /* Assure que les images ne débordent pas */
+        min-width: 100%;
+    }
+
+    #presentation {
+        display: none;
+    }
+
+    #notre-mission {
+        display: none;
+        
+    }
+
+    #fonctionnement {
+        display: none;
+    }
+
+    .smart {
+        font-family: var(--p);
+        font-size: 0.5rem;
+        font-weight: 400;
+        color: var(--vert);
+        text-align: center;
+        margin-top: 5px;
+        /* Espace entre l'image et la légende */
+    }
+}
+
+/* Media Query pour les grands écrans (min-width: 769px) */
+@media screen and (min-width: 769px) {
+
+    #quartier {
+        display: none;
+    }
+
+    #dons {
+        display: none;
+    }
+
+    #reserver {
+        display: none;
+    }
+
+    #connection {
+        display: none;
+    }
+
+}

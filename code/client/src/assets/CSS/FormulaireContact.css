@@ -1,0 +1,145 @@
+body {
+    background-color: var(--creme);
+    margin: 0;
+    padding: 0;
+    font-family: var(--p);
+ }
+ 
+ h2.contact {
+     font-family: var(--h);
+     font-size: 2.5rem;
+     color: var(--bleu);
+     text-align: center;
+     margin-bottom: 20px;
+ }
+ 
+ /* #fleche {
+     display: flex;
+     max-width: 8vw;
+     max-height: 8vh;
+ } */
+ 
+ /* header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 10px 20px;
+ } */
+ 
+ /* Contenu du pop-up */
+ .formulaire {
+     background-color: var(--creme);
+     margin: 5% auto;
+     padding: 20px;
+     border: 1px solid var(--bleu);
+     border-radius: 30px;
+     width: 90%;
+     max-width: 800px; /* Limite de largeur pour les grands écrans */
+     box-shadow: 0 5px 15px rgba(22, 58, 83, 0.3);
+ }
+ 
+ .formulaire-wrapper {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+ }
+ 
+ .formulaire figure {
+     flex: 1;
+     margin-right: 20px;
+ }
+ 
+ .formulaire img {
+     max-width: 100%;
+     height: auto;
+     border-radius: 10px;
+ }
+ 
+ form {
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+ }
+ 
+ input, textarea {
+     width: 90%;
+     padding: 10px;
+     margin-bottom: 10px;
+     border: 1px solid var(--bleu);
+     border-radius: 30px;
+     background-color: var(--creme);
+     font-family: var(--p);
+ }
+ 
+ a {
+     text-decoration: none;
+     font-size: 1rem;
+     font-family: var(--p);
+     font-weight: 400;
+     color: var(--bleu);
+     text-align: end;
+     transition: color 0.3s ease;
+ }
+ 
+ a:active, a:focus {
+     color: var(--orange-fonce);
+ }
+ 
+ /* Media Queries pour tablettes */
+ @media screen and (max-width: 1024px) {
+     .formulaire {
+         width: 90%;
+     }
+ 
+     h2.contact {
+         font-size: 2rem;
+     }
+ }
+ 
+ /* Media Queries pour petits écrans */
+ @media screen and (max-width: 768px) {
+     .formulaire-wrapper {
+         flex-direction: column;
+         align-items: center;
+     }
+ 
+     .formulaire figure {
+         margin-right: 0;
+         margin-bottom: 20px;
+     }
+ 
+     form {
+         width: 90%;
+     }
+ 
+     h2.contact {
+         font-size: 1.8rem;
+     }
+ 
+     /* #fleche {
+         max-width: 15vw;
+         max-height: 15vh;
+     } */
+ }
+ 
+ /* Media Queries pour smartphones */
+ @media screen and (max-width: 480px) {
+     .formulaire {
+         width: 90%;
+         padding: 15px;
+     }
+ 
+     h2.contact {
+         font-size: 1.5rem;
+     }
+ 
+     form {
+         width: 100%;
+     }
+ 
+     /* #fleche {
+         max-width: 20vw;
+         max-height: 20vh;
+     } */
+ }
