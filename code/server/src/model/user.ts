@@ -11,11 +11,11 @@ type User = {
 	phone_number?: string;
 	password?: string;
 	adress?: string;
-	registration_date?: string;
-	isActive?: boolean;
-	last_shared?: string;
 	district_id?: number;
 	district?: District | unknown;
+	registration_date?: Date;
+	isActive?: boolean;
+	last_shared?: Date;
 	role_id?: number;
 	role?: Role | unknown;
 	donors_share_id?: string;

@@ -5,7 +5,7 @@ const MainHygiene = () => {
 				Règles concernant les aliments sur <span>VAG</span>
 			</h1>
 
-			<section class="info">
+			<section className="info">
 				<h3>Informations importantes</h3>
 
 				<p>
@@ -84,7 +84,7 @@ const MainHygiene = () => {
 				<li>...</li>
 			</ul>
 
-			<p class="note">
+			<p className="note">
 				Note : En cas de doute sur la qualité de l'aliment, ne le mangez pas. Si
 				un don vous semble suspect, n'hésitez pas à nous le signaler
 				directement.

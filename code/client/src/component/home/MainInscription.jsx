@@ -1,60 +1,79 @@
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { registerUser } from "../../service/user_api";
 const MainInscription = () => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+	//soumission du formulaire
+	// paramètre data permet de récuperer la saisie du formulaire
+	const submit = async (data) => {
+		console.log(data);
+		// enregistrer l'utilisateur
+		const results = await registerUser(data);
+	};
 	return (
 		<main>
 			<div id="form-container">
-				<section id="contact">
+				<section id="contact-connexion">
 					<h2>S'inscrire</h2>
 
-					<form id="signupForm" action="user" method="post">
+					<form id="signupForm" onSubmit={handleSubmit(submit)}>
 						<fieldset id="civil">
 							<legend>Etat Civil</legend>
-							<label class="civil" for="nom">
+							{/* register remplace l'attibut HTML name */}
+							<label className="civil" htmlFor="nom">
 								Nom *
 							</label>
 							<input
-								class="etat"
+								className="etat"
 								type="text"
+								{...register("lastname")}
 								id="nom"
-								name="nom"
-								required
-								aria-required
 							/>
-							<label class="civil" for="prenom">
+							<label className="civil" htmlFor="prenom">
 								Prénom *
 							</label>
 							<input
-								class="etat"
+								className="etat"
 								type="text"
+								{...register("firstname")}
 								id="prenom"
-								name="prenom"
-								required
-								aria-required
 							/>
 						</fieldset>
 
 						<fieldset id="coordonnees">
 							<legend>Vos Coordonnées</legend>
-							<label class="coordonnees" for="tel">
+							<label className="coordonnees" htmlFor="tel">
 								Téléphone
 							</label>
-							<input class="coor" type="tel" name="telephone" id="tel" />
-							<label class="coordonnees" for="adresse">
+							<input
+								className="coor"
+								type="tel"
+								{...register("phone_number")}
+								id="tel"
+							/>
+
+							<label className="coordonnees" htmlFor="adresse">
 								Adresse *
 							</label>
 							<input
-								class="coor"
+								className="coor"
 								type="text"
-								name="adresse"
+								{...register("adress")}
 								id="adresse"
 								required
 								aria-required
 							/>
-							<label class="coordonnees" for="quartier">
+
+							<label className="coordonnees" htmlFor="quartier">
 								Quartier
 							</label>
 							<select name="quartier" id="quartier" required aria-required>
 								<option value="">Selectionnez</option>
+								{/* {...register("district")} */}
 								<optgroup label="Quartier">
 									<option value="Republique">Bas Montreuil - République</option>
 									<option value="Chanzy">Etienne Marcel - Chanzy</option>
@@ -74,52 +93,55 @@ const MainInscription = () => {
 									<option value="montreau">Montreau - Le Morillon</option>
 								</optgroup>
 							</select>
-							<label class="coordonnees" for="email">
+							<label className="coordonnees" htmlFor="email">
 								Email *
 							</label>
 							<input
-								class="coor"
+								className="coor"
 								type="email"
 								name="email"
+								{...register("email", {
+									required: "Votre email est obligatoire",
+								})}
 								id="email"
-								required
-								aria-required
 							/>
+							<span>{errors?.email?.message}</span>
 						</fieldset>
 
 						<fieldset id="identifiant">
 							<legend>Identifiants</legend>
-							<label class="identifiants" for="nom-utilisateur">
+							<label className="identifiants" htmlFor="nom-utilisateur">
 								Nom d'utilisateur *
 							</label>
 							<input
-								class="user"
+								className="user"
 								type="text"
 								id="nom-utilisateur"
 								name="nom-utilisateur"
 								required
 								aria-required
 							/>
-							<label class="identifiants" for="avatar">
+							<label className="identifiants" htmlFor="avatar">
 								Choisir une image
 							</label>
-							<input class="avatar" type="file" id="avatar" name="avatar" />
-							<label class="identifiants" for="password">
+							<input className="avatar" type="file" id="avatar" name="avatar" />
+							<label className="identifiants" htmlFor="password">
 								Mot de passe *
 							</label>
 							<input
-								class="user"
+								className="user"
 								type="password"
+								{...register("password")}
 								id="password"
 								name="password"
 								required
 								aria-required
 							/>
-							<label class="identifiants" for="password-confirm">
+							<label className="identifiants" htmlFor="password-confirm">
 								Confirmer le mot de passe *
 							</label>
 							<input
-								class="user"
+								className="user"
 								type="password"
 								id="password-confirm"
 								name="password-confirm"
@@ -138,7 +160,7 @@ const MainInscription = () => {
 									required
 									aria-required
 								/>
-								<label for="condition-checkbox">
+								<label htmlFor="condition-checkbox">
 									<Link to="condition-inscription.html" id="condition-link">
 										J'ai lu et j'accepte les conditions d'utilisation *
 									</Link>

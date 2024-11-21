@@ -47,9 +47,9 @@ CREATE TABLE vag.user(
     last_shared DATETIME NULL,
     -- clés étrangères
     district_id TINYINT UNSIGNED,
-    FOREIGN KEY (district_id) REFERENCES vag.district(id),
+    FOREIGN KEY (district_id) REFERENCES vag_test.district(id),
     role_id TINYINT UNSIGNED,
-    FOREIGN KEY (role_id) REFERENCES vag.role(id)
+    FOREIGN KEY (role_id) REFERENCES vag_test.role(id)
 );
 
 

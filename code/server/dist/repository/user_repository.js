@@ -92,7 +92,7 @@ class UserRepository {
             const query = `
 			INSERT INTO ${process.env.MYSQL_DB}.${this.table}
 			VALUE
-				(NULL, :firstname, :lastname, :email, :phone_number, :password, :adress, :registration_date, :isActive, :last_shared, :district_id, 2);
+				(NULL, :firstname, :lastname, :email, :phone_number, :password, :adress, NOW(), 1, NULL, NULL, 2);
 			`;
             const results = await connection.execute(query, data);
             //valider la transaction

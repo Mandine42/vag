@@ -31,7 +31,7 @@ class UserRouter {
 
 		this.router.post(
 			"/login",
-			new AuthorizationMiddleware().authorize(["admin", "user"]),
+			// new AuthorizationMiddleware().authorize(["admin", "user"]),
 			new UserController().login,
 		);
 		this.router.post("/auth", new UserController().auth);

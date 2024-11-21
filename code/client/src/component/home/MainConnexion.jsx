@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const MainConnexion = () => {
 	return (
 		<main>
-			<div id="form-container">
+			<div id="form-container-connexion">
 				<section id="connexion">
 					<h2>Déjà inscrit ?</h2>
 					<form

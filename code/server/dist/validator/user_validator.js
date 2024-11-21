@@ -9,16 +9,16 @@ class UserValidator {
             firstname: Joi.string().required(),
             lastname: Joi.string().required(),
             email: Joi.string().required(),
-            phone_number: Joi.number().positive().required(),
+            phone_number: Joi.string().required(),
             password: Joi.string().required(),
             adress: Joi.string().optional(),
-            registration_date: Joi.date().required(),
-            isActive: Joi.boolean().required(),
-            last_shared: Joi.string().required(),
-            district_id: Joi.number().positive().required(),
+            // registration_date: Joi.date().required(),
+            // isActive: Joi.boolean().required(),
+            // last_shared: Joi.string().required(),
+            // district_id: Joi.number().positive().required(),
             district: Joi.object().optional(),
-            role_id: Joi.number().positive().required(),
-            role: Joi.object().optional(),
+            // role_id: Joi.number().positive().required(),
+            // role: Joi.object().optional(),
         });
         try {
             const validation = await constraints.validateAsync(data, {

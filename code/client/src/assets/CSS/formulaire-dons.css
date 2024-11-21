@@ -1,0 +1,958 @@
+h2{
+    font-family: var(--h);
+    font-size: 3rem;
+    color: var(--vert);
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 2vh 0;
+}
+h3{
+    font-family: var(--h);
+    font-size: 2rem;
+    color: var(--bleu);
+    display: flex;
+    justify-content: center;
+}
+#form-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 90%;
+    margin: auto;
+    
+}
+form{
+    flex: 1;
+    min-width: 280px;
+    max-width: 45%;
+}
+
+  
+
+fieldset {
+   border-radius: 30px;
+   border: 1px solid var(--bleu);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2vh;
+    margin: 2vh 0;
+}
+
+/* légumes */
+.btn-vegetable, .content-vegetable {
+    background-color: var(--orange-foncé);
+    color: var(--creme);
+}
+
+.btn-vegetable {
+    border: 1px solid var(--bleu);
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-family: var(--h);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    
+}
+
+.btn-vegetable:hover {
+    background-color: var(--creme);
+    color: var(--orange-foncé);
+    border: 1px solid var(--bleu);
+}
+
+.content-vegetable {
+    color: var(--creme);
+    width: 80%;
+    margin: 2vh;
+    padding: 1vh;
+    border-radius: 30px;
+}
+
+.input-vegetable, .quantity-vegetable {
+    background-color: var(--orange-foncé);
+    color: var(--bleu);
+    border: 1px solid var(--bleu);
+}
+
+.input-vegetable:checked + .label-vegetable {
+    color: var(--creme);
+}
+
+/* Spécificités pour les éléments de sélection */
+.quantity-vegetable, .input-vegetable {
+    border: 1px solid var(--bleu);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--orange-foncé);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--creme);
+}
+/* Fruit */
+.btn-fruit, .content-fruit {
+    background-color: var(--orange-clair);
+    color: var(--bleu);
+}
+
+.btn-fruit {
+    border: 1px solid var(--bleu);
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-family: var(--h);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    
+}
+
+.btn-fruit:hover {
+    background-color: var(--bleu);
+    color: var(--orange-clair);
+    border: 1px solid var(--bleu);
+}
+
+.content-fruit {
+    color: var(--bleu);
+    width: 80%;
+    margin: 2vh 2vh;
+    padding: 1vh;
+    border-radius: 30px;
+}
+
+.input-fruit, .quantity-fruit {
+    background-color: var(--orange-clair);
+    color: var(--bleu);
+    border: 1px solid var(--bleu);
+}
+
+.input-fruit:checked + .label-fruit {
+    color: var(--creme);
+}
+
+/* Spécificités pour les éléments de sélection */
+.quantity-fruit, .input-fruit {
+    border: 1px solid var(--bleu);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--orange-clair);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--bleu);
+}
+/* produit frais */
+.date-fresh {
+    border: 1px solid var(--orange-clair);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--bleu);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--creme);
+}
+.btn-fresh, .content-fresh {
+    background-color: var(--bleu);
+    color: var(--creme);
+}
+
+.btn-fresh {
+    border: 1px solid var(--orange-clair);
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-family: var(--h);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    
+}
+
+.btn-fresh:hover {
+    background-color: var(--creme);
+    color: var(--bleu);
+    border: 1px solid var(--orange-clair);
+}
+
+.content-fresh {
+    color: var(--bleu);
+    width: 80%;
+    margin: 2vh 2vh;
+    padding: 1vh;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-fresh, .quantity-fresh {
+    background-color: var(--bleu);
+    color: var(--creme);
+    border: 1px solid var(--orange-clair);
+}
+
+.input-fresh:checked + .label-fresh {
+    color: var(--creme);
+}
+
+.label-fresh{
+    color:var(--creme);
+}
+
+/* Spécificités pour les éléments de sélection */
+.quantity-fresh, .input-fresh {
+    border: 1px solid var(--orange-clair);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--bleu);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--creme);
+}
+.dropdown-options-fresh{
+    margin-top: 10px; /* Espacement au-dessus des sous-options */
+    padding-left: 20px; /* Un léger décalage à gauche pour une meilleure lisibilité */
+    background-color: var(--bleu); 
+    border: 1px solid var(--orange-clair); 
+    border-radius: 8px;
+    width: fit-content; /* Adapte la largeur à son contenu */
+}
+/* produit laitier */
+.date-milk {
+    border: 1px solid var(--orange-clair);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--vert);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--creme);
+}
+
+.btn-milk, .content-milk {
+    background-color: var(--vert);
+    color: var(--creme);
+}
+
+.btn-milk {
+    border: 1px solid var(--orange-clair);
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-family: var(--h);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    
+}
+
+.btn-milk:hover {
+    background-color: var(--creme);
+    color: var(--vert);
+    border: 1px solid var(--orange-clair);
+}
+
+.content-milk {
+    color: var(--vert);
+    width: 80%;
+    margin: 2vh 2vh;
+    padding: 1vh;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-milk, .quantity-milk {
+    background-color: var(--vert);
+    color: var(--creme);
+    border: 1px solid var(--orange-clair);
+}
+
+.input-milk:checked + .label-milk {
+    color: var(--creme);
+}
+
+.label-milk{
+    color:var(--creme);
+}
+
+.quantity-milk, .input-milk {
+    border: 1px solid var(--orange-clair);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--vert);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--creme);
+}
+.date-milk {
+    border: 1px solid var(--orange-clair);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--vert);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--creme);
+}
+.dropdown-options-milk{
+    margin-top: 10px; /* Espacement au-dessus des sous-options */
+    padding-left: 20px; /* Un léger décalage à gauche pour une meilleure lisibilité */
+    background-color: var(--vert); 
+    border: 1px solid var(--orange-clair); 
+    border-radius: 8px;
+    width: fit-content; /* Adapte la largeur à son contenu */
+}
+/* conserves */
+.date-keep {
+    border: 1px solid var(--bleu);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--orange-foncé);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--creme);
+}
+.btn-keep, .content-keep {
+    background-color: var(--orange-foncé);
+    color: var(--creme);
+}
+
+.btn-keep {
+    border: 1px solid var(--bleu);
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-family: var(--h);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    
+}
+
+.btn-keep:hover {
+    background-color: var(--creme);
+    color: var(--orange-foncé);
+    border: 1px solid var(--bleu);
+}
+
+.content-keep {
+    color: var(--creme);
+    width: 80%;
+    margin: 2vh 2vh;
+    padding: 1vh;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-keep, .quantity-keep {
+    background-color: var(--orange-foncé);
+    color: var(--creme);
+    border: 1px solid var(--bleu);
+}
+
+.input-keep:checked + .label-keep {
+    color: var(--creme);
+}
+
+.label-keep{
+    color:var(--creme);
+}
+.quantity-keep, .input-keep{
+    border: 1px solid var(--bleu);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--orange-foncé);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--creme);
+}
+.dropdown-options-keep{
+    margin-top: 10px; /* Espacement au-dessus des sous-options */
+    padding-left: 20px; /* Un léger décalage à gauche pour une meilleure lisibilité */
+    background-color: var(--orange-foncé); 
+    border: 1px solid var(--bleu); 
+    border-radius: 8px;
+    width: fit-content; /* Adapte la largeur à son contenu */
+}
+/* condiment */
+.btn-condiment, .content-condiment {
+    background-color: var(--bleu);
+    color: var(--creme);
+}
+
+.btn-condiment {
+    border: 1px solid var(--orange-clair);
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-family: var(--h);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    
+}
+
+.btn-condiment:hover {
+    background-color: var(--creme);
+    color: var(--bleu);
+    border: 1px solid var(--orange-clair);
+}
+.label-condiment{
+    color: var(--creme)
+}
+.content-condiment {
+    color: var(--bleu);
+    width: 80%;
+    margin: 2vh 2vh;
+    padding: 1vh;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-condiment, .quantity-condiment {
+    background-color: var(--bleu);
+    color: var(--creme);
+    border: 1px solid var(--orange-clair);
+}
+
+.input-condiment:checked + .label-condiment {
+    color: var(--creme);
+}
+
+/* Spécificités pour les éléments de sélection */
+.quantity-condiment, .input-condiment {
+    border: 1px solid var(--orange-clair);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--bleu);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--creme);
+}
+
+.dropdown-options-condiment{
+    margin-top: 10px; /* Espacement au-dessus des sous-options */
+    padding-left: 20px; /* Un léger décalage à gauche pour une meilleure lisibilité */
+    background-color: var(--bleu); /* Conserver votre couleur de fond */
+    border: 1px solid var(--orange-clair); /* Bordure selon votre charte graphique */
+    border-radius: 8px;
+    width: fit-content; /* Adapte la largeur à son contenu */
+}
+
+/* légumineuse */
+.btn-legumineuse, .content-legumineuse {
+    background-color: var(--orange-clair);
+    color: var(--bleu);
+}
+
+.btn-legumineuse {
+    border: 1px solid var(--bleu);
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-family: var(--h);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    
+}
+
+.btn-legumineuse:hover {
+    background-color: var(--bleu);
+    color: var(--orange-clair);
+    border: 1px solid var(--bleu);
+}
+
+.content-legumineuse {
+    color: var(--bleu);
+    width: 80%;
+    margin: 2vh 2vh;
+    padding: 1vh;
+    border-radius: 30px;
+}
+
+.input-legumineuse, .quantity-legumineuse {
+    background-color: var(--orange-clair);
+    color: var(--bleu);
+    border: 1px solid var(--bleu);
+}
+
+.input-legumineuse:checked + .label-legumineuse {
+    color: var(--creme);
+}
+
+/* Spécificités pour les éléments de sélection */
+.quantity-legumineuse, .input-legumineuse {
+    border: 1px solid var(--bleu);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--orange-clair);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--bleu);
+}
+
+.dropdown-options-legumineuse{
+    margin-top: 10px; /* Espacement au-dessus des sous-options */
+    padding-left: 20px; /* Un léger décalage à gauche pour une meilleure lisibilité */
+    background-color: var(--orange-clair); 
+    border: 1px solid var(--bleu); 
+    border-radius: 8px;
+    width: fit-content; /* Adapte la largeur à son contenu */
+}
+/* féculent */
+.btn-feculent, .content-feculent {
+    background-color: var(--vert);
+    color: var(--creme);
+}
+
+.btn-feculent {
+    border: 1px solid var(--orange-clair);
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-family: var(--h);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    
+}
+
+.btn-feculent:hover {
+    background-color: var(--creme);
+    color: var(--vert);
+    border: 1px solid var(--orange-clair);
+}
+
+.content-feculent {
+    color: var(--vert);
+    width: 80%;
+    margin: 2vh 2vh;
+    padding: 1vh;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-feculent, .quantity-feculent {
+    background-color: var(--vert);
+    color: var(--creme);
+    border: 1px solid var(--orange-clair);
+}
+
+.input-feculent:checked + .label-feculent {
+    color: var(--creme);
+}
+
+.label-feculent{
+    color:var(--creme);
+}
+
+.quantity-feculent, .input-feculent {
+    border: 1px solid var(--orange-clair);
+    border-radius: 8px;
+    padding: 5px;
+    background: var(--vert);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    color: var(--creme);
+}
+
+.dropdown-options-feculent{
+    margin-top: 10px; /* Espacement au-dessus des sous-options */
+    padding-left: 20px; /* Un léger décalage à gauche pour une meilleure lisibilité */
+    background-color: var(--vert); /* Conserver votre couleur de fond */
+    border: 1px solid var(--orange-clair); /* Bordure selon votre charte graphique */
+    border-radius: 8px;
+    width: fit-content; /* Adapte la largeur à son contenu */
+}
+/* Style spécifique pour l'input date ayant la classe .quantity */
+.form-group input[type="date"].quantity {
+    background: var(--orange-clair);
+    border: 1px solid var(--bleu);
+    color: var(--bleu);
+    font-family: var(--p);
+    font-size: 0.9rem;
+    width: 50%;
+    margin: 1vh 1vh;
+    padding: 0.5vh;
+    border-radius: 50px;
+}
+
+/* Suppression des boutons natifs pour certains navigateurs */
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+
+input, select, button{
+    width: 90%;
+    margin: 1vh 5%;
+    background: var(--orange-clair);
+    font-family: var(--p);
+    font-size: 1.25rem;
+    color: var(--bleu);
+    border-radius: 50px;
+    border: 1px solid var(--bleu);
+}
+
+.multiple{
+    width: 90%;
+    margin: 1vh 5%;
+    background: var(--orange-clair);
+    font-family: var(--p);
+    font-size: 1.25rem;
+    color: var(--creme);
+    border-radius: 50px;
+    border: 1px solid var(--bleu);
+}
+label, legend{
+   text-align: center;
+}
+
+label{
+    font-family: var(--p);
+    font-size: 1.25rem;
+    color:var(--bleu);
+    
+}
+
+legend{
+    font-family: var(--h);
+    font-size: 2rem;
+    color: var(--vert);
+    width: 200px;
+    margin: auto;
+}
+
+.selection
+{
+    background: var(--orange-clair);
+}
+
+input[type="checkbox"]{
+    width: 30px;
+    margin: 0;
+   
+}
+
+input[type="submit"]{
+    font-family: var(--p);
+    font-size: 1.25rem;
+    color: var(--bleu);
+    background: var(--orange-foncé);
+    border-radius: 50px;
+    border: 1px solid var(--bleu);
+    padding: 15px 40px; 
+    width: auto; 
+    height: 60px; 
+    cursor: pointer; 
+}
+
+  .dropdown-options {
+    display: none;
+  }
+  
+  .toggle-dropdown:checked + .dropdown-options {
+    display: block;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espace entre les éléments */
+    width: 100%;
+}
+
+.form-group label, .form-group input, .form-group select {
+    margin-right: 10px;
+} 
+
+
+#selected-items {
+    font-family: var(--p);
+    font-size: 1rem;
+    color: var(--bleu);
+    background-color: var(--creme);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+#selected-items.show {
+    opacity: 1;
+    max-height: 1000px; /* Grande hauteur pour que tout le contenu soit visible */
+}
+
+
+#selected-items p {
+    font-size: 1.2rem; /* Taille de police pour le titre */
+    color: var(--bleu); /* Couleur du titre */
+    margin-bottom: 1rem; /* Espacement en bas du titre */
+}
+
+#selected-items ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+#selected-items li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--creme); /* Bordure séparatrice */
+}
+
+#selected-items li:last-child {
+    border-bottom: none; /* Supprime la bordure pour le dernier élément */
+}
+
+/* Style pour les boutons de validation */
+button {
+    background-color: var(--orange-foncé);
+    color: var(--creme);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: var(--h);
+    border: 1px solid var(--bleu);
+    border-radius: 30px;
+}
+
+button:hover {
+    background-color: var(--orange-clair);
+}
+.quartier{
+    border-radius: 30px;
+    border: 1px solid var(--bleu);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 2vh;
+     margin: 2vh 0;
+     background-color: var(--vert);
+   
+}
+#donne{
+    padding: 0 10px;
+    background-color:var(--creme);
+    border-radius: 30px;
+    display: inline-block; 
+    /* margin-bottom: 10px; Espace entre la légende et le contenu */
+    font-family: var(--h);
+    font-size: 2rem;
+    color: var(--vert);
+    width: 200px;
+    margin: 10px auto;
+    
+}
+#quartier{
+    border-radius: 30px;
+    border: 1px solid var(--bleu);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 1vh;
+     margin: 1vh 0;
+     background-color: var(--vert);
+     color:var(--creme);
+}   
+.label-quartier{
+    color: var(--creme);
+}
+#view-map{
+    background: var(--vert);
+}
+.date-heure{
+    border-radius: 30px;
+    border: 1px solid var(--bleu);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 2vh;
+     margin: 2vh 0;
+     background-color: var(--bleu);
+   
+}
+#quand{
+    padding: 0 10px;
+    background-color:var(--creme);
+    border-radius: 30px;
+    display: inline-block; 
+    /* margin-bottom: 10px; Espace entre la légende et le contenu */
+    font-family: var(--h);
+    font-size: 2rem;
+    color: var(--vert);
+    width: 200px;
+    margin: 10px auto;
+    
+}
+#date-heure{
+    border-radius: 30px;
+    border: 1px solid var(--creme);
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     padding: 1vh;
+     margin: 1vh 0;
+     background-color: var(--bleu);
+     color:var(--creme);
+}  
+.label-date{
+    color: var(--creme);
+}
+
+#choose-time{
+    background: var(--bleu);
+    border: 1px solid var(--creme);
+}
+#date-time p{
+    color:var(--creme);
+}
+#date{
+    background-color: var(--bleu);
+    color: var(--creme);
+    border: 1px solid var(--creme);
+    border-radius: 30px;
+    padding:5px;
+}
+#time{
+    background-color: var(--bleu);
+    color: var(--creme);
+    border: 1px solid var(--creme);
+    border-radius: 30px;
+    padding:5px;
+}
+textarea {
+    border: 1px solid var(--vert);
+    border-radius: 30px;
+    background: var(--creme);
+    font-family: var(--p);
+    font-size: 1rem;
+    font-weight: 400;
+    width: 90%;
+    margin: 1vh 5%;
+    color: var(--vert);
+    min-height: 20vh;
+    resize: none;
+    padding: 10px; /* Ajout du padding */
+}
+textarea p{
+    color: var(--vert);
+    font-size: 0.7rem;
+}
+.label-commentaire{
+    color: var(--vert);
+}
+/* pop-up */
+ul{
+    text-decoration: none;
+    list-style-type: none;
+}
+/* Style de base du lien */
+a {
+    color: var(--vert);
+    text-decoration: none;
+    transition: color 0.3s ease; /* Ajout d'une transition douce */
+}
+
+a.clicked {
+    color: var(--orange-foncé);
+}
+
+h2{
+    font-family: var(--h);
+    font-size: 3rem;
+    color: var(--bleu);
+}
+
+h3{
+    font-family: var(--h);
+    font-size: 2rem;
+    color: var(--bleu);
+}
+
+/* Style pour le pop-up (modal) */
+.popup3 {
+    display: flex; /* Masqué par défaut */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 5; /* Placer devant les autres éléments */
+    left: 0;
+    top: 0;
+    width: 100%; /* Prend toute la largeur de l'écran */
+    height: 100%; /* Prend toute la hauteur de l'écran */
+    background-color: rgba(246, 236, 222, 0.5); /* Fond transparent */
+    padding: 10px; /* Ajouter un padding pour petits écrans */
+    overflow: auto; /* Gérer le débordement si nécessaire */
+}
+.hidden {
+    display: none;
+  }
+/* Contenu du pop-up */
+.popup-content3 {
+    background-color: var(--creme);
+    margin: 10% auto; /* Centre verticalement */
+    padding: 20px;
+    border: 1px solid var(--bleu);
+    border-radius: 30px;
+    width: 100%; /* S'assure que le pop-up prend toute la largeur disponible */
+    max-width: 400px; /* Largeur maximale */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Ajout d'une ombre */
+    overflow: hidden; /* Empêche le débordement du contenu */
+}
+
+/* Bouton de fermeture (croix) */
+.close {
+    color: rgba(22, 58, 83, 0.5);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--bleu);
+    text-decoration: none;
+    cursor: pointer;
+}
+@media screen and (max-width: 769px) {
+    main {
+        height: 260vh;
+    }
+    #form-container {
+        flex-direction: column;
+        width: 75%;
+    }
+
+    #form {
+        max-width: 100%;
+    }
+    #quand{
+        font-size: 1.5rem;
+      }
+    #donne{
+        font-size: 1.5rem;
+    }
+    #commentaire{
+        font-size: 1.5rem;
+    }
+    #share{
+        font-size: 1.5rem;
+    }
+   h3{
+    font-size: 1rem;
+   }
+  
+}
+
+
+
+@media screen and (min-width: 768px) {
+    #form {
+        width: 100%;
+    }
+
+}

@@ -13,6 +13,9 @@ import Inscription from "../page/Inscription";
 import MentionLegales from "../page/MentionsLegales";
 import Parametre from "../page/Parametre";
 import PlanSite from "../page/PlanSite";
+import Profil from "../page/Profil";
+import VoirDons from "../page/VoirDons";
+import FormulaireDons from "../component/home/FormulaireDons";
 
 const router = createBrowserRouter([
 	/*
@@ -77,6 +80,18 @@ const router = createBrowserRouter([
 			{
 				path: "plan-site",
 				element: <PlanSite />,
+			},
+			{
+				path: "profil",
+				element: <Profil />,
+			},
+			{
+				path: "voir-dons",
+				element: <VoirDons />,
+			},
+			{
+				path: "dons",
+				element: <FormulaireDons />,
 			},
 		],
 	},

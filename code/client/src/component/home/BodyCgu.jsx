@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const BodyCgu = () => {
 	return (
-		<body>
+		<>
 			<h1>Conditions Générales d'Utilisation (CGU)</h1>
 
 			<p>Date de mise à jour : 23 septembre 2024</p>
@@ -145,7 +145,7 @@ const BodyCgu = () => {
 				litige, les tribunaux compétents seront ceux de la juridiction du siège
 				social de l'Éditeur.
 			</p>
-		</body>
+		</>
 	);
 };
 
