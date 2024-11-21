@@ -7,6 +7,7 @@ import NotreMission from "../component/home/NotreMission";
 import Presentation from "../component/home/Presentation";
 import "../assets/CSS/Accueil.css";
 import "..//assets/CSS/carrousel.css";
+import NoticeMessage from "../component/common/NoticeMessage";
 
 const Accueil = () => {
 	// Fragment : élément anonyme
@@ -17,6 +18,8 @@ const Accueil = () => {
 			<NotreMission />
 			<Fonctionnement />
 			<Carrousel />
+			{/* afficher la notification stockée dans la session */}
+			<NoticeMessage />
 		</>
 	);
 };

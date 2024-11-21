@@ -1,18 +1,29 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../service/user_api";
+
 const MainInscription = () => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+	// uneNavigate permet de changer de route
+	const navigate = useNavigate();
 	//soumission du formulaire
 	// paramètre data permet de récuperer la saisie du formulaire
 	const submit = async (data) => {
 		console.log(data);
 		// enregistrer l'utilisateur
 		const results = await registerUser(data);
+		// si l'enregestriment a été effectué
+		if (results.status === 201) {
+			// stocker le message dans la session
+			window.sessionStorage.setItem("notice", "Vous êtes bien enregistré");
+
+			// redirection vers une route
+			navigate("/");
+		}
 	};
 	return (
 		<main>
