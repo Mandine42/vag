@@ -20,4 +20,18 @@ const registerUser = async (formdata) => {
 	return data;
 };
 
-export { registerUser };
+// connexion
+const loginUser = async (formdata) => {
+	// configurer la requête HTTP
+	const request = new Request(`${import.meta.env.VITE_API_URL}/user/login`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(formdata),
+	});
+	const response = await fetch(request);
+	const data = await response.json();
+	return data;
+};
+export { registerUser, loginUser };

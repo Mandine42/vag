@@ -1,6 +1,28 @@
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { loginUser } from "../../service/user_api";
 
 const MainConnexion = () => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+	// uneNavigate permet de changer de route
+	const navigate = useNavigate();
+	const submit = async (data) => {
+		console.log(data);
+		// enregistrer l'utilisateur
+		const results = await loginUser(data);
+		// si l'enregestriment a été effectué
+		if (results.status === 200) {
+			// stocker le message dans la session
+			window.sessionStorage.setItem("notice", "Vous êtes bien connecté");
+
+			// redirection vers une route
+			navigate("/");
+		}
+	};
 	return (
 		<main>
 			<div id="form-container-connexion">
@@ -9,21 +31,21 @@ const MainConnexion = () => {
 					<form
 						id="loginForm"
 						className="loginForm"
-						action="profil.html"
-						method="post"
+						onSubmit={handleSubmit(submit)}
 					>
 						<fieldset>
 							<legend>Identifiants</legend>
-							<label for="email">Adresse email *</label>
+							<label htmlFor="email">Adresse email *</label>
 							<input
 								type="email"
-								name="email"
+								{...register("email", {
+									required: "Votre email est obligatoire",
+								})}
 								id="email"
-								required
-								aria-required
 							/>
-							<label for="password">Mot de passe *</label>
-							<input type="password" id="password" name="password" required />
+							<span>{errors?.email?.message}</span>
+							<label htmlFor="password">Mot de passe *</label>
+							<input type="password" {...register("password")} id="password" />
 						</fieldset>
 						<ul>
 							<li>
@@ -46,17 +68,17 @@ const MainConnexion = () => {
 							</p>
 							<h3>Pourquoi s'inscrire ?</h3>
 							<ul id="pourquoi">
-								<li class="voisins">
+								<li className="voisins">
 									<strong>Faire des dons alimentaires :</strong> Partagez les
 									excédents de vos courses ou vos préparations maison avec ceux
 									qui en ont besoin. Chaque geste compte !
 								</li>
-								<li class="voisins">
+								<li className="voisins">
 									<strong>Recevoir des dons :</strong> Profitez des denrées
 									offertes par vos voisins pour compléter vos repas sans
 									débourser un centime.
 								</li>
-								<li class="voisins">
+								<li className="voisins">
 									<strong>
 										Participer activement à la vie de votre quartier :
 									</strong>{" "}
@@ -76,10 +98,7 @@ const MainConnexion = () => {
 							</p>
 						</section>
 
-						<button
-							type="button"
-							onclick="window.location.href='inscription.html'"
-						>
+						<button type="button" onClick="window.location.href='/inscription'">
 							S'inscrire
 						</button>
 					</form>
