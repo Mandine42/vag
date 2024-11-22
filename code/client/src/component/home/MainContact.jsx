@@ -21,7 +21,7 @@ const MainContact = () => {
 						placeholder="Votre message"
 						required
 					>
-						me
+						Votre message
 					</textarea>
 					<Link to="envoyer">Envoyer</Link>
 				</form>

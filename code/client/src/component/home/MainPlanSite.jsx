@@ -3,18 +3,18 @@ const MainPlanSite = () => {
 	return (
 		<main>
 			<section id="site">
-				<h1>Plan du site</h1>
+				<h1 id="sites">Plan du site</h1>
 				<ul>
 					<li>
 						<Link to="/">
-							<h3>Accueil</h3>
+							<h3 className="site">Accueil</h3>
 						</Link>
 					</li>
 					<li>
 						<Link to="/collect">
-							<h3>Points de Collecte</h3>
+							<h3 className="site">Points de Collecte</h3>
 						</Link>
-						<ul class="categorie">
+						<ul className="categorie">
 							<li>
 								<Link to="/collect">Filtrer les points</Link>
 							</li>
@@ -25,7 +25,7 @@ const MainPlanSite = () => {
 					</li>
 					<li>
 						<Link to="/dons">
-							<h3>Faire un Don</h3>
+							<h3 className="site">Faire un Don</h3>
 						</Link>
 						<ul class="categorie">
 							<li>
@@ -38,7 +38,7 @@ const MainPlanSite = () => {
 					</li>
 					<li>
 						<Link to="/voir-dons">
-							<h3>Réserver un Don</h3>
+							<h3 className="site">Réserver un Don</h3>
 						</Link>
 						<ul class="categorie">
 							<li>
@@ -53,7 +53,7 @@ const MainPlanSite = () => {
 					</li>
 					<li>
 						<Link to="/connexion">
-							<h3>Connexion/Inscription</h3>
+							<h3 className="site">Connexion/Inscription</h3>
 						</Link>
 					</li>
 				</ul>

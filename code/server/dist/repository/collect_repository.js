@@ -21,7 +21,7 @@ class CollectRepository {
             const fullResults = results.shift();
             // boucler sur les résultats
             for (let i = 0; i < fullResults.length; i++) {
-                //requête pour récuperer un objet Brand
+                //requête pour récuperer un objet District
                 const district = await new DistrictRepository().selectOne({
                     id: fullResults[i].district_id,
                 });
@@ -64,7 +64,9 @@ class CollectRepository {
             const query = `
 			INSERT INTO ${process.env.MYSQL_DB}.${this.table}
 			VALUE
-				(NULL, :adress, :meeting_point, :district_id);
+				(NULL, :adress, :meeting_point, 
+				:iframe,
+				:district_id);
 			`;
             const results = await connection.execute(query, data);
             transaction.commit();
@@ -89,6 +91,7 @@ class CollectRepository {
 			SET
 				${this.table}.adress = :adress, 
 				${this.table}.meeting_point = :meeting_point, 
+				${this.table}.iframe = :iframe, 
 				${this.table}.district_id = :district_id
 			WHERE
 				${this.table}.id = :id

@@ -4,7 +4,7 @@
     box-sizing: border-box;
     background: var(--creme);
 } */
-h1{
+#sites{
     font-family: var(--h);
     font-size: 3rem;
     color: var(--vert);
@@ -14,7 +14,7 @@ h1{
     padding: 2vh 0;
     margin: 2vh;
 }
-h3{
+.site{
     font-family: var(--h);
     font-size: 1.5rem;
     font-style: normal;

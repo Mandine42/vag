@@ -3,7 +3,7 @@ const BodyCompte = () => {
 		<main>
 			<h1>Détails du Profil</h1>
 
-			<section class="profile-info">
+			<section className="profile-info">
 				<h2>Informations Générales</h2>
 				<p>
 					<strong>Nom :</strong> Paul

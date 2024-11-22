@@ -5,6 +5,7 @@ import { Pool, type QueryResult } from "mysql2";
 import type User from "../model/user.js";
 import UserRepository from "../repository/user_repository.js";
 import jwt from "jsonwebtoken";
+import SimpleCrypto from "simple-crypto-js";
 
 class UserController {
 	private userrepository: UserRepository = new UserRepository();
@@ -162,6 +163,23 @@ class UserController {
 				message: "forbidden",
 			});
 		}
+		// crypter le mot de passe pour le stocker côté client
+		// generer une partie de la clé de decryptage aléatoire
+		const randomKey = SimpleCrypto.default.generateRandom();
+
+		// clé complète de decryptage : partie aléatoire + partie stocké dans la variable d'environnement
+		const key = `${randomKey}${process.env.KEY}`;
+
+		// générer le cryptage
+		const simpleCrypto = new SimpleCrypto.default(key);
+
+		// crypter le mot de passe
+		const passwordEncrypt = simpleCrypto.encrypt(req.body.password);
+		// console.log(passwordEncrypt);
+
+		// ajouter la clé aléatoite + le mot de passe crypté a l'utilisateur
+		(user as User).key = randomKey;
+		(user as User).password = passwordEncrypt;
 
 		// si l'utilisateur existe et si la réponse est correct
 		return res.status(200).json({
@@ -186,11 +204,24 @@ class UserController {
 			});
 		}
 
+		// récupérer une partie de la clé de decryptage aléatoire
+		const randomKey = req.body.key;
+
+		// clé complète de decryptage
+		const key = `${randomKey}${process.env.KEY}`;
+
+		// générer le cryptage
+		const simpleCrypto = new SimpleCrypto.default(key);
+
+		// décrypter le mot de passe
+		const passwordDecrypt = simpleCrypto.decrypt(req.body.password);
+
 		// verification du mot de passe: comparer le mot de passe saisie avec le hash contenu dans la base de données
 		const passwordIsValid: boolean = await argon2.verify(
 			(user as User).password as string,
-			req.body.password,
+			passwordDecrypt as string,
 		);
+
 		if (!passwordIsValid) {
 			return res.status(403).json({
 				status: 403,

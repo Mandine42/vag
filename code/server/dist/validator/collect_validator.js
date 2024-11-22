@@ -8,6 +8,7 @@ class CollectValidator {
             id: Joi.number().positive().allow(),
             adress: Joi.string().required(),
             meeting_point: Joi.string().required(),
+            iframe: Joi.string(),
             district_id: Joi.number().positive().required(),
             district: Joi.object().allow(),
         });

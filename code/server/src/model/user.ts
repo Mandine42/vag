@@ -10,6 +10,7 @@ type User = {
 	email?: string;
 	phone_number?: string;
 	password?: string;
+	key?: string;
 	adress?: string;
 	district_id?: number;
 	district?: District | unknown;

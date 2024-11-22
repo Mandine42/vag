@@ -4,6 +4,7 @@ type Collect = {
 	id?: number;
 	adress?: string;
 	meeting_point?: string;
+	iframe?: string;
 	district_id?: number;
 	district?: District | unknown;
 };

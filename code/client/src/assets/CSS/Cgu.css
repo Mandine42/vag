@@ -3,7 +3,7 @@ ul li{
     text-decoration: none;
     list-style: none;
 }
-h1{
+#conditions{
     font-family: var(--h);
     font-size: 3rem;
     color: var(--vert);
@@ -13,7 +13,7 @@ h1{
     padding: 2vh 0;
     margin: 2vh;
 }
-h2{
+.condition{
     font-family: var(--h);
     font-size: 2rem;
     color: var(--vert);

@@ -34,6 +34,7 @@
 		"joi": "^17.13.3",
 		"jsonwebtoken": "^9.0.2",
 		"mongodb": "^6.8.0",
-		"mysql2": "^3.10.2"
+		"mysql2": "^3.10.2",
+		"simple-crypto-js": "^3.0.1"
 	}
 }

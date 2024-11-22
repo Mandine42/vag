@@ -19,7 +19,7 @@ const MainCollect = () => {
 	return (
 		<main>
 			<h1 id="collect">Points de collecte</h1>
-			<h3 id="quartier">Sélectionne ton quartier</h3>
+			<h3 id="quartier-collect">Sélectionne ton quartier</h3>
 			{/* <PointCollectItem /> */}
 			{/* 
 			-map est l'unique boucle disponible dans le HTML de React 

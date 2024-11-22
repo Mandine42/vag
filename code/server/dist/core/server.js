@@ -21,6 +21,8 @@ class Server {
     constructor() {
         // activer le midleware JSON pour toutes le routes, permet d'accéder à la propriété body de la requête HTTP au format JSON.
         this.router.use(express.json());
+        // dossier stockant les ressources publiques
+        this.router.use(express.static(process.env.ASSETS_DIRECTORY));
         // gérer CORS
         this.router.use(cors({
             origin: process.env.ORIGINS?.split(","),

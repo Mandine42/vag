@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../service/user_api";
+import { useContext } from "react";
+import { UserContexte } from "../../provider/UserProvider";
 
 const MainConnexion = () => {
 	const {
@@ -10,15 +12,19 @@ const MainConnexion = () => {
 	} = useForm();
 	// uneNavigate permet de changer de route
 	const navigate = useNavigate();
+	// useContext permet d'accéder aux données stockées dans un contexte
+	const { user, setUser } = useContext(UserContexte);
+
 	const submit = async (data) => {
-		console.log(data);
+		// console.log(data);
 		// enregistrer l'utilisateur
 		const results = await loginUser(data);
 		// si l'enregestriment a été effectué
 		if (results.status === 200) {
 			// stocker le message dans la session
 			window.sessionStorage.setItem("notice", "Vous êtes bien connecté");
-
+			// stocker l'utilisateur dans le contexte
+			setUser(results.data);
 			// redirection vers une route
 			navigate("/");
 		}
@@ -97,8 +103,8 @@ const MainConnexion = () => {
 								notre communauté
 							</p>
 						</section>
-
-						<button type="button" onClick="window.location.href='/inscription'">
+						{/* <input type="submit" value="S'inscrire" /> */}
+						<button type="button" Link to="/formulaire-inscription">
 							S'inscrire
 						</button>
 					</form>

@@ -75,6 +75,7 @@ h3{
         width: 90%; /* Ajuster la largeur à 90% de l'écran */
         padding: 15px;
         font-size: 1rem; /* Taille de texte légèrement plus petite */
+        display: none;
     }
     
     h2 {

@@ -1,6 +1,7 @@
 import argon2 from "argon2";
 import UserRepository from "../repository/user_repository.js";
 import jwt from "jsonwebtoken";
+import SimpleCrypto from "simple-crypto-js";
 class UserController {
     userrepository = new UserRepository();
     // méthodes appelées par le router
@@ -137,6 +138,19 @@ class UserController {
                 message: "forbidden",
             });
         }
+        // crypter le mot de passe pour le stocker côté client
+        // generer une partie de la clé de decryptage aléatoire
+        const randomKey = SimpleCrypto.default.generateRandom();
+        // clé complète de decryptage : partie aléatoire + partie stocké dans la variable d'environnement
+        const key = `${randomKey}${process.env.KEY}`;
+        // générer le cryptage
+        const simpleCrypto = new SimpleCrypto.default(key);
+        // crypter le mot de passe
+        const passwordEncrypt = simpleCrypto.encrypt(req.body.password);
+        // console.log(passwordEncrypt);
+        // ajouter la clé aléatoite + le mot de passe crypté a l'utilisateur
+        user.key = randomKey;
+        user.password = passwordEncrypt;
         // si l'utilisateur existe et si la réponse est correct
         return res.status(200).json({
             status: 200,
@@ -155,8 +169,16 @@ class UserController {
                 message: "error",
             });
         }
+        // récupérer une partie de la clé de decryptage aléatoire
+        const randomKey = req.body.key;
+        // clé complète de decryptage
+        const key = `${randomKey}${process.env.KEY}`;
+        // générer le cryptage
+        const simpleCrypto = new SimpleCrypto.default(key);
+        // décrypter le mot de passe
+        const passwordDecrypt = simpleCrypto.decrypt(req.body.password);
         // verification du mot de passe: comparer le mot de passe saisie avec le hash contenu dans la base de données
-        const passwordIsValid = await argon2.verify(user.password, req.body.password);
+        const passwordIsValid = await argon2.verify(user.password, passwordDecrypt);
         if (!passwordIsValid) {
             return res.status(403).json({
                 status: 403,

@@ -1,4 +1,4 @@
-h1{
+#mentions{
     font-family: var(--h);
     font-size: 3rem;
     color: var(--vert);
@@ -8,7 +8,7 @@ h1{
     padding: 2vh 0;
     margin: 2vh;
 }
-h2{
+.mention{
     font-family: var(--h);
     font-size: 2rem;
     color: var(--vert);

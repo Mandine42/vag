@@ -8,6 +8,7 @@ const NavSmartphone = () => {
 						<img src="asset/img-smartphone/logo-smartphone.svg" alt="Logo" />
 					</Link>
 				</li>
+				{/* <li>{user?.email}</li> */}
 			</ol>
 			<ul id="smartphone">
 				<li>
@@ -20,7 +21,7 @@ const NavSmartphone = () => {
 					</Link>
 				</li>
 				<li>
-					<Link to="/formulaire-dons">
+					<Link to="/dons">
 						<img src="asset/img-smartphone/Dons.svg" alt="Logo du don" />
 						<span className="smart">Faire un don</span>
 					</Link>
@@ -35,10 +36,21 @@ const NavSmartphone = () => {
 					</Link>
 				</li>
 				<li>
-					<Link to="/inscription">
+					<Link to="/connexion">
 						<img src="asset/img-smartphone/Collect.svg" alt="Logo du profil" />
 						<span className="smart">Connexion</span>
 					</Link>
+					{/* {
+						// condition react: condition ternaire seule condition dans le HTML de react
+						// condition ? instruction : else
+						user ? (
+							<Link to={"#"}>connecté</Link>
+						) : (
+							<>
+								<Link to="/formulaire-inscription">Connexion|Inscription</Link>
+							</>
+						)
+					} */}
 				</li>
 			</ul>
 		</nav>

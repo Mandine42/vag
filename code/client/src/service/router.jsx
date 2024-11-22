@@ -16,6 +16,7 @@ import PlanSite from "../page/PlanSite";
 import Profil from "../page/Profil";
 import VoirDons from "../page/VoirDons";
 import FormulaireDons from "../component/home/FormulaireDons";
+import LogoutPage from "../page/LogoutPage";
 
 const router = createBrowserRouter([
 	/*
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
 			{
 				path: "dons",
 				element: <FormulaireDons />,
+			},
+			{
+				path: "logout",
+				element: <LogoutPage />,
 			},
 		],
 	},

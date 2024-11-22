@@ -3,7 +3,7 @@ const Footer = () => {
 	return (
 		<footer role="contentinfo">
 			<section id="footer">
-				<h3>VOISINS ANTI-GASPI</h3>
+				<h3 id="pied-de-page">VOISINS ANTI-GASPI</h3>
 				<ul id="menu-footer">
 					<li>
 						<Link to="/plan-site">Plan du site</Link>

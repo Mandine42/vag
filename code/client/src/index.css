@@ -67,11 +67,15 @@ ol{
   list-style-type: none;
   text-decoration: none;
 }
+
 nav ul {
   list-style-type: none;
   display: flex;
 }
-
+#user-email{
+  color: var(--orange-foncé);
+  font-size: 1rem;
+}
 nav ul li a {
 
   text-decoration: none;
@@ -114,8 +118,10 @@ footer {
   z-index: 10;
 }
 
-#footer h3 {
+#pied-de-page{
+  font-size: 2rem;
   font-family: var(--h);
+  color:var(--vert);
   margin-bottom: 3px; /* Espace sous le titre */
 }
 #footer img{
