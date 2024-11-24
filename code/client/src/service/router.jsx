@@ -17,6 +17,10 @@ import Profil from "../page/Profil";
 import VoirDons from "../page/VoirDons";
 import FormulaireDons from "../component/home/FormulaireDons";
 import LogoutPage from "../page/LogoutPage";
+import AdminHomePage from "../page/admin/AdminHomePage";
+import AdminDonsPage from "../page/admin/AdminDonsPage";
+import AdminDonsFormPage from "../page/admin/AdminDonsFormPage";
+import AdminRoute from "../component/admin/AdminRoute";
 
 const router = createBrowserRouter([
 	/*
@@ -97,6 +101,24 @@ const router = createBrowserRouter([
 			{
 				path: "logout",
 				element: <LogoutPage />,
+			},
+		],
+	},
+	{
+		path: "/admin",
+		element: <AdminRoute />,
+		children: [
+			{
+				path: "",
+				element: <AdminHomePage />,
+			},
+			{
+				path: "dons",
+				element: <AdminDonsPage />,
+			},
+			{
+				path: "dons/form",
+				element: <AdminDonsFormPage />,
 			},
 		],
 	},

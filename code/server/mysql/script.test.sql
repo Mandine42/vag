@@ -68,6 +68,7 @@ CREATE TABLE vag_test.collect(
     id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     adress VARCHAR(100) NOT NULL,
     meeting_point VARCHAR(150) NULL,
+    iframe TEXT NULL,
     -- clés étrangères
     district_id TINYINT UNSIGNED,
     FOREIGN KEY (district_id) REFERENCES vag_test.district(id)
@@ -147,20 +148,20 @@ VALUES
 
 INSERT INTO vag_test.collect 
 VALUES
-    (NULL, '54 rue Robespière', 'Arsène', 1),
-    (NULL, '30 rue Parmentier', NULL, 2),
-    (NULL, '17 rue du Sergent Godefroy', NULL, 3),
-    (NULL, '2 rue Moise Blois', NULL, 4),
-    (NULL, '83 bd Henry Barbusse', 'Chez Sandra', 5),
-    (NULL, '8 rue Désirée Charton', 'Brasserie Croix de Chavaux', 6),
-    (NULL, '53 rue du Capitaine Dreyfus', 'Chez Louise', 7),
-    (NULL, '6 place Jean-Jaurès', 'Biocoop', 8),
-    (NULL, '28 rue Gagillée', NULL, 9),
-    (NULL, '15 av du Colonel Fabien', NULL, 10),
-    (NULL, '115 rue Edouard Branly', NULL, 11),
-    (NULL, '78 rue Anatole France', 'Chez Patrice', 12),
-    (NULL, '9 rue des Ruffins', 'Corinco', 13),
-    (NULL, '14 Place Margherite et Emile Le Morillon', NULL, 14)
+ (NULL, '54 rue Robespière', 'Arsène','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5250.534659480077!2d2.4208590761282447!3d48.853112501078336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6729d36dd8f1d%3A0xdd197fe08f0532ca!2s54%20Rue%20Robespierre%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727088744158!5m2!1sfr!2sfr' ,1),
+    (NULL, '30 rue Parmentier',NULL , 2),
+    (NULL, '17 rue du Sergent Godefroy', 'Devant la boulagerie','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.232374941594!2d2.4324234000000065!3d48.8537791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6729fc4cad743%3A0x506d68c45452680!2s17%20Rue%20du%20Sergent%20Godefroy%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727089294062!5m2!1sfr!2sfr', 3),
+    (NULL, '2 rue Moise Chevalier', 'Devant le garage Opel','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.6714860370244!2d2.4336505!3d48.8644745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d67daf3117b%3A0xae5082e3dd459290!2sRue%20Maurice%20Chevalier%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727089535992!5m2!1sfr!2sfr', 4),
+    (NULL, '83 bd Henry Barbusse', 'Chez Sandra','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.47620177447!2d2.4414827999999913!3d48.86819790000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d440b7c293d%3A0x3113958754d4bc53!2s83%20Bd%20Henri%20Barbusse%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727089727077!5m2!1sfr!2sfr', 5),
+    (NULL, '8 rue Désirée Charton', 'Brasserie Croix de Chavaux','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.531540608805!2d2.450753800000009!3d48.867142799999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d4ef21236e9%3A0x1af09451d7386c42!2s8%20Rue%20D%C3%A9sir%C3%A9%20Charton%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727089873733!5m2!1sfr!2sfr' ,6),
+    (NULL, '53 rue du Capitaine Dreyfus', 'Chez Louise','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.82445439369!2d2.439074176177339!3d48.86155777133262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d5b9e9a535b%3A0xd40a5cae36100cc3!2s53%20Rue%20du%20Capitaine%20Dreyfus%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1726758913219!5m2!1sfr!2sfr' ,7),
+    (NULL, '6 place Jean-Jaurès', 'Biocoop','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5249.536485876064!2d2.4426543000000054!3d48.86262960000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d5b10c69c1f%3A0x51e8e1ec90239743!2s6%20Pl.%20Jean%20Jaur%C3%A8s%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727090045226!5m2!1sfr!2sfr' ,8),
+    (NULL, '28 rue Gagillée', 'Devant la laverie','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5249.8279368220155!2d2.449314400000002!3d48.85985089999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d5124f48499%3A0x8c100b69286021b9!2s28%20Rue%20Galil%C3%A9e%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727090311000!5m2!1sfr!2sfr' ,9),
+    (NULL, '15 av du Colonel Fabien', 'Devant Proxi', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.1299349123574!2d2.4490848999999995!3d48.87479949999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d37dca9076d%3A0x43a4ce91bcbd890b!2s15%20Av.%20du%20Colonel%20Fabien%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727090565540!5m2!1sfr!2sfr',10),
+    (NULL, '115 rue Edouard Branly', 'Devant le tabac','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.215345676338!2d2.4622021999999997!3d48.873171199999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e612b58d19315f%3A0x3eb9e86afb50e0c5!2s115%20Rue%20Edouard%20Branly%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727090699777!5m2!1sfr!2sfr' ,11),
+    (NULL, '78 rue Anatole France', 'Chez Patrice','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.8119292371907!2d2.4618438!3d48.8617966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e612adc9adeb21%3A0x9db24d3e12ef8632!2sRue%20Anatole%20France%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727090853087!5m2!1sfr!2sfr' ,12),
+    (NULL, '9 rue des Ruffins', 'Chez Corinco','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5249.641637036492!2d2.469891399999992!3d48.86162710000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e612a573c9f9e3%3A0x3c54de4097b0e338!2s9%20Rue%20des%20Ruffins%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727090985591!5m2!1sfr!2sfr' ,13),
+    (NULL, '14 Place Margherite et Emile Le Morillon', 'Devant la status','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.654446177373!2d2.4783954000000046!3d48.864799400000024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e612bd162997f1%3A0x80cfcf82a19d8712!2s14%20Pl.%20le%20Morillon%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727091172011!5m2!1sfr!2sfr' ,14)
 ;
 
 

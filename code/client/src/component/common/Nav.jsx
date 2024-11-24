@@ -18,7 +18,7 @@ const Nav = () => {
 			<nav id="desktop-nav" role="navigation">
 				<ul>
 					<li id="user-email">{user?.email}</li>
-					<p>{JSON.stringify(user)}</p>
+					{/* <p>{JSON.stringify(user)}</p> */}
 					<li>
 						<Link to="/collect">Points de Collecte</Link>
 					</li>
@@ -29,17 +29,24 @@ const Nav = () => {
 					<li>
 						<Link to="/voir-dons">Réserver un don</Link>
 					</li>
+
 					{
 						// condition react: condition ternaire seule condition dans le HTML de react
 						// condition ? instruction : else
+
 						user ? (
-							<Link to={"/logout"}>connecté</Link>
+							<Link to={"/logout"}>Connecté</Link>
 						) : (
 							<>
 								<Link to="/connexion">Connexion|Inscription</Link>
 							</>
 						)
 					}
+					{user?.isAdmin && (
+						<li>
+							<Link to="/admin">Espace Admin</Link>
+						</li>
+					)}
 				</ul>
 			</nav>
 		</header>

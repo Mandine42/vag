@@ -30,6 +30,7 @@ describe("Collect validator test suite", () => {
 		id: 1,
 		adress: "25 rue nenufar",
 		meeting_point: "",
+		iframe: "",
 		district_id: 1,
 		district: district,
 	};
