@@ -17,7 +17,7 @@ const Footer = () => {
 					<li>
 						<Link to="/contact">
 							<img
-								src="asset/Contactez-nous.svg"
+								src="/asset/Contactez-nous.svg"
 								alt="Logo de Contactez-nous"
 							/>
 						</Link>
@@ -27,17 +27,17 @@ const Footer = () => {
 				<ul id="reseaux-sociaux">
 					<li>
 						<Link to="https://x.com/goret_aman4826">
-							<img src="asset/TwitterX.svg" alt="Logo TwitterX" />
+							<img src="/asset/TwitterX.svg" alt="Logo TwitterX" />
 						</Link>
 					</li>
 					<li>
 						<Link to="https://www.instagram.com/voisinsantigaspi">
-							<img src="asset/Instagram.svg" alt="Logo Instagram" />
+							<img src="/asset/Instagram.svg" alt="Logo Instagram" />
 						</Link>
 					</li>
 					<li>
 						<Link to="https://www.facebook.com/profile.php?id=61568505726912&sk=about">
-							<img src="asset/Facebook.svg" alt="Logo Facebook" />
+							<img src="/asset/Facebook.svg" alt="Logo Facebook" />
 						</Link>
 					</li>
 				</ul>

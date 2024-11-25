@@ -14,9 +14,7 @@ class CollectRouter {
         // new AuthorizationMiddleware().authorize(["admin"]),
         new CollectController().one);
         //route pour créer
-        this.router.post("/", 
-        // new AuthorizationMiddleware().authorize(["admin", "user"]),
-        new CollectValidatorMiddleware().filter, new CollectController().create);
+        this.router.post("/", new AuthorizationMiddleware().authorize(["admin"]), new CollectValidatorMiddleware().filter, new CollectController().create);
         // this.router.post("/auth", new CollectController().auth);
         //route pour modifier
         this.router.put("/:id", new AuthorizationMiddleware().authorize(["admin"]), new CollectController().update);

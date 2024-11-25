@@ -6,12 +6,12 @@ class ShareValidator {
         // reprendre les proprités du model
         const constraints = Joi.object({
             id: Joi.number().positive().allow(),
-            quantity: Joi.number().positive().required(),
+            quantity: Joi.number().positive(),
             collect_dateTime: Joi.string().required(),
-            expiration: Joi.string().required(),
-            product_id: Joi.number().positive().required(),
+            expiration: Joi.string(),
+            product_id: Joi.number().positive(),
             product: Joi.object().allow(),
-            collect_id: Joi.number().positive().required(),
+            collect_id: Joi.number().positive(),
             collect: Joi.object().allow(),
             // propriété user share
             donor_id: Joi.number().positive().allow(),

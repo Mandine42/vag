@@ -1,15 +1,33 @@
-import { useEffect, useState } from "react";
-import { selectAllProduct } from "../../service/product_api";
-import { Link } from "react-router-dom";
+import listProduct, { selectAllProduct } from "../../service/product_api";
+import { Link, useNavigate } from "react-router-dom";
 import FormulaireProduits from "./FormulaireProduits";
 import "../../assets/CSS/formulaire-dons.css";
-const FormulaireDons = () => {
-	const [category, setCategory] = useState("Fruits");
-	const [product, setProduct] = useState([]);
+import { useForm } from "react-hook-form";
 
-	useEffect(() => {
-		selectAllProduct(category).then((results) => setProduct(results.data));
-	}, [category]);
+const FormDons = () => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+	// uneNavigate permet de changer de route
+	const navigate = useNavigate();
+	// const { product, setProduct } = useContext(ProductContexte);
+	//soumission du formulaire
+	// paramètre data permet de récuperer la saisie du formulaire
+	const submit = async (data) => {
+		console.log(data);
+		// // enregistrer l'utilisateur
+		// const results = await listProduct(data);
+		// // si l'enregestriment a été effectué
+		// if (results.status === 201) {
+		// 	// stocker le message dans la session
+		// 	window.sessionStorage.setItem("notice", "Votre don est enregistré");
+
+		// redirection vers une route
+		// navigate("/voir-dons");
+	};
+	// };
 
 	return (
 		<main>
@@ -22,13 +40,13 @@ const FormulaireDons = () => {
 					</li>
 				</ul>
 			</section>
-			<form id="#" action="share" method="post">
+			<form id="signupForm" onSubmit={handleSubmit(submit)}>
 				<fieldset>
 					<legend id="share">Ce que je donne</legend>
 					<button
 						type="button"
 						className="toggle-list btn-fruit"
-						onClick={() => setCategory("Fruits")}
+						onClick={() => "fruit"}
 					>
 						Fruits
 					</button>
@@ -36,7 +54,7 @@ const FormulaireDons = () => {
 					<button
 						type="button"
 						className="toggle-list btn-keep"
-						onClick={() => setCategory("Conserves")}
+						onClick={() => "Conserves"}
 					>
 						Conserves
 					</button>
@@ -44,7 +62,7 @@ const FormulaireDons = () => {
 					<button
 						type="button"
 						className="toggle-list btn-vegetable"
-						onClick={() => setCategory("Légumes")}
+						onClick={() => "Légumes"}
 					>
 						Légumes
 					</button>
@@ -91,6 +109,7 @@ const FormulaireDons = () => {
 							name="msg_fruits[]"
 							id="autre2"
 							value="other2"
+							{...register("msg_fruits")}
 						/>
 						<label htmlFor="autre2" className="label-fruit">
 							Autre
@@ -101,6 +120,7 @@ const FormulaireDons = () => {
 							name="other_input3"
 							placeholder="Veuillez préciser..."
 							class="input-fresh"
+							{...register("other_input3")}
 						/>
 					</div>
 					<input
@@ -109,6 +129,7 @@ const FormulaireDons = () => {
 						id="datePeremptionCheckbox2"
 						name="msg_fresh[]"
 						value="date-peremption"
+						{...register("msg_fresh")}
 					/>
 					<label htmlFor="datePeremptionCheckbox2">date</label>
 					<input
@@ -116,11 +137,12 @@ const FormulaireDons = () => {
 						className="date-fresh"
 						id="datePeremption2"
 						name="date_input2"
+						{...register("date_input2")}
 					/>
 					<br />
-					{product.map((item) => {
+					{/* {product.map((item) => {
 						return <FormulaireProduits key={item.id} data={item} />;
-					})}
+					})} */}
 					<button type="button" id="validate-all">
 						Voir ma sélection
 					</button>
@@ -131,4 +153,4 @@ const FormulaireDons = () => {
 	);
 };
 
-export default FormulaireDons;
+export default FormDons;

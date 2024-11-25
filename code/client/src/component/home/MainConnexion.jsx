@@ -55,7 +55,7 @@ const MainConnexion = () => {
 						</fieldset>
 						<ul>
 							<li>
-								<Link to="">Mot de passe oublié ?</Link>
+								<Link to={"/"}>Mot de passe oublié ?</Link>
 							</li>
 						</ul>
 
@@ -104,9 +104,9 @@ const MainConnexion = () => {
 							</p>
 						</section>
 						{/* <input type="submit" value="S'inscrire" /> */}
-						<button type="button" Link to="/formulaire-inscription">
+						<Link className="btn" to="/formulaire-inscription">
 							S'inscrire
-						</button>
+						</Link>
 					</form>
 				</section>
 			</div>

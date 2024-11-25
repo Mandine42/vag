@@ -22,7 +22,7 @@ class CollectRouter {
 		//route pour créer
 		this.router.post(
 			"/",
-			// new AuthorizationMiddleware().authorize(["admin", "user"]),
+			new AuthorizationMiddleware().authorize(["admin"]),
 			new CollectValidatorMiddleware().filter,
 			new CollectController().create,
 		);

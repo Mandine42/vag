@@ -23,15 +23,15 @@ h3{
     margin: auto;
     
 }
-form{
+/* form{
     flex: 1;
     min-width: 280px;
     max-width: 45%;
-}
+} */
 
   
 
-fieldset {
+/* fieldset {
    border-radius: 30px;
    border: 1px solid var(--bleu);
     display: flex;
@@ -39,7 +39,7 @@ fieldset {
     flex-direction: column;
     padding: 2vh;
     margin: 2vh 0;
-}
+} */
 
 /* légumes */
 .btn-vegetable, .content-vegetable {
@@ -920,7 +920,7 @@ h3{
 }
 @media screen and (max-width: 769px) {
     main {
-        height: 260vh;
+        height: 140vh;
     }
     #form-container {
         flex-direction: column;
@@ -929,6 +929,7 @@ h3{
 
     #form {
         max-width: 100%;
+        align-items: center;
     }
     #quand{
         font-size: 1.5rem;

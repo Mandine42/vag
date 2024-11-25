@@ -15,11 +15,11 @@ import Parametre from "../page/Parametre";
 import PlanSite from "../page/PlanSite";
 import Profil from "../page/Profil";
 import VoirDons from "../page/VoirDons";
-import FormulaireDons from "../component/home/FormulaireDons";
+import FormulaireDons from "../page/FormulaireDons";
 import LogoutPage from "../page/LogoutPage";
-import AdminHomePage from "../page/admin/AdminHomePage";
-import AdminDonsPage from "../page/admin/AdminDonsPage";
-import AdminDonsFormPage from "../page/admin/AdminDonsFormPage";
+import AdminHomePage from "../layout/admin/AdminHomePage";
+import AdminDonsPage from "../layout/admin/AdminDonsPage";
+import AdminDonsFormPage from "../layout/admin/AdminDonsFormPage";
 import AdminRoute from "../component/admin/AdminRoute";
 
 const router = createBrowserRouter([
@@ -105,8 +105,8 @@ const router = createBrowserRouter([
 		],
 	},
 	{
-		path: "/admin",
-		element: <AdminRoute />,
+		path: "/admin/",
+		element: <BaseLayout />,
 		children: [
 			{
 				path: "",

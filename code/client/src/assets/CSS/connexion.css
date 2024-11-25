@@ -83,7 +83,7 @@ legend{
     justify-content: center;
  }
 
-input[type="submit"]{
+input[type="submit"], .btn{
     font-family: var(--p);
     font-size: 1.25rem;
     color: var(--creme);
@@ -152,7 +152,8 @@ span{
         max-width: 100%;
     }
 
-    input[type="submit"] {
+    input[type="submit"]
+     {
         font-size: 1rem;
         padding: 10px 20px;
         height: auto;

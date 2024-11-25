@@ -11,7 +11,7 @@ const Nav = () => {
 			<ol>
 				<li>
 					<Link to="/">
-						<img src="asset/Group-5.svg" alt="Logo" />
+						<img src="/asset/Group-5.svg" alt="Logo" />
 					</Link>
 				</li>
 			</ol>
@@ -35,17 +35,19 @@ const Nav = () => {
 						// condition ? instruction : else
 
 						user ? (
-							<Link to={"/logout"}>Connecté</Link>
+							<Link to={"/logout"}>Déconnexion</Link>
 						) : (
 							<>
 								<Link to="/connexion">Connexion|Inscription</Link>
 							</>
 						)
 					}
-					{user?.isAdmin && (
+					{user?.role?.name === "admin" ? (
 						<li>
-							<Link to="/admin">Espace Admin</Link>
+							<Link to={"/admin"}>Espace Admin</Link>
 						</li>
+					) : (
+						<></>
 					)}
 				</ul>
 			</nav>

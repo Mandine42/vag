@@ -12,7 +12,7 @@ const UserProvider = ({ children }) => {
 	// const [user, setUser] = useState(null);
 
 	const [user, setUser] = useState({
-		email: "admin@admin.fr",
+		email: "amandine.martin@gmail.com",
 		isAdmin: true, // Passez à `false` pour tester une redirection
 	});
 

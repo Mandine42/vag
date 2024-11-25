@@ -5,7 +5,7 @@ const NavSmartphone = () => {
 			<ol>
 				<li>
 					<Link to="/">
-						<img src="asset/img-smartphone/logo-smartphone.svg" alt="Logo" />
+						<img src="/asset/img-smartphone/logo-smartphone.svg" alt="Logo" />
 					</Link>
 				</li>
 				{/* <li>{user?.email}</li> */}
@@ -14,7 +14,7 @@ const NavSmartphone = () => {
 				<li>
 					<Link to="/collect">
 						<img
-							src="asset/img-smartphone/Profil.svg"
+							src="/asset/img-smartphone/Profil.svg"
 							alt="Logo de la collect"
 						/>
 						<span className="smart">Mon quartier</span>
@@ -22,14 +22,14 @@ const NavSmartphone = () => {
 				</li>
 				<li>
 					<Link to="/dons">
-						<img src="asset/img-smartphone/Dons.svg" alt="Logo du don" />
+						<img src="/asset/img-smartphone/Dons.svg" alt="Logo du don" />
 						<span className="smart">Faire un don</span>
 					</Link>
 				</li>
 				<li>
 					<Link to="/voir-dons">
 						<img
-							src="asset/img-smartphone/voir-les-dons.svg"
+							src="/asset/img-smartphone/voir-les-dons.svg"
 							alt="Logo Réserver"
 						/>
 						<span className="smart">Réserver</span>
@@ -37,7 +37,7 @@ const NavSmartphone = () => {
 				</li>
 				<li>
 					<Link to="/connexion">
-						<img src="asset/img-smartphone/Collect.svg" alt="Logo du profil" />
+						<img src="/asset/img-smartphone/Collect.svg" alt="Logo du profil" />
 						<span className="smart">Connexion</span>
 					</Link>
 					{/* {

@@ -1,4 +1,4 @@
-// récupération des points de collect
+// récupération des quartiers
 const selectAllDistrict = async () => {
 	// configurer la requête HTTP
 	const request = new Request(`${import.meta.env.VITE_API_URL}/district`);
