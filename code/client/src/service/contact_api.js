@@ -1,4 +1,4 @@
-// enregistrer un user
+// enregistrer un contact
 // formData: saisie du formulaire
 const contact = async (formdata) => {
 	// configurer la requête HTTP

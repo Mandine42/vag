@@ -4,10 +4,10 @@ const FormulaireDonsComment = () => {
 	const [message, setMessage] = useState(""); // État pour gérer le contenu du commentaire
 	// const [comments, setComments] = useState([]); // État pour gérer la liste des commentaires
 	return (
-		<fieldset class="commentaire">
+		<fieldset className="commentaire">
 			<legend id="commentaire">Je laisse un commentaire</legend>
 
-			<label for="msg" class="label-commentaire">
+			<label htmlFor="msg" className="label-commentaire">
 				Votre Message
 			</label>
 			<textarea

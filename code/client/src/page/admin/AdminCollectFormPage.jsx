@@ -6,7 +6,7 @@ import { selectAllDistrict } from "../../service/district_api";
 import { authUser } from "../../service/user_api";
 import { UserContexte } from "../../provider/UserProvider";
 
-const AdminDonsFormPage = () => {
+const AdminCollectFormPage = () => {
 	const {
 		register,
 		handleSubmit,
@@ -130,4 +130,4 @@ const AdminDonsFormPage = () => {
 	);
 };
 
-export default AdminDonsFormPage;
+export default AdminCollectFormPage;

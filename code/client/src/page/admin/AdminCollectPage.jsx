@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { selectAllCollect } from "../../service/collect_api";
 import "../../assets/CSS/admin-dons-page.css";
 
-const AdminDonsPage = () => {
+const AdminCollectPage = () => {
 	const [collect, setCollect] = useState([]);
 	// detecter des moments de vie du composant
 	useEffect(() => {
@@ -60,4 +60,4 @@ const AdminDonsPage = () => {
 	);
 };
 
-export default AdminDonsPage;
+export default AdminCollectPage;

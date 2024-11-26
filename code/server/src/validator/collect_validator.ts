@@ -7,12 +7,12 @@ class CollectValidator {
 		// contraintes de validation
 		// reprendre les proprités du model
 		const constraints = Joi.object({
-			id: Joi.number().positive().allow(),
+			id: Joi.number().min(0).allow(""),
 			adress: Joi.string().required(),
 			meeting_point: Joi.string().required(),
 			iframe: Joi.string(),
 			district_id: Joi.number().positive().required(),
-			district: Joi.object().allow(),
+			district: Joi.object().allow(""),
 		});
 
 		try {

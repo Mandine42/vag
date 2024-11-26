@@ -17,10 +17,9 @@ import Profil from "../page/Profil";
 import VoirDons from "../page/VoirDons";
 import FormulaireDons from "../page/FormulaireDons";
 import LogoutPage from "../page/LogoutPage";
-import AdminHomePage from "../layout/admin/AdminHomePage";
-import AdminDonsPage from "../layout/admin/AdminDonsPage";
-import AdminDonsFormPage from "../layout/admin/AdminDonsFormPage";
-import AdminRoute from "../component/admin/AdminRoute";
+import AdminHomePage from "../page/admin/AdminHomePage";
+import AdminCollectPage from "../page/admin/AdminCollectPage";
+import AdminCollectFormPage from "../page/admin/AdminCollectFormPage";
 
 const router = createBrowserRouter([
 	/*
@@ -113,12 +112,12 @@ const router = createBrowserRouter([
 				element: <AdminHomePage />,
 			},
 			{
-				path: "dons",
-				element: <AdminDonsPage />,
+				path: "collect",
+				element: <AdminCollectPage />,
 			},
 			{
-				path: "dons/form",
-				element: <AdminDonsFormPage />,
+				path: "collect/form",
+				element: <AdminCollectFormPage />,
 			},
 		],
 	},

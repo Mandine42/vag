@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { selectAllDistrict } from "../../service/district_api";
 
-const FormDonsQuartier = ({ data }) => {
+const FormDonsQuartier = ({ formData }) => {
 	const {
 		register,
 		handleSubmit,
@@ -21,23 +21,29 @@ const FormDonsQuartier = ({ data }) => {
 		// .then: j'attends
 		selectAllDistrict().then((results) => setDistrict(results.data));
 	}, []);
-	const submit = (data) => {
-		console.log("Données soumises :", data);
+	const submit = (formData) => {
+		console.log("Données soumises :", formData);
 		// Ajoutez ici votre logique pour traiter les données
 	};
 
 	return (
 		<form id="signupForm" onSubmit={handleSubmit(submit)}>
-			<fieldset class="quartier">
+			<fieldset className="quartier">
 				<legend id="donne">Où je donne</legend>
-				<label htmlFor="quartier" class="label-quartier">
+				<label htmlFor="quartier" className="label-quartier">
 					Quartier
 				</label>
-				<select name="msg quartier" id="quartier" required aria-required="true">
-					<option value="">Selectionnez</option>
-					<optgroup label="Quartier">
+				<select
+					name="msg quartier"
+					id="quartier"
+					required
+					aria-required="true"
+					{...register("name")}
+				>
+					{/* <option value="">Selectionnez</option> */}
+					{/* <optgroup label="Quartier">
 						{/* {...register("name")} */}
-						<option value="Republique">Bas Montreuil - République</option>
+					{/* <option value="Republique">Bas Montreuil - République</option>
 						<option value="Chanzy">Etienne Marcel - Chanzy</option>
 						<option value="Bobillot">Bobillot</option>
 						<option value="La noue">La Noue - Clos français</option>
@@ -50,8 +56,15 @@ const FormDonsQuartier = ({ data }) => {
 						<option value="Bel air">Bel Air - Grands Pêchers - Renan</option>
 						<option value="Signac">Signac - Murs à pêches</option>
 						<option value="Ruffins">Ruffins - Théophile Sueur</option>
-						<option value="Montreau">Montreau - Le Morillon</option>
-					</optgroup>
+						<option value="Montreau">Montreau - Le Morillon</option> */}
+					{/* </optgroup> */}
+					type="text" id="quartier"
+					<option value="">Selectionnez</option>
+					{district.map((data) => (
+						<option key={Math.random()} value={data.id}>
+							{data.name}
+						</option>
+					))}
 				</select>
 
 				<button type="button" id="view-map">

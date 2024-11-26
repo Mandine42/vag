@@ -26,13 +26,13 @@ const FormulaireDonsDate = () => {
 	// };
 	return (
 		// <form id="signupForm" onSubmit={handleSubmit(submit)}>
-		<fieldset class="date-heure">
+		<fieldset className="date-heure">
 			<legend id="quand">Quand je donne</legend>
-			<label for="date" class="label-date">
+			<label htmlFor="date" className="label-date">
 				Date
 			</label>
 			<input type="date" id="date" name="date" required aria-required />
-			<label for="time" class="label-date">
+			<label htmlFor="time" className="label-date">
 				Heure
 			</label>
 			<input type="time" id="time" name="time" />

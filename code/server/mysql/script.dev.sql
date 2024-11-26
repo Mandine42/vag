@@ -149,7 +149,7 @@ VALUES
 INSERT INTO vag_dev.collect 
 VALUES
  (NULL, '54 rue Robespière', 'Arsène','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5250.534659480077!2d2.4208590761282447!3d48.853112501078336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6729d36dd8f1d%3A0xdd197fe08f0532ca!2s54%20Rue%20Robespierre%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727088744158!5m2!1sfr!2sfr' ,1),
-    (NULL, '30 rue Parmentier',NULL , 2),
+    (NULL, '30 rue Parmentier',NULL ,NULL, 2),
     (NULL, '17 rue du Sergent Godefroy', 'Devant la boulagerie','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.232374941594!2d2.4324234000000065!3d48.8537791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6729fc4cad743%3A0x506d68c45452680!2s17%20Rue%20du%20Sergent%20Godefroy%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727089294062!5m2!1sfr!2sfr', 3),
     (NULL, '2 rue Moise Chevalier', 'Devant le garage Opel','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.6714860370244!2d2.4336505!3d48.8644745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d67daf3117b%3A0xae5082e3dd459290!2sRue%20Maurice%20Chevalier%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727089535992!5m2!1sfr!2sfr', 4),
     (NULL, '83 bd Henry Barbusse', 'Chez Sandra','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.47620177447!2d2.4414827999999913!3d48.86819790000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d440b7c293d%3A0x3113958754d4bc53!2s83%20Bd%20Henri%20Barbusse%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727089727077!5m2!1sfr!2sfr', 5),

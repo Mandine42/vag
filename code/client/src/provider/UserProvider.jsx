@@ -11,10 +11,7 @@ const UserProvider = ({ children }) => {
 	// la valeur null indique qu'aucun utilisateur n'est connecté
 	// const [user, setUser] = useState(null);
 
-	const [user, setUser] = useState({
-		email: "amandine.martin@gmail.com",
-		isAdmin: true, // Passez à `false` pour tester une redirection
-	});
+	const [user, setUser] = useState(null);
 
 	return (
 		<UserContexte.Provider value={{ user, setUser }}>

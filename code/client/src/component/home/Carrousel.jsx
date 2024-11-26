@@ -1,3 +1,4 @@
+import "../../assets/js/caroussel.js";
 const Carrousel = () => {
 	return (
 		<section id="carrousel">

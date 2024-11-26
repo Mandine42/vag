@@ -1,33 +1,46 @@
-import listProduct, { selectAllProduct } from "../../service/product_api";
 import { Link, useNavigate } from "react-router-dom";
-import FormulaireProduits from "./FormulaireProduits";
 import "../../assets/CSS/formulaire-dons.css";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { selectAllProduct } from "../../service/product_api";
 
 const FormDons = () => {
 	const {
 		register,
 		handleSubmit,
+		setValue,
 		formState: { errors },
 	} = useForm();
-	// uneNavigate permet de changer de route
 	const navigate = useNavigate();
-	// const { product, setProduct } = useContext(ProductContexte);
-	//soumission du formulaire
-	// paramètre data permet de récuperer la saisie du formulaire
-	const submit = async (data) => {
-		console.log(data);
-		// // enregistrer l'utilisateur
-		// const results = await listProduct(data);
-		// // si l'enregestriment a été effectué
-		// if (results.status === 201) {
-		// 	// stocker le message dans la session
-		// 	window.sessionStorage.setItem("notice", "Votre don est enregistré");
+	const [product, setProduct] = useState([]);
+	const [selectedCategory, setSelectedCategory] = useState(""); // Nouvelle variable d'état pour la catégorie sélectionnée
 
-		// redirection vers une route
-		// navigate("/voir-dons");
+	// Récupération des produits au chargement du composant
+	useEffect(() => {
+		selectAllProduct().then((results) => setProduct(results.data));
+	}, []);
+
+	// Soumission du formulaire
+	const submit = async (formData) => {
+		console.log(formData);
+		// Logique pour enregistrer les données
+		// const results = await listProduct(formData);
+		// if (results.status === 201) {
+		//   window.sessionStorage.setItem("notice", "Votre don est enregistré");
+		//   navigate("/voir-dons");
+		// }
 	};
-	// };
+
+	// Mise à jour de la catégorie sélectionnée
+	const handleCategoryClick = (category) => {
+		setSelectedCategory(category); // Met à jour la catégorie sélectionnée
+		setValue("category_id", category); // Met à jour la catégorie dans le formulaire
+	};
+
+	// Filtrage des produits en fonction de la catégorie sélectionnée
+	const filteredProducts = product.filter(
+		(prod) => prod.category_id === selectedCategory,
+	);
 
 	return (
 		<main>
@@ -40,21 +53,72 @@ const FormDons = () => {
 					</li>
 				</ul>
 			</section>
+
 			<form id="signupForm" onSubmit={handleSubmit(submit)}>
 				<fieldset>
 					<legend id="share">Ce que je donne</legend>
+
+					{/* Boutons de catégorie */}
 					<button
 						type="button"
 						className="toggle-list btn-fruit"
-						onClick={() => "fruit"}
+						onClick={() => handleCategoryClick("Fruits")} // Lorsqu'on clique, on met à jour la catégorie sélectionnée
 					>
 						Fruits
 					</button>
+					<button
+						type="button"
+						className="toggle-list btn-vegetable"
+						onClick={() => handleCategoryClick("Vegetables")}
+					>
+						Légumes
+					</button>
+
+					{/* Affichage des produits filtrés */}
+					<div id="product-list" className="content-fruit">
+						<div className="form-group">
+							{filteredProducts.map((data) => (
+								<p key={data.id}>
+									<label>
+										<input
+											type="checkbox"
+											value={data.id} // Valeur dynamique
+											{...register("category_id", {
+												required: "Les options sont obligatoires", // Validation
+											})}
+										/>
+										{data.name} {/* Affichage du nom du produit */}
+									</label>
+								</p>
+							))}
+						</div>
+					</div>
+
+					<label htmlFor="pomme" className="label-fruit">
+						{/* {...register("name")} */}
+					</label>
+					<select
+						className="quantity quantity-fruit"
+						id="quantitySelect33"
+						name="quantity33"
+					>
+						<option value="Non spécifiée">Quantité</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select>
 
 					<button
 						type="button"
 						className="toggle-list btn-keep"
-						onClick={() => "Conserves"}
+						onClick={() => handleCategoryClick("Conserves")}
 					>
 						Conserves
 					</button>
@@ -62,45 +126,51 @@ const FormDons = () => {
 					<button
 						type="button"
 						className="toggle-list btn-vegetable"
-						onClick={() => "Légumes"}
+						onClick={() => handleCategoryClick("Légumes")}
 					>
 						Légumes
 					</button>
+
 					<button
 						type="button"
 						className="toggle-list btn-fresh"
-						onClick={() => "Produits frais"}
+						onClick={() => handleCategoryClick("Produits frais")}
 					>
 						Produits frais
 					</button>
+
 					<button
 						type="button"
 						className="toggle-list btn-milk"
-						onClick={() => "Produits laitiers"}
+						onClick={() => handleCategoryClick("Produits laitiers")}
 					>
 						Produits laitiers
 					</button>
+
 					<button
 						type="button"
 						className="toggle-list btn-condiment"
-						onClick={() => "Condiments"}
+						onClick={() => handleCategoryClick("Condiments")}
 					>
 						Condiments
 					</button>
+
 					<button
 						type="button"
 						className="toggle-list btn-legumineuse"
-						onClick={() => "Condiments"}
+						onClick={() => handleCategoryClick("Légumineuse")}
 					>
-						Légumineuse
+						Légumineuses
 					</button>
+
 					<button
 						type="button"
 						className="toggle-list btn-feculent"
-						onClick={() => "Féculents"}
+						onClick={() => handleCategoryClick("Féculents")}
 					>
 						Féculents
 					</button>
+
 					<div className="form-group">
 						<input
 							type="checkbox"
@@ -119,10 +189,11 @@ const FormDons = () => {
 							id="otherTextField3"
 							name="other_input3"
 							placeholder="Veuillez préciser..."
-							class="input-fresh"
+							className="input-fresh"
 							{...register("other_input3")}
 						/>
 					</div>
+
 					<input
 						type="checkbox"
 						className="date-peremption date-peremption-fresh"
@@ -140,9 +211,11 @@ const FormDons = () => {
 						{...register("date_input2")}
 					/>
 					<br />
-					{/* {product.map((item) => {
-						return <FormulaireProduits key={item.id} data={item} />;
-					})} */}
+					<p>
+						<input type="hidden" value="" {...register("id")} />
+						<input type="submit" value="" />
+					</p>
+
 					<button type="button" id="validate-all">
 						Voir ma sélection
 					</button>

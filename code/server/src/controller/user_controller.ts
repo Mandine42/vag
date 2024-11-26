@@ -22,7 +22,7 @@ class UserController {
 				? res.json(result)
 				: res.status(400).json({
 						satus: 400,
-						message: "Error",
+						message: "Error1",
 					});
 		}
 		// si une erreur est renvoyée
@@ -44,7 +44,7 @@ class UserController {
 				? res.json(result)
 				: res.status(400).json({
 						satus: 400,
-						message: "Error",
+						message: "Error2",
 					});
 		}
 		// si une erreur est renvoyée
@@ -147,7 +147,7 @@ class UserController {
 		if (user instanceof Error) {
 			return res.status(400).json({
 				status: 400,
-				message: "error",
+				message: "error3",
 			});
 		}
 

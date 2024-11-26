@@ -57,16 +57,13 @@ class CollectRepository {
         const connection = await this.mySQLService.connect();
         // créer un canal isole pour la transaction
         const transaction = await connection.getConnection();
+        console.log(data);
         try {
             // démarrer une transaction
             await transaction.beginTransaction();
             //première requête
             const query = `
-			INSERT INTO ${process.env.MYSQL_DB}.${this.table}
-			VALUE
-				(NULL, :adress, :meeting_point, 
-				:iframe,
-				:district_id);
+				INSERT INTO ${process.env.MYSQL_DB}. ${this.table} VALUE (NULL, :adress, :meeting_point, :iframe, :district_id)
 			`;
             const results = await connection.execute(query, data);
             transaction.commit();
