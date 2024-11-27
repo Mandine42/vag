@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const ProfilDonsrecupere = () => {
 	return (
-		<div id="dons-container">
+		<div id="dons-container-profil">
 			<section class="don">
 				<h2>Mes dons récupérés</h2>
 				<ul class="donation">

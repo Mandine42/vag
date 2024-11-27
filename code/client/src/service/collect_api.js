@@ -51,4 +51,41 @@ const creatCollect = async (token, formType) => {
 	// retourner les données JSON
 	return data;
 };
-export { selectAllCollect, creatCollect };
+// récipération d'un point de collecte
+const selectOneCollect = async (id) => {
+	// configurer la requête HTTP
+	const request = new Request(`${import.meta.env.VITE_API_URL}/collect/${id}`);
+
+	// récuperer réponse
+	const response = await fetch(request);
+
+	// récuperer les données JSON contenues dans la réponse
+	const data = await response.json();
+
+	// retourner les données JSON
+	return data;
+};
+//modifier un point de collecte
+const updateCollect = async (token, formType) => {
+	const request = new Request(
+		`${import.meta.env.VITE_API_URL}/collect/${formType.id}`,
+		{
+			method: "PUT",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(formType),
+		},
+	);
+
+	// récuperer réponse
+	const response = await fetch(request);
+
+	// récuperer les données JSON contenues dans la réponse
+	const data = await response.json();
+
+	// retourner les données JSON
+	return data;
+};
+export { selectAllCollect, creatCollect, selectOneCollect, updateCollect };

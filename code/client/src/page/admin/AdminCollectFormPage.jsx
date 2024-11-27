@@ -1,6 +1,10 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { creatCollect } from "../../service/collect_api";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+	creatCollect,
+	selectOneCollect,
+	updateCollect,
+} from "../../service/collect_api";
 import { useContext, useEffect, useState } from "react";
 import { selectAllDistrict } from "../../service/district_api";
 import { authUser } from "../../service/user_api";
@@ -11,16 +15,32 @@ const AdminCollectFormPage = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		// reste permet de réinitialiser un formulaire avec des données
+		reset,
 	} = useForm();
 	const navigate = useNavigate();
 	// récupérer les quartiers
 	const [district, setDistrict] = useState([]);
-	// Pour récuperer les options
-	//const [district, setDistrict] = useState([]);
+	//stocké le point de collecte dont l'identifiant est contenu dans la route
+	const [collect, setCollect] = useState([]);
+
+	// récupérer la variable de route
+	const { id } = useParams();
+
 	useEffect(() => {
 		selectAllDistrict().then((results) => setDistrict(results.data));
-		//selectAllDistrict().then((results) => setDistrict(results.data));
-	}, []);
+		selectOneCollect(id).then((results) => {
+			// case a cocher, unarray est obligatoire pour précocher
+			// const data = {...results.data, option_id: results.data.split(',')};
+
+			//stocker les resultats dans un état
+			setCollect(results.data);
+
+			// reinitialiser le formulaire avec les données existantes
+			// console.log(results.data);
+			reset(results.data);
+		});
+	}, [id, reset]);
 
 	// recupérer l'utilisateur stocké dans le contexte
 	const { user, setUser } = useContext(UserContexte);
@@ -34,10 +54,20 @@ const AdminCollectFormPage = () => {
 		// console.log(authentication.data.token);
 
 		// créer un point de collecte
-		const results = await creatCollect(authentication.data.token, data);
+		const results = id
+			? await updateCollect(authentication.data.token, data)
+			: await creatCollect(authentication.data.token, data);
+		// si le point de collect àété créer
+		if ([200, 201].indexOf(results.status) >= 0) {
+			// stocker le message dans la session
+			window.sessionStorage.setItem(
+				"notice",
+				id ? "Point de collecte modifié" : "Point de collecte créé",
+			);
+		}
 
 		// // Redirection après soumission réussie
-		// navigate("/admin/dons");
+		navigate("/admin/collect");
 	};
 
 	return (
@@ -74,7 +104,7 @@ const AdminCollectFormPage = () => {
 								{...register("meeting_point")}
 								id="meetingPoint"
 							/>
-							<span>{errors?.meetingPoint?.message}</span>
+							<span>{errors?.meeting_point?.message}</span>
 
 							<label htmlFor="iframe">Iframe *</label>
 							<textarea {...register("iframe")} id="iframe" />
@@ -96,11 +126,7 @@ const AdminCollectFormPage = () => {
 
 							<label htmlFor="districtName">Nom du quartier *</label>
 
-							<select
-								type="text"
-								{...register("district_id")}
-								id="districtName"
-							>
+							<select {...register("district_id")} id="districtName">
 								<option value="" />
 								{district.map((data) => (
 									<option key={Math.random()} value={data.id}>
@@ -108,18 +134,24 @@ const AdminCollectFormPage = () => {
 									</option>
 								))}
 							</select>
+							<input type="hidden" {...register("district_id")} />
 
-							<span>{errors?.districtName?.message}</span>
+							<span>{errors?.district_id?.message}</span>
 						</fieldset>
 						<p>
-							<input type="hidden" value="" {...register("id")} />
-							<input type="submit" value="Ajouter le point de collecte" />
+							{/* la valeur du champs id est récupérée à partir de variable de route */}
+							<input type="hidden" value={id} {...register("id")} />
+							<input
+								className="btn-admin"
+								type="submit"
+								value="Ajouter le point de collecte"
+							/>
 						</p>
 					</form>
 
 					<ul>
 						<li>
-							<Link to="/admin/dons">
+							<Link to="/admin/collect">
 								Retour à la liste des points de collecte
 							</Link>
 						</li>

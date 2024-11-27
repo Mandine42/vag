@@ -1,14 +1,14 @@
 const ProfilQuartier = () => {
 	return (
-		<section id="quartier">
-			<h2>Mon Quartier</h2>
+		<section id="quartier-profil">
+			<h2>Bas Montreuil-République</h2>
 			<article className="quartiers">
 				<div className="quartier-info">
 					<h3>Mon point de collecte:</h3>
 					<br />
-					<p>"Chez Louise"</p>
+					<p>Arsène</p>
 					<br />
-					<p>53 rue du Capitaine Dreyfus</p>
+					<p>54 rue Robespière</p>
 				</div>
 				<figure>
 					<iframe
@@ -22,6 +22,26 @@ const ProfilQuartier = () => {
 				</figure>
 			</article>
 		</section>
+		// 	<section className="quartier-collect">
+		// 	<Link to="" className="quartier-link">
+		// 		<h2>{data.district.name}</h2>
+		// 	</Link>
+		// 	<article className="quartier-info">
+		// 		<h3>Mon point de collecte:</h3>
+		// 		<br />
+		// 		<p>{data.meeting_point}</p>
+		// 		<br />
+		// 		<p>{data.adress}</p>
+		// 	</article>
+		// 	<iframe
+		// 		src={data.iframe}
+		// 		allowFullScreen=""
+		// 		loading="lazy"
+		// 		referrerPolicy="no-referrer-when-downgrade"
+		// 		className="plan"
+		// 		title="carte-quartier"
+		// 	/>
+		// </section>
 	);
 };
 

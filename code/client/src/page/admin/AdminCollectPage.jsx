@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { selectAllCollect } from "../../service/collect_api";
-import "../../assets/CSS/admin-dons-page.css";
+import NoticeMessage from "../../component/common/NoticeMessage";
+import "../../assets/CSS/admin-collect-page.css";
 
 const AdminCollectPage = () => {
 	const [collect, setCollect] = useState([]);
@@ -11,9 +12,14 @@ const AdminCollectPage = () => {
 	}, []);
 
 	return (
-		<>
+		<main>
 			<h1>Collecte</h1>
-			<Link to={"/admin/dons/form"}>Ajout d'un point de collecte</Link>
+			<Link className="btn-admin" to={"/admin/collect/form"}>
+				Ajout d'un point de collecte
+			</Link>
+
+			<NoticeMessage />
+
 			<table>
 				<thead>
 					<tr>
@@ -44,11 +50,15 @@ const AdminCollectPage = () => {
 								/>
 							</td>
 							<td>{data.district.name}</td>
-							<td>
-								<Link className="admin" to={"#"}>
+							<td className="td-admin">
+								<Link
+									className="btn-admin"
+									to={`/admin/collect/form/${data.id}`}
+								>
 									Modifié
 								</Link>
-								<Link className="admin" to={"#"}>
+								<br />
+								<Link className="btn-admin" to={"#"}>
 									Supprimé
 								</Link>
 							</td>
@@ -56,7 +66,7 @@ const AdminCollectPage = () => {
 					))}
 				</tbody>
 			</table>
-		</>
+		</main>
 	);
 };
 

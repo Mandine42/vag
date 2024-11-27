@@ -39,8 +39,8 @@ h2{
 }
 /* Centrage des sections et des listes */
 
-#dons-container {
-    /* display: flex; */
+#dons-container-profil {
+    display: flex;
     justify-content: space-between;
     align-items: flex-start;
     max-width: 90%;
@@ -50,7 +50,7 @@ h2{
 }
 
 /* Style pour chaque section */
-.don {
+.don-profil {
     border: 2px solid var(--vert);
     border-radius: 30px;
     padding: 20px;
@@ -59,7 +59,7 @@ h2{
     text-align: center;
 }
 /* Styles pour les listes */
-.don ul {
+.don-profil ul {
     margin: 0 auto; /* Centre les listes horizontalement */
     padding-left: 0; /* Supprime le padding gauche par défaut */
     list-style-type: circle ;
@@ -67,7 +67,7 @@ h2{
 }
 
 /* Alignement du lien <a> à droite */
-.don .gift {
+.don-profil .gift {
     display: block; /* Pour forcer le lien à occuper toute la largeur */
     text-align: right; /* Aligne le lien à droite */
     margin-top: 10px;
@@ -121,7 +121,7 @@ li {
     font-family: var(--p);
 }
 
-#quartier {
+#quartier-profil {
     border: 2px solid var(--vert);
     border-radius: 30px;
     padding: 20px;
@@ -230,20 +230,20 @@ li {
         padding: 5vh;
     }
 
-    .don {
+    .don-profil {
         max-width: 100%;
         margin-bottom: 20px;
     
 }
 
 /* Styles pour les listes */
-.don ul {
+.don-profil ul {
     margin: 0 auto;
     padding-left: 0;
 }
 
 /* Alignement du lien <a> à droite */
-.don .gift {
+.don-profil .gift {
     display: block;
     text-align: right;
     margin-top: 10px;

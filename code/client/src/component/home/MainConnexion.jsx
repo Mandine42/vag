@@ -26,7 +26,7 @@ const MainConnexion = () => {
 			// stocker l'utilisateur dans le contexte
 			setUser(results.data);
 			// redirection vers une route
-			navigate("/");
+			navigate("/profil");
 		}
 	};
 	return (

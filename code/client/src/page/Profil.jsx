@@ -5,11 +5,12 @@ import SectionProfil from "../component/home/SectionProfil";
 import "../assets/CSS/profil.css";
 import "../assets/CSS/pop-up-formulaire-contact.css";
 import "../assets/CSS/parametre.css";
+
 const Profil = () => {
 	return (
 		<>
 			<SectionProfil />
-			<ProfilDonsrecupere />
+			{/* <ProfilDonsrecupere /> */}
 			<ProfilDons />
 			<ProfilQuartier />
 		</>

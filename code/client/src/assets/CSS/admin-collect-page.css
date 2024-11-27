@@ -1,0 +1,95 @@
+/* Style de la table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  background: var(--creme);
+}
+
+thead {
+  background: var(--vert);
+  color: var(--creme);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 1rem;
+  border: 1px solid var(--bleu);
+  font-family: var(--p);
+}
+
+th {
+  font-size: 1.1rem;
+}
+
+.td-admin {
+  display: flex;
+  font-size: 1rem;
+}
+
+tr {
+  background: var(--creme);
+  color: var(--bleu);
+}
+
+/* Style pour les iframes */
+iframe.plan {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style pour les boutons admin */
+.btn-admin {
+  background-color: var(--orange-clair);
+  color: var(--bleu);
+  font-family: var(--p);
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-admin:hover {
+  background-color: var(--orange-foncé);
+  transform: scale(1.05);
+}
+
+.btn-admin:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--bleu);
+}
+
+/* Media queries pour les petites résolutions */
+@media (max-width: 768px) {
+  table {
+      font-size: 0.9rem;
+  }
+
+  th,
+  .td-admin {
+      padding: 0.8rem;
+  }
+
+  a {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+  }
+
+  iframe.plan {
+      height: 150px;
+  }
+
+  /* Ajustement pour les boutons admin en mobile */
+  .btn-admin {
+      padding: 0.6rem 1.4rem;
+      font-size: 0.9rem;
+  }
+}
+
+  

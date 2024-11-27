@@ -20,6 +20,7 @@ import LogoutPage from "../page/LogoutPage";
 import AdminHomePage from "../page/admin/AdminHomePage";
 import AdminCollectPage from "../page/admin/AdminCollectPage";
 import AdminCollectFormPage from "../page/admin/AdminCollectFormPage";
+import Guard from "../component/common/Guard";
 
 const router = createBrowserRouter([
 	/*
@@ -105,7 +106,11 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/admin/",
-		element: <BaseLayout />,
+		element: (
+			<Guard roleArray={["admin"]}>
+				<BaseLayout />,
+			</Guard>
+		),
 		children: [
 			{
 				path: "",
@@ -116,7 +121,9 @@ const router = createBrowserRouter([
 				element: <AdminCollectPage />,
 			},
 			{
-				path: "collect/form",
+				//créer une variable de route : utiliser :<nom de la variable>
+				// ? : variable optionnel
+				path: "collect/form/:id?",
 				element: <AdminCollectFormPage />,
 			},
 		],
