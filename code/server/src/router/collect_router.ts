@@ -22,7 +22,7 @@ class CollectRouter {
 		//route pour créer
 		this.router.post(
 			"/",
-			// new AuthorizationMiddleware().authorize(["admin"]),
+			new AuthorizationMiddleware().authorize(["admin"]),
 			new CollectValidatorMiddleware().filter,
 			new CollectController().create,
 		);
@@ -31,14 +31,14 @@ class CollectRouter {
 		//route pour modifier
 		this.router.put(
 			"/:id",
-			// new AuthorizationMiddleware().authorize(["admin"]),
+			new AuthorizationMiddleware().authorize(["admin"]),
 			new CollectController().update,
 		);
 
 		//route pour supprimer
 		this.router.delete(
 			"/:id",
-			// new AuthorizationMiddleware().authorize(["admin"]),
+			new AuthorizationMiddleware().authorize(["admin"]),
 			new CollectController().delete,
 		);
 		return this.router;

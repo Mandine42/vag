@@ -37,7 +37,7 @@ const AdminCollectFormPage = () => {
 			setCollect(results.data);
 
 			// reinitialiser le formulaire avec les données existantes
-			// console.log(results.data);
+			console.log(results.data);
 			reset(results.data);
 		});
 	}, [id, reset]);
@@ -134,7 +134,7 @@ const AdminCollectFormPage = () => {
 									</option>
 								))}
 							</select>
-							<input type="hidden" {...register("district_id")} />
+							{/* <input {...register("district_id")} /> */}
 
 							<span>{errors?.district_id?.message}</span>
 						</fieldset>

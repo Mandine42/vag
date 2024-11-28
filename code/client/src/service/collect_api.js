@@ -88,4 +88,31 @@ const updateCollect = async (token, formType) => {
 	// retourner les données JSON
 	return data;
 };
-export { selectAllCollect, creatCollect, selectOneCollect, updateCollect };
+
+//supprimer un point de collecte
+const deleteCollect = async (token, id) => {
+	const request = new Request(`${import.meta.env.VITE_API_URL}/collect/${id}`, {
+		method: "DELETE",
+		headers: {
+			Authorization: `Bearer ${token}`,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ id: id }),
+	});
+
+	// récuperer réponse
+	const response = await fetch(request);
+
+	// récuperer les données JSON contenues dans la réponse
+	const data = await response.json();
+
+	// retourner les données JSON
+	return data;
+};
+export {
+	selectAllCollect,
+	creatCollect,
+	selectOneCollect,
+	updateCollect,
+	deleteCollect,
+};

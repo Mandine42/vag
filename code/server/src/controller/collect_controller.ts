@@ -165,7 +165,7 @@ class CollectController {
 			},
 			process.env.SECRET as string,
 			{
-				expiresIn: "2 days",
+				expiresIn: "30s",
 			},
 		);
 

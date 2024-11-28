@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const PopUpReservationDons = () => {
+	// État pour gérer l'affichage du pop-up
+	const [isPopupVisible, setIsPopupVisible] = useState(false);
+	const [selectedDonation, setSelectedDonation] = useState(null);
 	return (
 		<div id="popup4" className="popup4 hidden">
 			<section className="popup-content4">

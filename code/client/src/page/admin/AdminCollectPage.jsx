@@ -1,15 +1,34 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { selectAllCollect } from "../../service/collect_api";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { selectAllCollect, deleteCollect } from "../../service/collect_api";
 import NoticeMessage from "../../component/common/NoticeMessage";
 import "../../assets/CSS/admin-collect-page.css";
+import { authUser } from "../../service/user_api";
+import { UserContexte } from "../../provider/UserProvider";
 
 const AdminCollectPage = () => {
 	const [collect, setCollect] = useState([]);
+
+	const { id } = useParams();
+	const { user, setUser } = useContext(UserContexte);
+	const navigate = useNavigate();
 	// detecter des moments de vie du composant
 	useEffect(() => {
 		selectAllCollect().then((results) => setCollect(results.data));
-	}, []);
+		// si la variable de route existe : supprimer un point de collecte
+		if (id) remove(id);
+	}, [id]);
+
+	const remove = async (id) => {
+		const authentification = await authUser(user);
+		const results = await deleteCollect(authentification.data.token, id);
+		if (results.status === 200) {
+			window.sessionStorage.removeItem("notice");
+			window.sessionStorage.setItem("notice", "Collecte supprimée");
+			navigate("/admin/collect");
+			return;
+		}
+	};
 
 	return (
 		<main>
@@ -58,7 +77,7 @@ const AdminCollectPage = () => {
 									Modifié
 								</Link>
 								<br />
-								<Link className="btn-admin" to={"#"}>
+								<Link className="btn-admin" to={`/admin/collect/${data.id}`}>
 									Supprimé
 								</Link>
 							</td>

@@ -21,6 +21,7 @@ import AdminHomePage from "../page/admin/AdminHomePage";
 import AdminCollectPage from "../page/admin/AdminCollectPage";
 import AdminCollectFormPage from "../page/admin/AdminCollectFormPage";
 import Guard from "../component/common/Guard";
+import AdminContact from "../page/admin/AdminContact";
 
 const router = createBrowserRouter([
 	/*
@@ -117,7 +118,7 @@ const router = createBrowserRouter([
 				element: <AdminHomePage />,
 			},
 			{
-				path: "collect",
+				path: "collect/:id?",
 				element: <AdminCollectPage />,
 			},
 			{
@@ -125,6 +126,10 @@ const router = createBrowserRouter([
 				// ? : variable optionnel
 				path: "collect/form/:id?",
 				element: <AdminCollectFormPage />,
+			},
+			{
+				path: "contact",
+				element: <AdminContact />,
 			},
 		],
 	},

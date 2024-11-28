@@ -11,6 +11,9 @@ const AdminHomePage = () => {
 					<Link className="btn-admin" to={"/admin/collect"}>
 						Gérer les points de collecte
 					</Link>
+					<Link className="btn-admin" to={"/admin/contact"}>
+						Gérer les mails de contact
+					</Link>
 				</p>
 			</div>
 		</main>

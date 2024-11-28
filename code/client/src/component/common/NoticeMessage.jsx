@@ -13,7 +13,7 @@ const NoticeMessage = () => {
 		}
 	}, []);
 
-	return <p>{notice}</p>;
+	return notice ? <p>{notice}</p> : <></>;
 };
 
 export default NoticeMessage;
