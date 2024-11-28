@@ -3,10 +3,10 @@ import PopUpReservationDons from "../component/home/PopUpReservationDons";
 
 const VoirDons = () => {
 	return (
-		<>
+		<main id="liste-dons">
 			<ListeDons />
 			<PopUpReservationDons />
-		</>
+		</main>
 	);
 };
 

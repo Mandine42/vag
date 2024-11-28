@@ -8,12 +8,12 @@ import "../assets/CSS/parametre.css";
 
 const Profil = () => {
 	return (
-		<>
+		<main id="section-profil">
 			<SectionProfil />
 			{/* <ProfilDonsrecupere /> */}
 			<ProfilDons />
 			<ProfilQuartier />
-		</>
+		</main>
 	);
 };
 

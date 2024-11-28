@@ -1,9 +1,6 @@
-main {
-    padding-top: 20vh;
-    /* height: 200vh; */
-    background: var(--creme);
+#section-profil{
+    padding-top: 10vh;
 }
-
 h1{
     font-family: var(--h);
     font-weight: 800;
@@ -11,7 +8,7 @@ h1{
     color: var(--vert);
     margin: 2vh;
 }
-h2{
+.title2{
     font-family: var(--h);
     font-weight: 600;
     font-size: 2rem;
@@ -22,6 +19,12 @@ h2{
 
 }
 
+.user-lastname, .donation{
+    font-family: var(--h);
+    font-weight: 600;
+    font-size: 2rem;
+    color: var(--vert);
+}
 #profil img{
     border-radius: 50%;
     width: 400vw;
@@ -162,175 +165,96 @@ li {
     color: var(--bleu);
 }
 
-
-@media screen and (max-width: 769px) {
-   main{
-    height:220vh;
-   }
-    #profil-params {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        position: fixed;  
-        top: 0;           
-        left: 0;
-        right: 0;
-        z-index: 10;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-   /* Lorsque la div doit disparaître */
-   .hide {
-    transform: translateY(-100%); /* Glisse la barre hors de l'écran vers le haut */
-    opacity: 0; /* Rend la barre invisible */
+#profil-params-profil {
+	display: none;
 }
-    #profil-params .params {
-        max-width: 10vw;
-        max-height: 10vh;
+@media screen and (max-width: 769px) {
+ #section-profil{
+    height: 240vh; 
+    padding-top: 0%;
+ }
+    #profil img {
+        width: 100px; 
+        height: 50px;
+        max-width: 200px; 
+        max-height: 200px;
     }
 
-    #profil-params h1 {
-        font-size: 1.5rem;  
-        text-align: center;
-        flex-grow: 1;
+    #profil {
+        width: 80%; /* Ajuste la largeur */
+        margin: 0 auto;
+        padding: 5px;
     }
 
-    figure {
-        margin: 0;
-    }
-    #profil img{
-    width: 200vh; 
-    height: 200vh; 
-    max-width: 200px; 
-    max-height: 200px;
-    }
-    
-    #profil{
-        width: 60%;
-        padding: 0;
-    }
-
-    h1{
-        font-size: 2rem;
-    }
-
-    h2{
+    h1 {
         font-size: 1.5rem;
-        padding-bottom: 0;
     }
-    h3{
-        font-size: 0.5rem;
+
+    .title2 {
+        font-size: 1.9rem;
+        padding-bottom: 2vh;
     }
-    p{
-        font-size:1rem ;
+    .user-lastname, .donation{
+        font-size: 1rem;
     }
-    #dons-container {
+
+    #profil-user, li {
+        font-size: 0.9rem;
+    }
+
+    #dons-container-profil {
         flex-direction: column;
-        max-width: 100%;
-        padding: 5vh;
+        width: 100%;
+        padding: 5vh 2vw;
     }
 
     .don-profil {
         max-width: 100%;
-        margin-bottom: 20px;
-    
+        margin: 0 auto 20px;
+        padding: 10px;
+    }
+
+    .gift {
+        font-size: 1rem;
+        text-align: center; /* Optionnel */
+    }
+
+    .quartiers {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    #plan {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .quartier-info h3, .quartier-info p {
+        text-align: center;
+    }
+    #profil-params-profil {
+        display: flex;         
+        justify-content: space-between;  
+        align-items: center;   
+        padding: 10px; 
+    }
 }
 
-/* Styles pour les listes */
-.don-profil ul {
-    margin: 0 auto;
-    padding-left: 0;
-}
 
-/* Alignement du lien <a> à droite */
-.don-profil .gift {
-    display: block;
-    text-align: right;
-    margin-top: 10px;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-.gift{
-    font-size:1rem ;
-}
-.gift:hover,
-.gift:focus 
-{
-    color: var(--orange-foncé);
-}
-
-.gift:active {
-    color: var(--orange-foncé);
-}
-
-/* Pour les éléments de la liste */
-li {
-    font-weight: 400;
-    font-size: 0.9rem;
-    color: var(--bleu);
-    text-align: left;
-}
-
-.donation-date {
-    display: block;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
-}
-
-.donation-date .date {
-    font-weight: bold;
-    margin-right: 20px;
-}
-
-.donation-date ul {
-    margin: 0 auto;
-    padding-left: 0;
-}
-
-.donation-date ul li {
-    margin-left: 20px;
-    font-family: var(--p);
-}
-.quartiers {
-    flex-direction: column; /* Change la disposition en colonne */
-    align-items: center; /* Centre les éléments verticalement */
-}
-
-#plan {
-    width: 70vw; /* Ajuste la largeur pour les petits écrans */
-    height: auto;
-    margin-top: 20px; /* Ajoute un peu d'espace entre les éléments */
-}
-
-.quartier-info {
-    width: 100%;
-    text-align: center; /* Centre le texte sur les petits écrans */
-}
-
-.quartier-info h3, .quartier-info p {
-    text-align: center; /* Centre aussi les paragraphes */
-}
-
-}
-
-@media  screen and (min-width:769px) {
+/* @media  screen and (min-width:769px) {
     #dons-container{
         display: flex;
     }
-    #profil-params {
-        display: block; 
-        text-align: center;
-    }
+ 
     
     #profil-params h1 {
         display: block; /* Affiche uniquement le titre en mode ordinateur */
-        font-size: 2rem; /* Ajuste la taille du titre pour le mode ordinateur */
-        text-align: center;
-    }
+        /* font-size: 2rem; Ajuste la taille du titre pour le mode ordinateur */
+        /* text-align: center; */
+    /* } */
     
     /* Masque les images sur les grands écrans */
-    #profil-params figure {
-        display: none; /* Cache les images en mode ordinateur */
-    }
-}
+    /* #profil-params figure { */
+        /* display: none; Cache les images en mode ordinateur */
+    /* } */
+/* }  */

@@ -1,3 +1,6 @@
+#liste-dons{
+    padding-top: 10vh;
+}
 h1 {
     font-family: var(--h);
     font-size: 2.5rem;
@@ -59,6 +62,7 @@ h1 {
 
 /* Élément individuel du don */
 .donation-item {
+   
     background: var(--vert);
     color: var(--creme);
     border-radius: 8px;
@@ -164,11 +168,14 @@ h1 {
 
 /* Styles Responsives */
 @media screen and (max-width: 769px) {
-    body {
-        padding-top: 5vh;
-        height: 250vh;
-    }
-
+#liste-dons{
+    height: 260vh;
+    padding-top: 0%;
+}
+li{
+    display: block;
+    flex:1 1 auto;
+}
     h1 {
         font-size: 2rem; /* Réduction de la taille du texte */
         margin: 10px 0;

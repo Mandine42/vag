@@ -6,14 +6,14 @@ import FormulaireProduits from "../component/home/FormulaireProduits";
 
 const FormulaireDons = () => {
 	return (
-		<>
+		<main id="formulaire-dons">
 			{" "}
 			<FormDons />
 			{/* <FormulaireProduits /> */}
 			<FormDonsQuartier />
 			<FormulaireDonsDate />
 			<FormulaireDonsComment />
-		</>
+		</main>
 	);
 };
 

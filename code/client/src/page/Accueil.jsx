@@ -13,14 +13,14 @@ const Accueil = () => {
 	// Fragment : élément anonyme
 	// retunr :<fragment></fragment>
 	return (
-		<>
+		<main id="accueil">
 			<Presentation />
 			<NotreMission />
 			<Fonctionnement />
 			<Carrousel />
 			{/* afficher la notification stockée dans la session */}
 			<NoticeMessage />
-		</>
+		</main>
 	);
 };
 

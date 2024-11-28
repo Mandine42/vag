@@ -28,31 +28,29 @@ const SectionProfil = () => {
 		}
 	};
 	return (
-		<main>
-			<section id="profil">
-				<div id="profil-params">
-					<h1>Mon Profil</h1>
-					<figure role="figure">
-						<Link to="" id="open-popup-link">
-							<img
-								className="params"
-								src="asset/img-profil/Services.svg"
-								alt="paramètre"
-							/>
-						</Link>
-					</figure>
-				</div>
-				<figure>
-					<img src="/asset/img-profil/profil2.svg" alt="profil de Paul" />
+		<section id="profil">
+			<div id="profil-params-profil">
+				<h1>Mon Profil</h1>
+				<figure role="figure">
+					<Link to="" id="open-popup-link">
+						<img
+							className="params"
+							src="/asset/img-profil/Services.svg"
+							alt="paramètre"
+						/>
+					</Link>
 				</figure>
+			</div>
+			<figure>
+				<img src="/asset/img-profil/profil2.svg" alt="profil de Paul" />
+			</figure>
 
-				<h3>{user.lastname}</h3>
-				<br />
-				<p>{user.email}</p>
-				<br />
-				<p>{user.district_id}</p>
-			</section>
-		</main>
+			<h3 id="user-lastname">{user.lastname}</h3>
+			<br />
+			<p className="profil-user">{user.email}</p>
+			<br />
+			<p className="profil-user">{user.district_id}</p>
+		</section>
 	);
 };
 

@@ -4,7 +4,7 @@ const ProfilDons = () => {
 	return (
 		<div id="dons-container-profil">
 			<section className="don-profil">
-				<h2>Mes dons</h2>
+				<h2 className="title2">Mes dons</h2>
 				<ul className="donation">
 					<li className="donation-date">
 						<span className="date">07-08-2024:</span>

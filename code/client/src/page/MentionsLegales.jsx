@@ -3,9 +3,9 @@ import "../assets/CSS/mentions-legales.css";
 
 const MentionLegales = () => {
 	return (
-		<>
+		<main id="main-ml">
 			<MainMentionsLegales />
-		</>
+		</main>
 	);
 };
 

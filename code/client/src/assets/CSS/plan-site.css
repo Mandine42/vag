@@ -1,9 +1,6 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background: var(--creme);
-} */
+#plan-site{
+    padding-top: 10vh;
+}
 #sites{
     font-family: var(--h);
     font-size: 3rem;

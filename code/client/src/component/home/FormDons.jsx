@@ -254,7 +254,7 @@ const FormDons = () => {
 	};
 
 	return (
-		<main>
+		<>
 			<section>
 				<ul>
 					<li>
@@ -388,7 +388,7 @@ const FormDons = () => {
 					</button>
 				</fieldset>
 			</form>
-		</main>
+		</>
 	);
 };
 

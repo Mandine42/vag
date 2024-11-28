@@ -14,9 +14,7 @@
 }
 
 main {
-  flex: 1; /* Le main occupe tout l'espace restant */
-  padding-top: 10vh;
-  background: var(--creme); 
+background: var(--creme); 
 }
 p{
 font-family: var(--p);

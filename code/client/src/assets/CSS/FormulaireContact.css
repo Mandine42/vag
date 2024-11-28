@@ -1,10 +1,6 @@
-body {
-    background-color: var(--creme);
-    margin: 0;
-    padding: 0;
-    font-family: var(--p);
- }
- 
+#main-contact{
+    padding-top: 10vh;
+}
  h2.contact {
      font-family: var(--h);
      font-size: 2.5rem;
@@ -99,6 +95,10 @@ body {
  
  /* Media Queries pour petits écrans */
  @media screen and (max-width: 768px) {
+    #main-contact{
+        padding-top: 0%;
+        height: 120vh;
+    }
      .formulaire-wrapper {
          flex-direction: column;
          align-items: center;

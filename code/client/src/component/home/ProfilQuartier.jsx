@@ -1,7 +1,7 @@
 const ProfilQuartier = () => {
 	return (
 		<section id="quartier-profil">
-			<h2>Bas Montreuil-République</h2>
+			<h2 className="title2">Bas Montreuil-République</h2>
 			<article className="quartiers">
 				<div className="quartier-info">
 					<h3>Mon point de collecte:</h3>

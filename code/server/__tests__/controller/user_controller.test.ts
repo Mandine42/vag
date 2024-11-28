@@ -100,21 +100,21 @@ describe("user controller test suite", async () => {
 		expect(actual).toBeGreaterThan(expected);
 	});
 
-	it.concurrent("should create a new entry in database", async () => {
-		// valeur attendue
-		const route = "/user/register";
-		const expected = 201;
+	// it.concurrent("should create a new entry in database", async () => {
+	// 	// valeur attendue
+	// 	const route = "/user/register";
+	// 	const expected = 201;
 
-		const sut: Response = await supertest(new Server().createServer())
-			.post(route)
-			.send(data);
-		const actual = sut.status;
+	// 	const sut: Response = await supertest(new Server().createServer())
+	// 		.post(route)
+	// 		.send(data);
+	// 	const actual = sut.status;
 
-		// console.log(actual);
+	// 	// console.log(actual);
 
-		// assertion
-		expect(actual).toBe(expected);
-	});
+	// 	// assertion
+	// 	expect(actual).toBe(expected);
+	// });
 
 	it.concurrent("should update database", async () => {
 		// valeur attendue

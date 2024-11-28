@@ -1,3 +1,6 @@
+#accueil{
+    padding-top: 20vh;
+}
 img {
     max-width: 100%;
     height: auto;
@@ -36,6 +39,7 @@ a {
 
 
 @media (orientation: portrait) {
+
     #presentation {
         margin-top: 20px;
     }
@@ -301,7 +305,9 @@ span {
 
 /* Media Query pour les petits écrans (max-width: 768px) */
 @media screen and (max-width: 768px) {
-
+#accueil{
+    padding-top: 0%;
+}
     #presentation,
     #notre-mission,
     #fonctionnement {

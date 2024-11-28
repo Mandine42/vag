@@ -23,7 +23,7 @@ const MainCollect = () => {
 	// });
 
 	return (
-		<main>
+		<main id="main-collect">
 			<h1 id="collect">Points de collecte</h1>
 			<h3 id="quartier-collect">Sélectionne ton quartier</h3>
 			{/* <PointCollectItem /> */}

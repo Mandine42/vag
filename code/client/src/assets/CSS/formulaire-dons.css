@@ -1,3 +1,6 @@
+#formulaire-dons{
+    padding-top: 10vh;
+}
 h2{
     font-family: var(--h);
     font-size: 3rem;
@@ -919,8 +922,9 @@ h3{
     cursor: pointer;
 }
 @media screen and (max-width: 769px) {
-    main {
-        height: 140vh;
+    #formulaire-dons {
+        height: 230vh;
+        padding-top: 0%;
     }
     #form-container {
         flex-direction: column;

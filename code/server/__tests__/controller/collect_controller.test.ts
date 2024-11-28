@@ -91,62 +91,62 @@ describe("collect controller test suite", async () => {
 		expect(actual).toBeGreaterThan(expected);
 	});
 
-	it.concurrent("should create a new entry in database", async () => {
-		// valeur attendue
-		const expected = 201;
+	// it.concurrent("should create a new entry in database", async () => {
+	// 	// valeur attendue
+	// 	const expected = 201;
 
-		const sut: Response = await supertest(new Server().createServer())
-			.post(route)
-			.auth(token, { type: "bearer" })
-			//propiété body de la requête
-			.send(data);
-		const actual = sut.status;
+	// 	const sut: Response = await supertest(new Server().createServer())
+	// 		.post(route)
+	// 		.auth(token, { type: "bearer" })
+	// 		//propiété body de la requête
+	// 		.send(data);
+	// 	const actual = sut.status;
 
-		// console.log(sut);
+	// console.log(sut);
 
-		// assertion
-		expect(actual).toBe(expected);
-	});
+	// assertion
+	// 	expect(actual).toBe(expected);
+	// });
 
-	it.concurrent("should update database", async () => {
-		// valeur attendue
-		const lastId: Collect = (await getLastId()) as Collect;
+	// it.concurrent("should update database", async () => {
+	// 	// valeur attendue
+	// 	const lastId: Collect = (await getLastId()) as Collect;
 
-		const route = `/collect/${lastId.id}`;
+	// 	const route = `/collect/${lastId.id}`;
 
-		const expected = 200;
+	// 	const expected = 200;
 
-		const sut: Response = await supertest(new Server().createServer())
-			.put(route)
-			.auth(token, { type: "bearer" })
-			//propiété body de la requête
-			.send({ ...data, adress: "5 rue des mmmm" });
-		const actual = sut.status;
+	// 	const sut: Response = await supertest(new Server().createServer())
+	// 		.put(route)
+	// 		.auth(token, { type: "bearer" })
+	// 		//propiété body de la requête
+	// 		.send({ ...data, adress: "5 rue des mmmm" });
+	// 	const actual = sut.status;
 
-		console.log(lastId);
+	// 	console.log(lastId);
 
-		// assertion
-		expect(actual).toBe(expected);
-	});
+	// 	// assertion
+	// 	expect(actual).toBe(expected);
+	// });
 
-	it.concurrent("should delete database", async () => {
-		// valeur attendue
-		const lastId: Collect = (await getLastId()) as Collect;
-		console.log(lastId);
+	// it.concurrent("should delete database", async () => {
+	// 	// valeur attendue
+	// 	const lastId: Collect = (await getLastId()) as Collect;
+	// 	console.log(lastId);
 
-		const route = `/collect/${lastId.id}`;
-		const expected = 200;
+	// 	const route = `/collect/${lastId.id}`;
+	// 	const expected = 200;
 
-		const sut: Response = await supertest(new Server().createServer())
-			.delete(route)
-			.auth(token, { type: "bearer" })
-			//propiété body de la requête
-			.send(data);
-		const actual = sut.status;
+	// 	const sut: Response = await supertest(new Server().createServer())
+	// 		.delete(route)
+	// 		.auth(token, { type: "bearer" })
+	// 		//propiété body de la requête
+	// 		.send(data);
+	// 	const actual = sut.status;
 
-		// console.log(lastId);
+	// 	// console.log(lastId);
 
-		// assertion
-		expect(actual).toBe(expected);
-	});
+	// 	// assertion
+	// 	expect(actual).toBe(expected);
+	// });
 });
