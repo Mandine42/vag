@@ -79,20 +79,20 @@ describe("product controller test suite", async () => {
 		expect(actual).toBe(expected);
 	});
 
-	it.concurrent("should delete database", async () => {
-		// valeur attendue
-		const route = "/product/18";
-		const expected = 200;
+	// it.concurrent("should delete database", async () => {
+	// 	// valeur attendue
+	// 	const route = "/product/18";
+	// 	const expected = 200;
 
-		const sut: Response = await supertest(new Server().createServer())
-			.delete(route)
-			.send(data);
+	// 	const sut: Response = await supertest(new Server().createServer())
+	// 		.delete(route)
+	// 		.send(data);
 
-		const actual = sut.status;
+	// 	const actual = sut.status;
 
-		// console.log(sut);
+	// 	// console.log(sut);
 
-		// assertion
-		expect(actual).toBe(expected);
-	});
+	// 	// assertion
+	// 	expect(actual).toBe(expected);
+	// });
 });

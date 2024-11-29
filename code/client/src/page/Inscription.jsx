@@ -4,10 +4,10 @@ import "../assets/CSS/inscription.css";
 import "../assets/CSS/pop-up.css";
 const Inscription = () => {
 	return (
-		<>
+		<main id="inscription">
 			<MainInscription />
 			<PopUpInscription />
-		</>
+		</main>
 	);
 };
 

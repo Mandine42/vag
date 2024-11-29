@@ -71,7 +71,7 @@ CREATE TABLE vag_test.collect(
     iframe TEXT NULL,
     -- clés étrangères
     district_id TINYINT UNSIGNED,
-    FOREIGN KEY (district_id) REFERENCES vag_dev.district(id)
+    FOREIGN KEY (district_id) REFERENCES vag_test.district(id)
     
 );
 
@@ -144,7 +144,7 @@ VALUES
     (NULL, 'Signac - Murs à pêches', 1, 5),
     (NULL, 'Ruffins - Théophile Sueur', 1, 6),
     (NULL, 'Montreau - Le Morillon', 1, 6)
-;    
+; 
 
 INSERT INTO vag_test.collect 
 VALUES

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const PopUpInscription = () => {
 	return (
-		<div id="popup" className="popup">
+		<div id="popup" className="popup-inscrition">
 			<section className="popup-content">
 				<span className="close">&times;</span>
 				<h2>Bienvenue!</h2>

@@ -71,6 +71,9 @@ h3{
 
 /* Media Queries pour petits écrans */
 @media screen and (max-width: 768px) {
+    .popup-incription{
+        display: none;
+    }
     .popup-content {
         width: 90%; /* Ajuster la largeur à 90% de l'écran */
         padding: 15px;

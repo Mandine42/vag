@@ -47,9 +47,9 @@ CREATE TABLE vag.user(
     last_shared DATETIME NULL,
     -- clés étrangères
     district_id TINYINT UNSIGNED,
-    FOREIGN KEY (district_id) REFERENCES vag_test.district(id),
+    FOREIGN KEY (district_id) REFERENCES vag.district(id),
     role_id TINYINT UNSIGNED,
-    FOREIGN KEY (role_id) REFERENCES vag_test.role(id)
+    FOREIGN KEY (role_id) REFERENCES vag.role(id)
 );
 
 
@@ -144,12 +144,12 @@ VALUES
     (NULL, 'Signac - Murs à pêches', 1, 5),
     (NULL, 'Ruffins - Théophile Sueur', 1, 6),
     (NULL, 'Montreau - Le Morillon', 1, 6)
-;    
+; 
 
 INSERT INTO vag.collect 
 VALUES
-    (NULL, '54 rue Robespière', 'Arsène','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5250.534659480077!2d2.4208590761282447!3d48.853112501078336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6729d36dd8f1d%3A0xdd197fe08f0532ca!2s54%20Rue%20Robespierre%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727088744158!5m2!1sfr!2sfr' ,1),
-    (NULL, '30 rue Parmentier',NULL , 2),
+ (NULL, '54 rue Robespière', 'Arsène','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5250.534659480077!2d2.4208590761282447!3d48.853112501078336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6729d36dd8f1d%3A0xdd197fe08f0532ca!2s54%20Rue%20Robespierre%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727088744158!5m2!1sfr!2sfr' ,1),
+    (NULL, '30 rue Parmentier',NULL ,NULL, 2),
     (NULL, '17 rue du Sergent Godefroy', 'Devant la boulagerie','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.232374941594!2d2.4324234000000065!3d48.8537791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6729fc4cad743%3A0x506d68c45452680!2s17%20Rue%20du%20Sergent%20Godefroy%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727089294062!5m2!1sfr!2sfr', 3),
     (NULL, '2 rue Moise Chevalier', 'Devant le garage Opel','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.6714860370244!2d2.4336505!3d48.8644745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d67daf3117b%3A0xae5082e3dd459290!2sRue%20Maurice%20Chevalier%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727089535992!5m2!1sfr!2sfr', 4),
     (NULL, '83 bd Henry Barbusse', 'Chez Sandra','https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.47620177447!2d2.4414827999999913!3d48.86819790000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d440b7c293d%3A0x3113958754d4bc53!2s83%20Bd%20Henri%20Barbusse%2C%2093100%20Montreuil!5e0!3m2!1sfr!2sfr!4v1727089727077!5m2!1sfr!2sfr', 5),
@@ -311,27 +311,27 @@ VALUES
 -- 1: admin, 2: user
 INSERT INTO vag.user
 VALUES
-    (NULL,'Amandine', 'Martin', 'amandine.martin@gmail.com', '0612345678', "$argon2i$v=19$m=16,t=2,p=1$UlZ0TjFXT2c3RHF2SGZybA$01HPmbZV/pswQJKuhp1i3w", '1 Rue de Paris', '2024-05-01', TRUE, '2024-07-07 10:15:30', 1, 1)
-    -- (NULL,'Alice', 'Martin', 'alice.martin@gmail.com', '0612345678', "$argon2i$v=19$m=16,t=2,p=1$UUVtTkZ0c0pkT2lQaEtEaw$Hju/7PIeOoCulL+JsfSnag", '1 Rue de Paris', '2024-05-01', TRUE, '2024-07-07 10:15:30', 1, 2)
-    -- (NULL,'Bob', 'Dupont', 'bob.dupont@gmail.com', '0623456789',"$argon2i$v=19$m=16,t=2,p=1$UDJsdlQ5NTR5WjJxWFhnMQ$2OMGXIvWLXIgfREr4mI2Pw", '2 Rue de Lyon', '2024-05-02', TRUE, '2024-08-15 12:00:00', 7, 2),
-    -- (NULL,'Claire', 'Leroy', 'claire.leroy@gmail.com', '0634567890',"p$argon2i$v=19$m=16,t=2,p=1$bnRQRmFZZHpvMWFURlloag$AZTPlb9/WMfk5FHDXTSwdg", '3 Rue de Marseille', '2024-01-03', TRUE, '2024-03-20 15:45:00', 2, 2),
-    -- (NULL,'David', 'Moreau', 'david.moreau@gmail.com', '0645678901',"$argon2i$v=19$m=16,t=2,p=1$UGw5MGRmU2dTc0hnMndsUA$buAbI3CqUAaRwj4ZI/s7UA", '4 Rue de Lille', '2024-05-04', TRUE, '2024-06-05 09:15:00', 14, 2),
-    -- (NULL,'Emma', 'Simon', 'emma.simon@gmail.com', '0656789012',"$argon2i$v=19$m=16,t=2,p=1$VjFLdWw5bW9XQ1NaUVdyNA$mPT2kYpPKIauYN4PabRWmg", '5 Rue de Toulouse', '2024-05-05', TRUE, '2024-05-10 18:00:00', 10, 2),
-    -- (NULL,'François', 'Michel', 'francois.michel@gmail.com', '0667890123',"$argon2i$v=19$m=16,t=2,p=1$Mm0xYUx3MDJucVBmNUh2UA$K9YiAQQOcLgBSNKVNwjs7A", '6 Rue de Bordeaux', '2024-05-06', TRUE, '2024-09-25 14:30:00', 6, 2),
-    -- (NULL,'Gabrielle', 'Fournier', 'gabrielle.fournier@gmail.com', '0678901234',"$argon2i$v=19$m=16,t=2,p=1$T2p4OGpYcXFaSm1pa0FiMw$Nfq6AynUmuQvLLYnMo3aOA", '7 Rue de Nantes', '2024-05-07', TRUE, '2024-07-12 11:00:00', 12, 2),
-    -- (NULL,'Hugo', 'Girard', 'hugo.girard@gmail.com', '0689012345',"$argon2i$v=19$m=16,t=2,p=1$cUVkUVM3cFhTRUxNcjA3WA$ZfM3lHc7madnAf7QMhRoVw", '8 Rue de Nice', '2024-05-08', TRUE, '2024-08-08 10:45:00', 13, 2),
-    -- (NULL,'Isabelle', 'Lambert', 'isabelle.lambert@gmail.com', '0690123456', "$argon2i$v=19$m=16,t=2,p=1$NlhnclNJRUVraWV1d3kwWA$NZ2CQvssxBG+gLX8q+PMqA", '9 Rue de Strasbourg', '2024-05-09', TRUE, '2024-09-22 16:20:00', 4, 2),
-    -- (NULL,'Jacques', 'Bertrand', 'jacques.bertrand@gmail.com','0601234567', "$argon2i$v=19$m=16,t=2,p=1$TVU2NHFwQXFhd0tGd3dvcA$aWQk4Vg9ViLIv4R9mx4fQQ", '10 Rue de Rennes', '2024-05-10', TRUE, '2024-10-18 13:30:00', 9, 2),
-    -- (NULL,'Kévin', 'Rousseau', 'kevin.rousseau@gmail.com','0612345670', "$argon2i$v=19$m=16,t=2,p=1$YjdQZmVuOWh1TFpyM1Zicw$Q6ZqQ77xmpp8SvbrPESF2Q", '11 Rue de Brest', '2024-05-11', TRUE, '2024-11-09 17:00:00', 1, 2),
-    -- (NULL,'Laure', 'Blanc', 'laure.blanc@gmail.com', '0623456701',"$argon2i$v=19$m=16,t=2,p=1$UUtrUE92UkR3eXUzT3JVOA$DPS+s12toHzvPxu87xxMXw", '12 Rue de Limoges', '2024-05-12', TRUE, '2024-12-30 09:45:00', 4, 2),
-    -- (NULL,'Mathieu', 'Henry', 'mathieu.henry@gmail.com', '0634567012',"$argon2i$v=19$m=16,t=2,p=1$NjVmQ0xzbFRlQzZ4bDBWTg$TJZvK8DOKWyFgBL2Cw4tNQ", '13 Rue de Metz', '2024-05-13', TRUE, '2024-07-05 08:00:00', 8, 2),
-    -- (NULL,'Nathalie', 'Dubois', 'nathalie.dubois@gmail.com', '0645670123',"$argon2i$v=19$m=16,t=2,p=1$dDFGcUs4dDFjNkVVSUFxMQ$ygyqmA/mFK/Pj/VS5TZ2xw", '14 Rue de Reims', '2024-05-14', TRUE, '2024-07-03 12:00:00', 9, 2),
-    -- (NULL,'Olivier', 'Gauthier', 'olivier.gauthier@gmail.com', '0656701234',"$argon2i$v=19$m=16,t=2,p=1$bkpmcDJsVko2RGRicGlTQQ$wCUkoyUTyqvujJ3Wuf+pOw", '15 Rue de Dijon', '2024-05-15', TRUE, '2024-08-19 09:45:00', 12, 2),
-    -- (NULL,'Pauline', 'Perrin', 'pauline.perrin@gmail.com', '0667012345',"$argon2i$v=19$m=16,t=2,p=1$eDJURzFVQktNMVJxdE1kdw$NxyPvcp57bxDGHL8esTbgA", '16 Rue de Grenoble', '2024-05-16', TRUE, '2024-09-14 10:30:00', 13, 2),
-    -- (NULL,'Quentin', 'Renard', 'quentin.renard@gmail.com', '0670123456',"$argon2i$v=19$m=16,t=2,p=1$c1hmeGI2eWZiOTZ2VUZQcw$U+lBjstY3VlX3LvqQrvZyQ", '17 Rue de Tours', '2024-05-17', TRUE, '2024-06-27 14:15:00', 2, 2),
-    -- (NULL,'Roxane', 'Marchand', 'roxane.marchand@gmail.com', '0681234567',"$argon2i$v=19$m=16,t=2,p=1$c1hmeGI2eWZiOTZ2VUZQcw$U+lBjstY3VlX3LvqQrvZyQ", '18 Rue de Pau', '2024-05-18', TRUE, '2024-09-08 11:45:00', 5, 2),
-    -- (NULL,'Sébastien', 'Moulin', 'sebastien.moulin@gmail.com', '0692345678',"$argon2i$v=19$m=16,t=2,p=1$clR0SkdBU1hvSkFMb083cg$llhEKf205nE/Fi/aFstFCw", '19 Rue de Rouen', '2024-05-19', TRUE, '2024-10-15 17:00:00', 8, 2),
-    -- (NULL,'Thérèse', 'Collet', 'therese.collet@gmail.com', '0603456789',"$argon2i$v=19$m=16,t=2,p=1$Umh0c3lLbmhsN0twNXBEbw$TVwvGYd38UD9jOqJCRI1cw", '20 Rue de Perpignan', '2024-05-20', TRUE, '2024-06-20 15:30:00', 9, 2)
+    (NULL,'Amandine', 'Martin', 'amandine.martin@gmail.com', '0612345678', "$argon2i$v=19$m=16,t=2,p=1$cjI2eEhrUkhaelRBQlBIdQ$afTOrE2u2lYfPL/KIfbhKw", '1 Rue de Paris', '2024-05-01', TRUE, '2024-07-07 10:15:30', 1, 1),
+    (NULL,'Alice', 'Martin', 'alice.martin@gmail.com', '0612345678', "$argon2i$v=19$m=16,t=2,p=1$UUVtTkZ0c0pkT2lQaEtEaw$Hju/7PIeOoCulL+JsfSnag", '1 Rue de Paris', '2024-05-01', TRUE, '2024-07-07 10:15:30', 1, 2),
+    (NULL,'Bob', 'Dupont', 'bob.dupont@gmail.com', '0623456789',"$argon2i$v=19$m=16,t=2,p=1$UDJsdlQ5NTR5WjJxWFhnMQ$2OMGXIvWLXIgfREr4mI2Pw", '2 Rue de Lyon', '2024-05-02', TRUE, '2024-08-15 12:00:00', 7, 2),
+    (NULL,'Claire', 'Leroy', 'claire.leroy@gmail.com', '0634567890',"p$argon2i$v=19$m=16,t=2,p=1$bnRQRmFZZHpvMWFURlloag$AZTPlb9/WMfk5FHDXTSwdg", '3 Rue de Marseille', '2024-01-03', TRUE, '2024-03-20 15:45:00', 2, 2),
+    (NULL,'David', 'Moreau', 'david.moreau@gmail.com', '0645678901',"$argon2i$v=19$m=16,t=2,p=1$UGw5MGRmU2dTc0hnMndsUA$buAbI3CqUAaRwj4ZI/s7UA", '4 Rue de Lille', '2024-05-04', TRUE, '2024-06-05 09:15:00', 14, 2),
+    (NULL,'Emma', 'Simon', 'emma.simon@gmail.com', '0656789012',"$argon2i$v=19$m=16,t=2,p=1$VjFLdWw5bW9XQ1NaUVdyNA$mPT2kYpPKIauYN4PabRWmg", '5 Rue de Toulouse', '2024-05-05', TRUE, '2024-05-10 18:00:00', 10, 2),
+    (NULL,'François', 'Michel', 'francois.michel@gmail.com', '0667890123',"$argon2i$v=19$m=16,t=2,p=1$Mm0xYUx3MDJucVBmNUh2UA$K9YiAQQOcLgBSNKVNwjs7A", '6 Rue de Bordeaux', '2024-05-06', TRUE, '2024-09-25 14:30:00', 6, 2),
+    (NULL,'Gabrielle', 'Fournier', 'gabrielle.fournier@gmail.com', '0678901234',"$argon2i$v=19$m=16,t=2,p=1$T2p4OGpYcXFaSm1pa0FiMw$Nfq6AynUmuQvLLYnMo3aOA", '7 Rue de Nantes', '2024-05-07', TRUE, '2024-07-12 11:00:00', 12, 2),
+    (NULL,'Hugo', 'Girard', 'hugo.girard@gmail.com', '0689012345',"$argon2i$v=19$m=16,t=2,p=1$cUVkUVM3cFhTRUxNcjA3WA$ZfM3lHc7madnAf7QMhRoVw", '8 Rue de Nice', '2024-05-08', TRUE, '2024-08-08 10:45:00', 13, 2),
+    (NULL,'Isabelle', 'Lambert', 'isabelle.lambert@gmail.com', '0690123456', "$argon2i$v=19$m=16,t=2,p=1$NlhnclNJRUVraWV1d3kwWA$NZ2CQvssxBG+gLX8q+PMqA", '9 Rue de Strasbourg', '2024-05-09', TRUE, '2024-09-22 16:20:00', 4, 2),
+    (NULL,'Jacques', 'Bertrand', 'jacques.bertrand@gmail.com','0601234567', "$argon2i$v=19$m=16,t=2,p=1$TVU2NHFwQXFhd0tGd3dvcA$aWQk4Vg9ViLIv4R9mx4fQQ", '10 Rue de Rennes', '2024-05-10', TRUE, '2024-10-18 13:30:00', 9, 2),
+    (NULL,'Kévin', 'Rousseau', 'kevin.rousseau@gmail.com','0612345670', "$argon2i$v=19$m=16,t=2,p=1$YjdQZmVuOWh1TFpyM1Zicw$Q6ZqQ77xmpp8SvbrPESF2Q", '11 Rue de Brest', '2024-05-11', TRUE, '2024-11-09 17:00:00', 1, 2),
+    (NULL,'Laure', 'Blanc', 'laure.blanc@gmail.com', '0623456701',"$argon2i$v=19$m=16,t=2,p=1$UUtrUE92UkR3eXUzT3JVOA$DPS+s12toHzvPxu87xxMXw", '12 Rue de Limoges', '2024-05-12', TRUE, '2024-12-30 09:45:00', 4, 2),
+    (NULL,'Mathieu', 'Henry', 'mathieu.henry@gmail.com', '0634567012',"$argon2i$v=19$m=16,t=2,p=1$NjVmQ0xzbFRlQzZ4bDBWTg$TJZvK8DOKWyFgBL2Cw4tNQ", '13 Rue de Metz', '2024-05-13', TRUE, '2024-07-05 08:00:00', 8, 2),
+    (NULL,'Nathalie', 'Dubois', 'nathalie.dubois@gmail.com', '0645670123',"$argon2i$v=19$m=16,t=2,p=1$dDFGcUs4dDFjNkVVSUFxMQ$ygyqmA/mFK/Pj/VS5TZ2xw", '14 Rue de Reims', '2024-05-14', TRUE, '2024-07-03 12:00:00', 9, 2),
+    (NULL,'Olivier', 'Gauthier', 'olivier.gauthier@gmail.com', '0656701234',"$argon2i$v=19$m=16,t=2,p=1$bkpmcDJsVko2RGRicGlTQQ$wCUkoyUTyqvujJ3Wuf+pOw", '15 Rue de Dijon', '2024-05-15', TRUE, '2024-08-19 09:45:00', 12, 2),
+    (NULL,'Pauline', 'Perrin', 'pauline.perrin@gmail.com', '0667012345',"$argon2i$v=19$m=16,t=2,p=1$eDJURzFVQktNMVJxdE1kdw$NxyPvcp57bxDGHL8esTbgA", '16 Rue de Grenoble', '2024-05-16', TRUE, '2024-09-14 10:30:00', 13, 2),
+    (NULL,'Quentin', 'Renard', 'quentin.renard@gmail.com', '0670123456',"$argon2i$v=19$m=16,t=2,p=1$c1hmeGI2eWZiOTZ2VUZQcw$U+lBjstY3VlX3LvqQrvZyQ", '17 Rue de Tours', '2024-05-17', TRUE, '2024-06-27 14:15:00', 2, 2),
+    (NULL,'Roxane', 'Marchand', 'roxane.marchand@gmail.com', '0681234567',"$argon2i$v=19$m=16,t=2,p=1$c1hmeGI2eWZiOTZ2VUZQcw$U+lBjstY3VlX3LvqQrvZyQ", '18 Rue de Pau', '2024-05-18', TRUE, '2024-09-08 11:45:00', 5, 2),
+    (NULL,'Sébastien', 'Moulin', 'sebastien.moulin@gmail.com', '0692345678',"$argon2i$v=19$m=16,t=2,p=1$clR0SkdBU1hvSkFMb083cg$llhEKf205nE/Fi/aFstFCw", '19 Rue de Rouen', '2024-05-19', TRUE, '2024-10-15 17:00:00', 8, 2),
+    (NULL,'Thérèse', 'Collet', 'therese.collet@gmail.com', '0603456789',"$argon2i$v=19$m=16,t=2,p=1$Umh0c3lLbmhsN0twNXBEbw$TVwvGYd38UD9jOqJCRI1cw", '20 Rue de Perpignan', '2024-05-20', TRUE, '2024-06-20 15:30:00', 9, 2)
 ;
 
 INSERT INTO vag.share
@@ -352,7 +352,7 @@ VALUES
     (NULL,2, '2024-06-14 10:30:00', NULL, 14, 12),
     (NULL,10,'2024-07-27 14:15:00', NULL, 15, 13),
     (NULL,4, '2024-09-08 11:45:00', NULL, 16, 13),
-    (NULL,6, '2024-10-15 17:00:00', NULL, 17, 14),
+    (NULL,6, '2024-10-15 17:00:00', NULL, 17, 8),
     (NULL,3, '2024-11-20 15:30:00', NULL, 18, 3),
     (NULL,8, '2024-07-03 12:00:00', NULL, 19, 10),
     (NULL,7, '2024-08-19 09:45:00', NULL, 20, 5)
@@ -380,3 +380,25 @@ VALUES
     (NULL,16, 18, 19)
 ;
 
+
+   
+-- -- -- Commencer une transaction
+-- -- START TRANSACTION;
+
+-- -- -- Insérer une nouvelle entrée dans la table vag.user_shar1
+-- -- INSERT INTO vag.user_share (donor_id, beneficiary_id, share_id)
+-- -- VALUES (1, 2, 1);
+
+-- -- -- Supposons que l'ID utilisateur pour le donateur et le bénéficiaire sont 1 et 2 respectivement
+-- -- -- Mettre à jour le champ last_shared pour le donateur
+-- -- UPDATE vag.user
+-- -- SET last_shared = NOW()
+-- -- WHERE id = 1;
+
+-- -- -- Mettre à jour le champ last_shared pour le bénéficiaire
+-- -- UPDATE vag.user
+-- -- SET last_shared = NOW()
+-- -- WHERE id = 2;
+
+-- -- -- Valider la transaction si toutes les opérations réussissent
+-- -- COMMIT;

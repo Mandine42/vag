@@ -103,10 +103,10 @@ const MainConnexion = () => {
 						</p>
 					</section>
 					{/* <input type="submit" value="S'inscrire" /> */}
-					<Link className="btn" to="/formulaire-inscription">
-						S'inscrire
-					</Link>
 				</form>
+				<Link className="inscrit" to="/formulaire-inscription">
+					S'inscrire
+				</Link>
 			</section>
 		</div>
 	);
