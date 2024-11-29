@@ -1,4 +1,7 @@
-
+#main-collect{
+    padding-top: 10vh;
+    color: var(--);
+}
 #quartier-collect{
     font-family: var(--h);
     font-size: 1.5rem;
@@ -83,6 +86,7 @@
 
 @media screen and (max-width: 768px) {
     #main-collect{
+        padding-top: 0%;
         
     }
     .title-collect{

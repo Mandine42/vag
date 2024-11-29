@@ -1,3 +1,6 @@
+#hygiene{
+  padding-top: 10vh;
+}
 ol{
     list-style-type: none;
     text-decoration: none;
@@ -39,6 +42,10 @@ span{
     border-radius: 30px;
 }
 @media screen and (max-width: 769px) {
+  #hygiene{
+    padding-top: 0%;
+    height:150vh;
+  }
   h1{
     font-size: 1.5rem;
   }

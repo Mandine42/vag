@@ -5,9 +5,9 @@ import PointCollectItem from "../component/home/PointCollectItem";
 // récuperer la props data envoyée par le composant parent
 const Collect = () => {
 	return (
-		<>
+		<main id="main-collect">
 			<MainCollect />
-		</>
+		</main>
 	);
 };
 

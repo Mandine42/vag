@@ -13,33 +13,37 @@ const AdminContact = () => {
 	}, []);
 
 	return (
-		<div className="admin-contact">
-			<h1 className="admin-contact-title">Liste des Contacts</h1>
-			{Array.isArray(contacts) && contacts.length === 0 ? (
-				<p className="admin-contact-empty">Aucun contact trouvé.</p>
-			) : (
-				<table className="admin-contact-table">
-					<thead>
-						<tr className="admin-contact-table-header">
-							<th>ID</th>
-							<th>Email</th>
-							<th>Sujet</th>
-							<th>Message</th>
-						</tr>
-					</thead>
-					<tbody>
-						{contacts.map((contact) => (
-							<tr key={contact.id} className="admin-contact-table-row">
-								<td>{contact.id}</td>
-								<td>{contact.email}</td>
-								<td>{contact.subject}</td>
-								<td>{contact.message}</td>
+		<main id="main-contact">
+			<div className="admin-contact">
+				<h1 className="admin-contact-title">Liste des Contacts</h1>
+				{Array.isArray(contacts) && contacts.length === 0 ? (
+					<p className="admin-contact-empty">Aucun contact trouvé.</p>
+				) : (
+					<table className="admin-contact-table">
+						<thead>
+							<tr className="admin-contact-table-header">
+								<th>ID</th>
+								<th>Date</th>
+								<th>Email</th>
+								<th>Sujet</th>
+								<th>Message</th>
 							</tr>
-						))}
-					</tbody>
-				</table>
-			)}
-		</div>
+						</thead>
+						<tbody>
+							{contacts.map((contact) => (
+								<tr key={contact.id} className="admin-contact-table-row">
+									<td>{contact.id}</td>
+									<td>{contact.date}</td>
+									<td>{contact.email}</td>
+									<td>{contact.subject}</td>
+									<td>{contact.message}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				)}
+			</div>
+		</main>
 	);
 };
 

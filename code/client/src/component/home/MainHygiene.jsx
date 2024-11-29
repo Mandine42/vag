@@ -1,6 +1,6 @@
 const MainHygiene = () => {
 	return (
-		<main>
+		<>
 			<h1>
 				Règles concernant les aliments sur <span>VAG</span>
 			</h1>
@@ -89,7 +89,7 @@ const MainHygiene = () => {
 				un don vous semble suspect, n'hésitez pas à nous le signaler
 				directement.
 			</p>
-		</main>
+		</>
 	);
 };
 

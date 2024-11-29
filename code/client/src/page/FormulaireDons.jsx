@@ -3,6 +3,7 @@ import FormDonsQuartier from "../component/home/FormDonsQuartier";
 import FormulaireDonsComment from "../component/home/FormulaireDonsComment";
 import FormulaireDonsDate from "../component/home/FormulaireDonsDate";
 import FormulaireProduits from "../component/home/FormulaireProduits";
+import ValidationDons from "../component/home/ValidationDons";
 
 const FormulaireDons = () => {
 	return (
@@ -13,6 +14,7 @@ const FormulaireDons = () => {
 			<FormDonsQuartier />
 			<FormulaireDonsDate />
 			<FormulaireDonsComment />
+			<ValidationDons />
 		</main>
 	);
 };

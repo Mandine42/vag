@@ -923,8 +923,35 @@ h3{
 }
 @media screen and (max-width: 769px) {
     #formulaire-dons {
-        height: 230vh;
+        height: 240vh;
         padding-top: 0%;
+    }
+    .popup-content3 {
+        margin: 5% auto; /* Réduit la marge pour plus d'espace sur les petits écrans */
+        padding: 15px; /* Réduit le padding */
+        max-width: 70%; /* Prend presque toute la largeur de l'écran */
+        border-radius: 20px; /* Réduit le rayon des coins */
+    }
+
+    .close {
+        font-size: 24px; /* Réduit la taille de la croix */
+    }
+
+    figure img {
+        width: 40%; 
+        height: 40%; 
+        max-width: 50%;
+        max-height:50%;
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Taille de titre adaptée */
+        text-align: center; /* Centrer le titre */
+    }
+
+    ul li h3 {
+        font-size: 1rem; /* Réduit la taille des liens */
+        text-align: center; /* Centrer les liens */
     }
     #form-container {
         flex-direction: column;

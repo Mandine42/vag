@@ -47,6 +47,16 @@ const MainContact = () => {
 			{errorMessage && <p className="error-message">{errorMessage}</p>}
 			{successMessage && <p className="success-message">{successMessage}</p>}
 			<form onSubmit={handleSubmit(submit)} className="form-contact">
+				<label htmlFor="date" className="label-date">
+					Date
+				</label>
+				<input
+					type="date"
+					{...register("date", { required: "la date est requise" })}
+					id="date"
+					required
+					aria-required
+				/>
 				<label htmlFor="email">Email</label>
 				<input
 					type="email"
